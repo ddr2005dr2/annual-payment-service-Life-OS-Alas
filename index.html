@@ -1,11 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Life OS Atlas</title>
+  <meta name="description" content="Life OS Atlas is building a smarter, simpler platform for annual subscription access and support." />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 720px;
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 18px;
+      padding: 40px 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #1e293b;
+      color: #93c5fd;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+
+    .sub {
+      font-size: 16px;
+      color: #94a3b8;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid #475569;
+    }
+
+    .btn-secondary:hover {
+      background: #1e293b;
+    }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .card {
+        padding: 28px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Life OS Atlas</h1>
-  <p>Site coming soon.</p>
+  <div class="wrap">
+    <div class="card">
+      <div class="badge">Life OS Atlas</div>
+      <h1>Smarter annual access starts here.</h1>
+      <p>
+        Life OS Atlas is building a simple, reliable platform for annual subscription access,
+        account support, and customer service.
+      </p>
+      <div class="sub">
+        The site is now live and more features are being added.
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:support@lifeosatlas.com">Contact Support</a>
+        <a class="btn btn-secondary" href="https://lifeosatlas.com" target="_blank" rel="noopener noreferrer">Refresh Site</a>
+      </div>
+
+      <div class="footer">
+        support@lifeosatlas.com
+      </div>
+    </div>
+  </div>
 </body>
 </html>
