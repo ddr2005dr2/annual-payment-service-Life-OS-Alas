@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifeOS Atlas</title>
-  <meta name="description" content="LifeOS Atlas — premium life operations dashboard with concierge-guided execution, onboarding, workspace, billing preview, and polished light/dark UI." />
+  <meta name="description" content="LifeOS Atlas â€” premium life operations dashboard with concierge-guided execution, onboarding, workspace, billing preview, and polished light/dark UI." />
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=zodiak@400,700&display=swap" rel="stylesheet">
   <style>
@@ -212,5 +212,85 @@
       });
     })();
   </script>
+
+<script>
+(function () {
+  function normalizeHash() {
+    var hash = window.location.hash || '#/';
+    if (hash === '#') hash = '#/';
+    return hash;
+  }
+
+  function route() {
+    var hash = normalizeHash();
+    var route = hash.replace(/^#/, '');
+    var path = route.split('?')[0];
+
+    var page = document.body;
+    if (!page) return;
+
+    page.setAttribute('data-route', path);
+
+    var loginViews = document.querySelectorAll('[data-route-view=""login""],[data-route-view=""\/login""]');
+    var signupViews = document.querySelectorAll('[data-route-view=""signup""],[data-route-view=""\/signup""]');
+    var dashboardViews = document.querySelectorAll('[data-route-view=""dashboard""],[data-route-view=""\/dashboard""]');
+    var homeViews = document.querySelectorAll('[data-route-view=""home""],[data-route-view=""\/""]');
+
+    [loginViews, signupViews, dashboardViews, homeViews].forEach(function(group){
+      group.forEach(function(el){ el.style.display = 'none'; });
+    });
+
+    if (path === '/login') {
+      loginViews.forEach(function(el){ el.style.display = ''; });
+      return;
+    }
+
+    if (path === '/signup') {
+      signupViews.forEach(function(el){ el.style.display = ''; });
+      return;
+    }
+
+    if (path === '/dashboard') {
+      dashboardViews.forEach(function(el){ el.style.display = ''; });
+      return;
+    }
+
+    homeViews.forEach(function(el){ el.style.display = ''; });
+  }
+
+  window.addEventListener('hashchange', route);
+  document.addEventListener('DOMContentLoaded', route);
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    if (href === '/login' || href === '/signup' || href === '/dashboard') {
+      e.preventDefault();
+      window.location.hash = href;
+    }
+  });
+
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || !form.getAttribute) return;
+    var action = form.getAttribute('action');
+    if (action === '#/login' || action === '#/signup') {
+      e.preventDefault();
+      window.location.hash = action.replace('#','');
+    }
+  });
+})();
+</script>
+
+<style>
+[data-route-view] { display: none; }
+body[data-route="/"] [data-route-view="home"],
+body[data-route="/login"] [data-route-view="login"],
+body[data-route="/signup"] [data-route-view="signup"],
+body[data-route="/dashboard"] [data-route-view="dashboard"] { display: block !important; }
+</style>
 </body>
 </html>
+
