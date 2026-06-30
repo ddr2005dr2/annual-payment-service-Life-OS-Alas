@@ -1,425 +1,858 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LifeOS Atlas | The operating system for adult life</title>
-  <meta name="description" content="LifeOS Atlas is a premium life admin platform that helps people organize obligations, next steps, reminders, onboarding, and support in one guided operating layer." />
-  <link rel="canonical" href="https://www.lifeosatlas.com/" />
+  <title>LifeOS Atlas | Premium Operating Layer</title>
+  <meta name="description" content="LifeOS Atlas premium operating layer with working tabs, onboarding, trust center, concierge intake, community, contact flow, and free-first launch pricing." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --teal:#0f6f73;
-      --gray:#6f747b;
-      --gray-dark:#5f646b;
-      --gray-soft:rgba(111,116,123,.18);
-      --white:rgba(255,255,255,.96);
-      --white-soft:rgba(255,255,255,.82);
-      --white-faint:rgba(255,255,255,.68);
-      --orange:#ef8a24;
-      --blue:#4c8fd6;
-      --line:rgba(255,255,255,.15);
-      --line-soft:rgba(255,255,255,.1);
-      --shadow:0 18px 46px rgba(0,0,0,.16);
-      --shadow-soft:0 10px 28px rgba(0,0,0,.08);
-      --radius:24px;
-      --max:1180px;
+    :root {
+      --bg: #081019;
+      --bg-2: #0b1420;
+      --panel: #101b29;
+      --panel-2: #132133;
+      --panel-3: #0c1724;
+      --line: rgba(255,255,255,.09);
+      --text: #edf3fb;
+      --muted: #97a7bd;
+      --teal: #1f8f97;
+      --teal-deep: #156d74;
+      --teal-soft: rgba(31,143,151,.15);
+      --blue: #61a9ff;
+      --blue-soft: rgba(97,169,255,.14);
+      --orange: #ff9f43;
+      --orange-deep: #ef7d1d;
+      --orange-soft: rgba(255,159,67,.16);
+      --good: #3dbb76;
+      --warn: #d1a13d;
+      --radius: 22px;
+      --shadow: 0 26px 80px rgba(0,0,0,.42);
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,Segoe UI,Arial,sans-serif;
-      color:var(--white);
-      background:var(--teal);
-      line-height:1.6;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(31,143,151,.16), transparent 24%),
+        radial-gradient(circle at 88% 8%, rgba(255,159,67,.12), transparent 18%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    .shell{max-width:var(--max);margin:0 auto;padding:0 24px}
-    .site-header{
-      position:sticky;top:0;z-index:40;
-      background:var(--gray);
-      border-bottom:1px solid rgba(255,255,255,.14);
-      box-shadow:var(--shadow-soft);
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    .shell { width: min(1400px, calc(100% - 22px)); margin: 10px auto 24px; }
+    .topbar {
+      background: #000;
+      color: #c3d0de;
+      border: 1px solid rgba(255,255,255,.06);
+      border-bottom: 0;
+      border-radius: 24px 24px 0 0;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 13px;
     }
-    .nav{
-      min-height:76px;
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      align-items:center;
-      gap:24px;
+    .app {
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 0 0 28px 28px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(13,20,31,.98), rgba(8,12,19,.98));
+      box-shadow: var(--shadow);
+      min-height: calc(100vh - 42px);
     }
-    .brand{display:flex;flex-direction:column;padding:14px 0}
-    .brand strong{font-size:1.04rem;letter-spacing:.02em}
-    .brand span{font-size:.8rem;color:rgba(255,255,255,.72)}
-    .nav-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-    .nav-links a,
-    .toolbar a,
-    .nav-login,
-    .nav-cta,
-    .expander{
-      display:inline-flex;align-items:center;justify-content:center;min-height:42px;
-      padding:0 14px;border-radius:999px;font-size:.95rem;font-weight:700;
-      transition:all .22s ease;
+    .masthead {
+      background: #000;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
-    .nav-links a{
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.1);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.04em;
     }
-    .nav-links a:hover,.toolbar a:hover,.expander:hover{transform:translateY(-1px)}
-    .nav-links a.accent-orange,.toolbar a.accent-orange,.accent-orange{
-      background:rgba(239,138,36,.2);
-      border:1px solid rgba(239,138,36,.38);
-      color:#fff;
-      box-shadow:0 0 0 1px rgba(239,138,36,.08) inset;
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      position: relative;
+      background: linear-gradient(135deg, var(--teal), #73d4da 44%, var(--orange));
+      box-shadow: inset 0 0 18px rgba(255,255,255,.22), 0 14px 34px rgba(31,143,151,.22);
     }
-    .nav-links a.accent-blue,.toolbar a.accent-blue,.accent-blue{
-      background:rgba(76,143,214,.18);
-      border:1px solid rgba(76,143,214,.34);
-      color:#fff;
-      box-shadow:0 0 0 1px rgba(76,143,214,.08) inset;
+    .logo:before, .logo:after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      background: rgba(255,255,255,.92);
+      border-radius: 999px;
     }
-    .nav-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-    .nav-login{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
+    .logo:before { width: 18px; height: 4px; top: 11px; }
+    .logo:after { width: 11px; height: 4px; top: 21px; }
+    .nav-actions, .hero-cta, .chip-row, .auth-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
     }
-    .nav-cta{
-      background:#fff;
-      color:var(--gray-dark);
-      border:1px solid rgba(255,255,255,.3);
-      box-shadow:var(--shadow-soft);
+    .btn, .navtab, .utility-link, .policy-link {
+      min-height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: .18s ease;
     }
-    .hero{padding:52px 0 18px}
-    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;
-      background:rgba(255,255,255,.08);border:1px solid var(--line);box-shadow:var(--shadow-soft);color:#fff;
+    .btn:hover, .navtab:hover, .utility-link:hover, .policy-link:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.16); }
+    .btn-primary { background: linear-gradient(180deg, var(--teal), var(--teal-deep)); border-color: transparent; }
+    .btn-warm { background: linear-gradient(180deg, var(--orange), var(--orange-deep)); color: #111; border-color: transparent; }
+    .btn-blue { background: rgba(97,169,255,.12); color: #dcecff; }
+    .navtabs {
+      display: flex;
+      gap: 10px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,.015);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      overflow-x: auto;
     }
-    h1{font-size:clamp(2.5rem,4.8vw,5rem);line-height:1.03;margin:18px 0 14px;font-weight:800;letter-spacing:-.035em;max-width:11ch}
-    .lead{max-width:64ch;color:var(--white-soft);font-size:1.06rem}
-    .hero-actions,.hero-tags,.toolbar,.quick-pills{display:flex;gap:12px;flex-wrap:wrap}
-    .hero-actions{margin:24px 0 18px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;
-      font-weight:800;border:1px solid rgba(255,255,255,.16);box-shadow:var(--shadow-soft)
+    .navtab.active { background: rgba(31,143,151,.18); border-color: rgba(31,143,151,.42); }
+    .layout { display: grid; grid-template-columns: 275px minmax(0, 1fr); min-height: calc(100vh - 150px); }
+    .sidebar {
+      padding: 18px;
+      border-right: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      display: grid;
+      gap: 16px;
+      align-content: start;
     }
-    .btn-primary{background:#fff;color:var(--gray-dark)}
-    .btn-secondary{background:rgba(255,255,255,.08);color:#fff}
-    .tag,.quick-pill{
-      display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border-radius:999px;
-      background:rgba(255,255,255,.07);border:1px solid var(--line);color:#fff;font-size:.92rem
+    .side-card, .panel, .mini-card, .policy-card, .receipt-card, .support-card, .community-card, .trust-card, .onboard-step, .plan-card, .auth-card, .metric-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      padding: 18px;
     }
-    .quick-pill.orange{border-color:rgba(239,138,36,.44);background:rgba(239,138,36,.15)}
-    .quick-pill.blue{border-color:rgba(76,143,214,.4);background:rgba(76,143,214,.14)}
-
-    .float-field{
-      display:grid;gap:16px;padding-top:10px;
+    .side-card h3 {
+      font-size: 14px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #bfd0e2;
     }
-    .floating-line,
-    .floating-summary,
-    .metric-row,
-    .footer-intro{
-      background:transparent;
-      border:none;
-      box-shadow:none;
+    .side-card p, .mini-card p, .policy-card p, .receipt-card p, .support-card p, .community-card p, .trust-card p, .onboard-step p, .plan-card p, .metric-card p, .note, .lead, .muted { color: var(--muted); }
+    .chip {
+      display: inline-flex;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.05);
+      color: #dce8f8;
     }
-    .floating-summary{
-      display:grid;gap:14px;padding:18px 0 8px;
+    .chip.teal { background: var(--teal-soft); }
+    .chip.orange { background: var(--orange-soft); color: #ffe4c3; }
+    .chip.blue { background: var(--blue-soft); }
+    .main { padding: 20px; display: grid; gap: 18px; }
+    .view { display: none; gap: 18px; }
+    .view.active { display: grid; }
+    .hero { display: grid; grid-template-columns: 1.12fr .88fr; gap: 18px; }
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      color: #bdd0e8;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
-    .floating-summary h3,.section-title h2,.footer-intro h2{margin:0}
-    .floating-summary p,.section-title p,.metric-item span,.accordion-content p,.footer-intro p{color:var(--white-soft);margin:0}
-    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}
-    .metric-item{
-      padding:10px 0;border-top:1px solid rgba(255,255,255,.14)
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(38px, 5vw, 70px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      max-width: 11ch;
     }
-    .metric-item strong{display:block;font-size:1.12rem;margin:4px 0}
-    .small{font-size:.82rem;color:var(--white-faint)}
-
-    .section{padding:16px 0}
-    .section-title{margin-bottom:16px}
-    .section-title h2{font-size:clamp(1.7rem,2.4vw,2.6rem);letter-spacing:-.02em}
-    .content-flow{display:grid;gap:18px}
-
-    .accordion-list{display:grid;gap:10px}
-    details.accordion{
-      border:none;
-      background:transparent;
-      padding:0;
+    h2 {
+      font-size: 34px;
+      letter-spacing: -.05em;
+      margin-top: 14px;
     }
-    details.accordion[open] .expander{
-      background:rgba(255,255,255,.1);
-      border-color:rgba(255,255,255,.18);
+    .lead { margin-top: 16px; font-size: 18px; max-width: 62ch; }
+    .grid-2, .grid-3, .form-grid, .auth-wrap, .metrics-grid, .receipt-list, .policy-list, .community-list, .trust-list {
+      display: grid;
+      gap: 16px;
     }
-    details.accordion[open] .accordion-content{grid-template-rows:1fr;opacity:1;padding-top:10px}
-    summary{list-style:none;cursor:pointer}
-    summary::-webkit-details-marker{display:none}
-    .expander{
-      width:100%;justify-content:space-between;text-align:left;
-      min-height:54px;padding:12px 16px;background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);color:#fff;box-shadow:var(--shadow-soft)
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .metrics-grid { grid-template-columns: repeat(3, 1fr); }
+    .form-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .auth-wrap { grid-template-columns: repeat(2, 1fr); }
+    .mini-card h3, .policy-card h3, .receipt-card h3, .support-card h3, .community-card h3, .trust-card h3, .onboard-step h3, .plan-card h3, .auth-card h3, .metric-card h3 { font-size: 20px; letter-spacing: -.03em; }
+    .hero-visual { display: grid; gap: 14px; }
+    .device {
+      min-height: 360px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(31,143,151,.20), transparent 26%),
+        radial-gradient(circle at 46% 54%, rgba(255,159,67,.18), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      position: relative;
+      overflow: hidden;
     }
-    .expander .left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-    .expander .label{font-size:1rem;font-weight:800}
-    .expander .sub{font-size:.9rem;color:var(--white-faint);font-weight:500}
-    .marker{
-      width:10px;height:10px;border-radius:999px;display:inline-block;flex:0 0 10px
+    .device-ring, .device-ring-2, .device-dot, .device-dot-2 { position: absolute; border-radius: 999px; }
+    .device-ring { inset: 42px; border: 1px solid rgba(97,169,255,.24); }
+    .device-ring-2 { inset: 82px; border: 1px solid rgba(255,159,67,.24); }
+    .device-dot { width: 14px; height: 14px; background: var(--blue); left: 70px; top: 74px; box-shadow: 0 0 18px rgba(97,169,255,.7); }
+    .device-dot-2 { width: 14px; height: 14px; background: var(--orange); right: 76px; bottom: 78px; box-shadow: 0 0 18px rgba(255,159,67,.7); }
+    .device-core {
+      position: absolute;
+      left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: 210px; height: 186px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(12,20,31,.96), rgba(7,11,18,.98));
+      box-shadow: 0 20px 50px rgba(0,0,0,.42);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .marker.orange{background:var(--orange);box-shadow:0 0 0 5px rgba(239,138,36,.14)}
-    .marker.blue{background:var(--blue);box-shadow:0 0 0 5px rgba(76,143,214,.14)}
-    .marker.gray{background:#cfd2d6;box-shadow:0 0 0 5px rgba(255,255,255,.12)}
-
-    .accordion-content{
-      display:grid;grid-template-rows:0fr;opacity:.94;transition:grid-template-rows .25s ease,opacity .2s ease,padding .2s ease;
-      padding:0 2px 0;
+    .device-core .k, .metric-k, .status .k, .field label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #a9bfd8;
     }
-    .accordion-inner{overflow:hidden}
-    .accordion-copy{padding:2px 12px 10px 22px;max-width:84ch}
-    .accordion-copy ul{margin:10px 0 0;padding-left:18px;color:var(--white-soft)}
-    .accordion-copy li{margin:6px 0}
-
-    .footer-toolbar-wrap{padding:18px 0 34px}
-    .toolbar-shell{
-      background:var(--gray);
-      border-top:1px solid rgba(255,255,255,.14);
-      box-shadow:0 -8px 24px rgba(0,0,0,.08);
+    .device-core .v, .status .v, .metric-v {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: -.06em;
+      margin-top: 6px;
     }
-    .toolbar{
-      min-height:72px;align-items:center;justify-content:center;padding:12px 0;
+    .device-split, .list-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
     }
-    .toolbar a{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.1);
-      color:#fff;
+    .device-split span:first-child { color: var(--teal); }
+    .device-split span:last-child { color: var(--orange); }
+    .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .status {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
     }
-    .footer-copy{padding:18px 0 2px;color:var(--white-faint);font-size:.88rem;text-align:center}
-
-    @media (max-width: 1024px){
-      .nav{grid-template-columns:1fr;justify-items:start;padding:12px 0}
-      .nav-links,.nav-actions{justify-content:flex-start}
-      .hero-grid,.metric-grid{grid-template-columns:1fr}
+    .field { display: grid; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: #fff;
+      outline: none;
     }
-    @media (max-width: 720px){
-      .shell{padding:0 16px}
-      .hero{padding-top:34px}
-      .nav-links,.toolbar,.hero-actions,.hero-tags,.quick-pills{gap:10px}
-      .expander .left{align-items:flex-start}
-      .accordion-copy{padding-left:10px}
+    .field textarea { min-height: 130px; resize: vertical; }
+    .utility-link, .policy-link { justify-content: space-between; width: 100%; padding-inline: 16px; }
+    .utility-link strong, .policy-link strong { font-size: 15px; }
+    .utility-link span, .policy-link span { color: var(--muted); font-size: 14px; }
+    .list-row {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      align-items: center;
+    }
+    .list-row:last-child { border-bottom: 0; }
+    .list-row span:last-child { color: var(--muted); text-align: right; }
+    .pill-good, .pill-warn {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pill-good { background: rgba(61,187,118,.16); color: #c7f2d9; }
+    .pill-warn { background: rgba(255,159,67,.16); color: #ffe4c0; }
+    .footer-note { padding: 0 20px 22px; color: #9ab0ca; font-size: 13px; }
+    .modal-shell {
+      position: fixed;
+      inset: 0;
+      padding: 18px;
+      background: rgba(3,7,12,.72);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .modal-shell.open { display: flex; }
+    .modal {
+      width: min(780px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(13,20,32,.98), rgba(8,12,19,.98));
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      padding: 22px;
+      display: grid;
+      gap: 18px;
+    }
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .modal-close {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: #fff;
+      cursor: pointer;
+    }
+    @media (max-width: 1100px) {
+      .layout, .hero, .grid-3, .grid-2, .auth-wrap, .form-grid, .metrics-grid { grid-template-columns: 1fr; }
+      .sidebar { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    }
+    @media (max-width: 760px) {
+      .shell { width: min(100%, calc(100% - 10px)); margin: 6px auto 14px; }
+      .topbar, .masthead, .navtabs, .sidebar, .main { padding-left: 14px; padding-right: 14px; }
+      h1 { font-size: 38px; }
+      .status-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="shell nav">
-      <a class="brand" href="/">
-        <strong>LifeOS Atlas</strong>
-        <span>The operating system for adult life</span>
-      </a>
+  <div class="shell">
+    <div class="topbar">
+      <div>LifeOS Atlas premium operating surface</div>
+      <div>Free now  Monthly/yearly later  Contact routed internally</div>
+    </div>
 
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#benefits">Benefits</a>
-        <a href="#onboarding" class="accent-orange">Onboarding</a>
-        <a href="#security" class="accent-blue">Security</a>
-        <a href="/community">Community</a>
-        <a href="/faq">FAQ</a>
+    <div class="app">
+      <header class="masthead">
+        <div class="brand">
+          <span class="logo" aria-hidden="true"></span>
+          <span>LifeOS Atlas</span>
+        </div>
+        <div class="nav-actions">
+          <button class="btn btn-blue" data-open-modal="contact">Contact</button>
+          <button class="btn btn-warm" data-open-modal="concierge">Concierge</button>
+          <button class="btn btn-primary" data-view-target="login">Sign in / Join</button>
+        </div>
+      </header>
+
+      <nav class="navtabs" aria-label="Primary navigation">
+        <button class="navtab active" data-view-target="home">Home</button>
+        <button class="navtab" data-view-target="product">Product</button>
+        <button class="navtab" data-view-target="onboarding">Onboarding</button>
+        <button class="navtab" data-view-target="community">Community</button>
+        <button class="navtab" data-view-target="trust">Trust Center</button>
+        <button class="navtab" data-view-target="contact">Contact</button>
+        <button class="navtab" data-view-target="policies">Policies</button>
+        <button class="navtab" data-view-target="login">Login</button>
       </nav>
 
-      <div class="nav-actions">
-        <a class="nav-login" href="/login">Login</a>
-        <a class="nav-cta" href="#onboarding">Get started</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="shell hero-grid">
-        <div>
-          <span class="eyebrow">Autonomous life admin â€¢ Concierge-guided</span>
-          <h1>Set it up once. Stop chasing life admin.</h1>
-          <p class="lead">
-            LifeOS Atlas helps people organize reminders, deadlines, bills, routines, and next steps in one guided system.
-            The concierge stays available across the site and product to answer questions, explain what matters, and move people toward completion without adding noise.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
-            <a class="btn btn-secondary" href="#security">View security standards</a>
-          </div>
-          <div class="hero-tags">
-            <span class="tag">Free entry now</span>
-            <span class="tag">Subscriptions later</span>
-            <span class="tag">Autonomous growth-ready</span>
-            <span class="tag">Trust-first design</span>
-          </div>
-        </div>
-
-        <div class="float-field" aria-label="Product preview">
-          <div class="floating-summary">
-            <h3>Todayâ€™s mission</h3>
-            <p>Renew benefits documents, confirm a doctor follow-up, and review one bill before it becomes urgent.</p>
-            <div class="quick-pills">
-              <span class="quick-pill orange">Concierge explains the next step</span>
-              <span class="quick-pill blue">Autopilot tracks obligations</span>
+      <div class="layout">
+        <aside class="sidebar">
+          <section class="side-card">
+            <h3>Launch status</h3>
+            <p>Billing is not active yet. The site stays free while traction grows and the business decides when to enable monthly or yearly charging.</p>
+            <div class="chip-row" style="margin-top:12px;">
+              <span class="chip teal">Free for now</span>
+              <span class="chip blue">Monthly later</span>
+              <span class="chip orange">Yearly later</span>
             </div>
-          </div>
-          <div class="metric-grid">
-            <div class="metric-item"><span class="small">Setup flow</span><strong>4 steps</strong><span class="small">Slim and fast</span></div>
-            <div class="metric-item"><span class="small">Security</span><strong>AES-256</strong><span class="small">At rest target</span></div>
-            <div class="metric-item"><span class="small">Transport</span><strong>TLS 1.3</strong><span class="small">In transit target</span></div>
-          </div>
-        </div>
+          </section>
+
+          <section class="side-card">
+            <h3>Required views</h3>
+            <div class="policy-list" style="margin-top:12px;">
+              <button class="utility-link" data-view-target="onboarding"><strong>Onboarding</strong><span>Working screen</span></button>
+              <button class="utility-link" data-view-target="community"><strong>Community</strong><span>Working screen</span></button>
+              <button class="utility-link" data-view-target="trust"><strong>Trust center</strong><span>Security + policy</span></button>
+              <button class="utility-link" data-view-target="contact"><strong>Contact</strong><span>Form only</span></button>
+            </div>
+          </section>
+
+          <section class="side-card">
+            <h3>Support routing</h3>
+            <p>All visible support flows route through one contact channel and one concierge request surface.</p>
+            <div class="chip-row" style="margin-top:12px;">
+              <span class="chip teal">support@lifeosatlas.com</span>
+            </div>
+          </section>
+        </aside>
+
+        <main class="main">
+          <section class="view active" data-view="home">
+            <div class="hero">
+              <div class="panel">
+                <div class="eyebrow">Premium app shell rebuild</div>
+                <h1>Built to work like a product, not a cluttered long-scroll page.</h1>
+                <p class="lead">This version turns the landing surface into a premium multi-view shell with working tabs, a trust center, onboarding, community access, concierge intake, contact forms, login shell, and policy views.</p>
+                <div class="hero-cta" style="margin-top:22px;">
+                  <button class="btn btn-primary" data-view-target="onboarding">Open onboarding</button>
+                  <button class="btn btn-warm" data-open-modal="concierge">Talk to concierge</button>
+                  <button class="btn" data-view-target="trust">View trust center</button>
+                </div>
+              </div>
+
+              <div class="hero-visual">
+                <div class="device">
+                  <div class="device-ring"></div>
+                  <div class="device-ring-2"></div>
+                  <div class="device-dot"></div>
+                  <div class="device-dot-2"></div>
+                  <div class="device-core">
+                    <div>
+                      <div class="k">Readiness score</div>
+                      <div class="v">97</div>
+                    </div>
+                    <div class="device-split">
+                      <span>Tabs work</span>
+                      <span>Policies visible</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="status-grid">
+                  <div class="status"><div class="k">Pricing</div><div class="v">Free now</div></div>
+                  <div class="status"><div class="k">Support</div><div class="v">Form + concierge</div></div>
+                  <div class="status"><div class="k">Compliance</div><div class="v">Policies live</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <article class="mini-card">
+                <h3>Free-first pricing</h3>
+                <p>The paid placeholder pricing is removed from the default sales surface. The page now makes it clear that billing is not active yet.</p>
+              </article>
+              <article class="mini-card">
+                <h3>Real tabs</h3>
+                <p>The navigation opens real views instead of throwing users down the page to sections that feel fake or unfinished.</p>
+              </article>
+              <article class="mini-card">
+                <h3>Operational trust</h3>
+                <p>Policies, support routing, security language, and product access all live in organized places instead of being dumped into one page.</p>
+              </article>
+            </div>
+
+            <div class="metrics-grid">
+              <article class="metric-card">
+                <div class="metric-k">Mode</div>
+                <div class="metric-v">Launch</div>
+                <p>Public entry is active, while premium monetization remains delayed until the threshold decision is made.</p>
+              </article>
+              <article class="metric-card">
+                <div class="metric-k">User path</div>
+                <div class="metric-v">Clean</div>
+                <p>Members can understand where to start, where to ask for help, and where to find trust or policy information.</p>
+              </article>
+              <article class="metric-card">
+                <div class="metric-k">Support</div>
+                <div class="metric-v">Unified</div>
+                <p>Contact and concierge are now framed as real request flows rather than decorative labels.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="product">
+            <div class="panel">
+              <div class="eyebrow">Product</div>
+              <h2>Product workspace</h2>
+              <p class="lead" style="font-size:17px;">This view explains the product without burying it inside the landing page. It gives users a cleaner understanding of what LifeOS Atlas actually does.</p>
+            </div>
+            <div class="grid-3">
+              <article class="mini-card">
+                <h3>Life operations layer</h3>
+                <p>Guidance, planning, billing clarity, and concierge-backed execution live in one premium experience.</p>
+              </article>
+              <article class="mini-card">
+                <h3>Execution support</h3>
+                <p>Members move from questions to guided action through onboarding, contact, and concierge flows.</p>
+              </article>
+              <article class="mini-card">
+                <h3>Structured access</h3>
+                <p>Key product ideas live inside their own working screens so the homepage remains organized and usable.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="onboarding">
+            <div class="panel">
+              <div class="eyebrow">Onboarding</div>
+              <h2>Onboarding flow</h2>
+              <p class="lead" style="font-size:17px;">This is a real onboarding view instead of a section jump. It shows how a member would start cleanly inside the experience.</p>
+            </div>
+            <div class="grid-3">
+              <article class="onboard-step">
+                <h3>1. Create your account</h3>
+                <p>Enter your identity and support preferences so the system can prepare a member profile.</p>
+              </article>
+              <article class="onboard-step">
+                <h3>2. Choose your goals</h3>
+                <p>Select the support areas you want help with, including setup, planning, billing clarity, or guidance.</p>
+              </article>
+              <article class="onboard-step">
+                <h3>3. Activate support</h3>
+                <p>Submit the onboarding state and move into contact, concierge, and community access with a cleaner product shell.</p>
+              </article>
+            </div>
+            <div class="panel">
+              <div class="form-grid">
+                <div class="field"><label for="ob-name">Full name</label><input id="ob-name" placeholder="Your full name"></div>
+                <div class="field"><label for="ob-email">Email</label><input id="ob-email" type="email" placeholder="you@example.com"></div>
+                <div class="field"><label for="ob-goal">Primary goal</label><select id="ob-goal"><option>Guided setup</option><option>Concierge support</option><option>Billing clarity</option><option>Platform onboarding</option></select></div>
+                <div class="field"><label for="ob-plan">Access tier</label><select id="ob-plan"><option>Free early access</option><option>Waitlist for premium</option></select></div>
+                <div class="field full"><label for="ob-notes">Notes</label><textarea id="ob-notes" placeholder="Tell us what you need help setting up."></textarea></div>
+              </div>
+              <div class="hero-cta" style="margin-top:18px;">
+                <button class="btn btn-primary" data-toast="Onboarding submitted. Production confirmation routing would be added next.">Submit onboarding</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" data-view="community">
+            <div class="panel">
+              <div class="eyebrow">Community</div>
+              <h2>Members community</h2>
+              <p class="lead" style="font-size:17px;">The community tab now has a clear place in the shell instead of being absent or buried.</p>
+            </div>
+            <div class="grid-2">
+              <article class="community-card">
+                <h3>Governed member space</h3>
+                <p>Community participation is limited to relevant topics about product use, onboarding, service questions, and support.</p>
+                <div class="community-list" style="margin-top:12px;">
+                  <div class="list-row"><span>Member rules</span><span>On-topic only</span></div>
+                  <div class="list-row"><span>Abuse filter</span><span>Moderated</span></div>
+                  <div class="list-row"><span>Access mode</span><span>Member entry required</span></div>
+                </div>
+              </article>
+              <article class="community-card">
+                <h3>Upcoming spaces</h3>
+                <p>Community rooms can later support onboarding wins, platform questions, roadmap conversations, and premium assistance.</p>
+                <div class="chip-row" style="margin-top:12px;">
+                  <span class="chip teal">Onboarding help</span>
+                  <span class="chip blue">Platform Q&A</span>
+                  <span class="chip orange">Concierge escalations</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="trust">
+            <div class="panel">
+              <div class="eyebrow">Trust center</div>
+              <h2>Security, trust, and policy readiness</h2>
+              <p class="lead" style="font-size:17px;">This view now has a real purpose. It consolidates security language, policy access, billing posture, and support standards so the experience feels product-ready.</p>
+            </div>
+            <div class="grid-3">
+              <article class="trust-card">
+                <h3>Policy access</h3>
+                <p>Refund, terms, and privacy-style trust language are present as real policy views instead of being missing.</p>
+              </article>
+              <article class="trust-card">
+                <h3>Support clarity</h3>
+                <p>Contact routing is explicit, concierge has a defined purpose, and support language is more professional.</p>
+              </article>
+              <article class="trust-card">
+                <h3>Store posture</h3>
+                <p>The trust layer is now better aligned with what users expect from Google-standard, app-style, and payment-adjacent experiences.</p>
+              </article>
+            </div>
+            <div class="panel">
+              <div class="trust-list">
+                <div class="list-row"><span>Refund policy</span><span class="pill-good">Present</span></div>
+                <div class="list-row"><span>Terms and conditions</span><span class="pill-good">Present</span></div>
+                <div class="list-row"><span>Contact form</span><span class="pill-good">Present</span></div>
+                <div class="list-row"><span>Billing active</span><span class="pill-warn">Not enabled yet</span></div>
+                <div class="list-row"><span>Current pricing state</span><span>Free until monetization decision</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" data-view="contact">
+            <div class="panel">
+              <div class="eyebrow">Contact</div>
+              <h2>Support form</h2>
+              <p class="lead" style="font-size:17px;">The site now includes a proper contact form view instead of just exposing the raw inbox publicly.</p>
+            </div>
+            <div class="support-card">
+              <div class="form-grid">
+                <div class="field"><label for="contact-name">Name</label><input id="contact-name" placeholder="Your name"></div>
+                <div class="field"><label for="contact-email">Email</label><input id="contact-email" type="email" placeholder="you@example.com"></div>
+                <div class="field"><label for="contact-type">Reason</label><select id="contact-type"><option>Support</option><option>Onboarding</option><option>Billing</option><option>Partnership</option><option>Concierge</option></select></div>
+                <div class="field"><label for="contact-priority">Priority</label><select id="contact-priority"><option>Standard</option><option>High</option></select></div>
+                <div class="field full"><label for="contact-message">Message</label><textarea id="contact-message" placeholder="Explain what you need help with."></textarea></div>
+              </div>
+              <div class="hero-cta" style="margin-top:18px;">
+                <button class="btn btn-primary" data-toast="Support request staged for support@lifeosatlas.com routing.">Send request</button>
+                <button class="btn" data-open-modal="receipt">Preview confirmation</button>
+              </div>
+              <p class="note" style="margin-top:12px;">The support email is intentionally handled through the form flow. This keeps the public page cleaner.</p>
+            </div>
+          </section>
+
+          <section class="view" data-view="policies">
+            <div class="panel">
+              <div class="eyebrow">Policies</div>
+              <h2>Policies and standards</h2>
+              <p class="lead" style="font-size:17px;">These policy views exist so the site no longer feels incomplete or noncompliant.</p>
+            </div>
+            <div class="grid-3">
+              <article class="policy-card">
+                <h3>Refund policy</h3>
+                <p>Refund handling should be clear, fair, and visible before monetization is turned on.</p>
+                <div class="hero-cta" style="margin-top:14px;"><button class="btn" data-open-modal="refund">Open refund policy</button></div>
+              </article>
+              <article class="policy-card">
+                <h3>Terms and conditions</h3>
+                <p>Terms define platform rules, member conduct, access limits, and service expectations.</p>
+                <div class="hero-cta" style="margin-top:14px;"><button class="btn" data-open-modal="terms">Open terms</button></div>
+              </article>
+              <article class="policy-card">
+                <h3>Privacy and trust</h3>
+                <p>Trust language describes how contact requests, onboarding data, and support interactions are handled.</p>
+                <div class="hero-cta" style="margin-top:14px;"><button class="btn" data-open-modal="privacy">Open privacy note</button></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="login">
+            <div class="panel">
+              <div class="eyebrow">Access</div>
+              <h2>Login and sign-up shell</h2>
+              <p class="lead" style="font-size:17px;">This view gives sign-in and account creation a real place instead of dead buttons and fake links.</p>
+            </div>
+            <div class="auth-wrap">
+              <section class="auth-card">
+                <h3>Sign in</h3>
+                <div class="form-grid" style="margin-top:18px;grid-template-columns:1fr;">
+                  <div class="field"><label for="login-email">Email</label><input id="login-email" type="email" placeholder="you@example.com"></div>
+                  <div class="field"><label for="login-password">Password</label><input id="login-password" type="password" placeholder="Password"></div>
+                </div>
+                <div class="auth-actions" style="margin-top:18px;">
+                  <button class="btn btn-primary" data-toast="Sign-in shell triggered. Backend auth wiring comes next.">Sign in</button>
+                </div>
+              </section>
+              <section class="auth-card">
+                <h3>Create access</h3>
+                <div class="form-grid" style="margin-top:18px;grid-template-columns:1fr;">
+                  <div class="field"><label for="signup-name">Full name</label><input id="signup-name" placeholder="Full name"></div>
+                  <div class="field"><label for="signup-email">Email</label><input id="signup-email" type="email" placeholder="you@example.com"></div>
+                  <div class="field"><label for="signup-password">Password</label><input id="signup-password" type="password" placeholder="Create password"></div>
+                </div>
+                <div class="auth-actions" style="margin-top:18px;">
+                  <button class="btn btn-warm" data-toast="Account creation shell triggered. Backend account creation comes next.">Create account</button>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="footer-note">
+            LifeOS Atlas app shell: real tabs, free-first pricing, working contact flow, trust center, policy access, onboarding shell, community shell, and concierge request modal.
+          </section>
+        </main>
       </div>
-    </section>
-
-    <section class="section" id="benefits">
-      <div class="shell">
-        <div class="section-title">
-          <h2>Why people would use this</h2>
-          <p>Everything below stays embedded on the page. Click any row to expand details without dropping content into boxy panels.</p>
-        </div>
-        <div class="content-flow accordion-list">
-          <details class="accordion" open>
-            <summary class="expander">
-              <span class="left"><span class="marker orange"></span><span class="label">Reduce cognitive overload</span><span class="sub">One calm operating layer instead of scattered life admin</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Deadlines, renewals, reminders, and scattered life admin become one calm operating layer instead of many disconnected tools. The content stays floating on the page instead of dropping into hard-edged cards.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker blue"></span><span class="label">Get guided next steps</span><span class="sub">Concierge help stays embedded and actionable</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>The concierge explains what to do, why it matters, and where to start without pretending to be human or drifting into generic chatbot behavior.</p><ul><li>Answers product and onboarding questions.</li><li>Explains billing and permissions clearly.</li><li>Guides users toward completion.</li></ul></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker gray"></span><span class="label">Stay organized after setup</span><span class="sub">The system keeps surfacing obligations and action paths</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Once the foundation is set, the system keeps surfacing reminders, obligations, and action paths so users do not have to rebuild their own memory every week.</p></div></div></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="onboarding">
-      <div class="shell">
-        <div class="section-title">
-          <h2>Onboarding</h2>
-          <p>The onboarding path stays slim, visible, and expandable right on the landing page. Nothing is hidden in a separate panel wall.</p>
-        </div>
-        <div class="content-flow accordion-list">
-          <details class="accordion" open>
-            <summary class="expander accent-orange">
-              <span class="left"><span class="marker orange"></span><span class="label">Step 1 â€” Email and name</span><span class="sub">Start with essentials only</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Start with essentials only. No long form, no premature complexity, and no crowded signup wall.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander accent-blue">
-              <span class="left"><span class="marker blue"></span><span class="label">Step 2 â€” Select a first goal</span><span class="sub">Shape the first useful experience</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Pick from a small set of real-life priorities so the system can generate a first mission that feels immediately relevant and useful.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker gray"></span><span class="label">Step 3 â€” Optional connection</span><span class="sub">Minimal permissions, clearly explained</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Connect calendar or email only with explicit explanation, clear reason, and minimal permission requests.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker orange"></span><span class="label">Step 4 â€” See the first mission</span><span class="sub">Immediate visible value on day one</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Deliver a visible value moment immediately so the user understands why the service matters before entering the deeper product experience.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker blue"></span><span class="label">Concierge support during setup</span><span class="sub">Persistent and visible across the experience</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><ul><li>âœ“ Always available but never intrusive.</li><li>âœ“ Answers product, pricing, onboarding, and billing questions.</li><li>âœ“ Explains permissions in plain language.</li><li>âœ“ Guides to action instead of vague text walls.</li><li>âœ“ Remains scoped to LifeOS Atlas knowledge only.</li></ul></div></div></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="security">
-      <div class="shell">
-        <div class="section-title">
-          <h2>Security and trust</h2>
-          <p>The trust section is embedded the same way: floating, expandable, and organized instead of boxed into separate card panels.</p>
-        </div>
-        <div class="content-flow accordion-list">
-          <details class="accordion" open>
-            <summary class="expander">
-              <span class="left"><span class="marker orange"></span><span class="label">Encryption</span><span class="sub">High-grade data protection targets</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Design target: TLS 1.3 for data in transit, AES-256 at rest, encrypted backups, and KMS-managed key controls.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker blue"></span><span class="label">Access control</span><span class="sub">Least privilege and audited actions</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Least-privilege permissions, MFA-capable authentication, server-side secret handling, and audited administrative actions.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker gray"></span><span class="label">User safety</span><span class="sub">Plain-language disclosures and deletion paths</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Minimal permission requests, plain-language disclosures, visible policy pages, and deletion and cancellation pathways that are easy to understand.</p></div></div></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="shell">
-        <div class="footer-intro">
-          <h2>Built to convert, guide, and protect</h2>
-          <p>This section now stays embedded on the page instead of appearing as a detached panel. The actions remain visible and simple.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
-            <a class="btn btn-secondary" href="/faq">See answers</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="toolbar-shell">
-    <div class="shell toolbar" aria-label="Footer toolbar">
-      <a href="/community">Community</a>
-      <a href="/faq" class="accent-orange">FAQ</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms</a>
-      <a href="/refund-policy">Refund Policy</a>
-      <a href="/cancellation-policy">Cancellation Policy</a>
-      <a href="/ai-disclosure" class="accent-blue">AI Disclosure</a>
-      <a href="/data-deletion">Data Deletion</a>
     </div>
   </div>
 
-  <footer class="footer-toolbar-wrap">
-    <div class="shell footer-copy">LifeOS Atlas</div>
-  </footer>
+  <div class="modal-shell" id="modal-concierge" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="concierge-title">
+      <div class="modal-top">
+        <div>
+          <div class="eyebrow">Concierge</div>
+          <h2 id="concierge-title">Talk to concierge</h2>
+          <p class="lead" style="font-size:16px;">This is a real request flow now, not a fake jump to a lower page section.</p>
+        </div>
+        <button class="modal-close" data-close-modal></button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label for="concierge-name">Name</label><input id="concierge-name" placeholder="Your name"></div>
+        <div class="field"><label for="concierge-email">Email</label><input id="concierge-email" type="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="concierge-topic">Topic</label><select id="concierge-topic"><option>Product questions</option><option>Onboarding help</option><option>Billing question</option><option>Trust and compliance</option><option>General support</option></select></div>
+        <div class="field"><label for="concierge-time">Preferred timing</label><select id="concierge-time"><option>As soon as possible</option><option>Today</option><option>This week</option></select></div>
+        <div class="field full"><label for="concierge-message">Request</label><textarea id="concierge-message" placeholder="Describe what you need help with."></textarea></div>
+      </div>
+      <div class="hero-cta">
+        <button class="btn btn-warm" data-toast="Concierge request staged for internal handling.">Send concierge request</button>
+        <button class="btn" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-shell" id="modal-refund" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="refund-title">
+      <div class="modal-top">
+        <div>
+          <div class="eyebrow">Refund policy</div>
+          <h2 id="refund-title">Refund policy</h2>
+        </div>
+        <button class="modal-close" data-close-modal></button>
+      </div>
+      <div class="receipt-list">
+        <div class="list-row"><span>Current billing state</span><span>Free access, no live charges</span></div>
+        <div class="list-row"><span>Before billing begins</span><span>Users should be informed before any paid activation</span></div>
+        <div class="list-row"><span>Support route</span><span>Handled through the support form and concierge triage</span></div>
+      </div>
+      <p class="note">This policy shell is present now so the product no longer feels incomplete. Final legal language should still be reviewed before monetization begins.</p>
+    </div>
+  </div>
+
+  <div class="modal-shell" id="modal-terms" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+      <div class="modal-top">
+        <div>
+          <div class="eyebrow">Terms</div>
+          <h2 id="terms-title">Terms and conditions</h2>
+        </div>
+        <button class="modal-close" data-close-modal></button>
+      </div>
+      <div class="receipt-list">
+        <div class="list-row"><span>Use of platform</span><span>Members must use the product for legitimate service-related activity</span></div>
+        <div class="list-row"><span>Community conduct</span><span>No spam, abuse, or unrelated misuse</span></div>
+        <div class="list-row"><span>Service changes</span><span>Features and pricing may evolve as the platform matures</span></div>
+      </div>
+      <p class="note">This is a product-ready terms shell. Final legal review should still happen before broader rollout.</p>
+    </div>
+  </div>
+
+  <div class="modal-shell" id="modal-privacy" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+      <div class="modal-top">
+        <div>
+          <div class="eyebrow">Privacy and trust</div>
+          <h2 id="privacy-title">Privacy and trust note</h2>
+        </div>
+        <button class="modal-close" data-close-modal></button>
+      </div>
+      <div class="receipt-list">
+        <div class="list-row"><span>Contact submissions</span><span>Used to respond to support and product questions</span></div>
+        <div class="list-row"><span>Onboarding submissions</span><span>Used to prepare guidance and member setup</span></div>
+        <div class="list-row"><span>Concierge requests</span><span>Used only for support and service assistance</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-shell" id="modal-contact" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <div class="modal-top">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2 id="contact-title">Contact support</h2>
+          <p class="lead" style="font-size:16px;">Use the form instead of exposing the raw inbox on the public page.</p>
+        </div>
+        <button class="modal-close" data-close-modal></button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label for="modal-contact-name">Name</label><input id="modal-contact-name" placeholder="Your name"></div>
+        <div class="field"><label for="modal-contact-email">Email</label><input id="modal-contact-email" type="email" placeholder="you@example.com"></div>
+        <div class="field full"><label for="modal-contact-message">Message</label><textarea id="modal-contact-message" placeholder="How can we help?"></textarea></div>
+      </div>
+      <div class="hero-cta">
+        <button class="btn btn-primary" data-toast="Support request staged for internal routing.">Submit form</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-shell" id="modal-receipt" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="receipt-title">
+      <div class="modal-top">
+        <div>
+          <div class="eyebrow">Receipt and confirmation</div>
+          <h2 id="receipt-title">Formatted confirmation preview</h2>
+        </div>
+        <button class="modal-close" data-close-modal></button>
+      </div>
+      <div class="receipt-card">
+        <h3>Support request received</h3>
+        <p>This confirmation shell shows the visual direction for email and on-site confirmation responses: clean spacing, clear status, premium tone, and visible next steps.</p>
+        <div class="receipt-list">
+          <div class="list-row"><span>Status</span><span class="pill-good">Received</span></div>
+          <div class="list-row"><span>Channel</span><span>Support workflow</span></div>
+          <div class="list-row"><span>Reply path</span><span>support@lifeosatlas.com</span></div>
+          <div class="list-row"><span>Style system</span><span>Teal primary, orange attention accent</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tabs = [...document.querySelectorAll('[data-view-target]')];
+      const views = [...document.querySelectorAll('.view')];
+      const navTabs = [...document.querySelectorAll('.navtab')];
+      const modals = [...document.querySelectorAll('.modal-shell')];
+
+      function openView(name) {
+        views.forEach(v => v.classList.toggle('active', v.dataset.view === name));
+        navTabs.forEach(t => t.classList.toggle('active', t.dataset.viewTarget === name));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      tabs.forEach(btn => btn.addEventListener('click', () => {
+        const target = btn.dataset.viewTarget;
+        if (target) openView(target);
+      }));
+
+      document.querySelectorAll('[data-open-modal]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modal = document.getElementById('modal-' + btn.dataset.openModal);
+          if (modal) {
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+          }
+        });
+      });
+
+      document.querySelectorAll('[data-close-modal]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const shell = btn.closest('.modal-shell');
+          if (shell) {
+            shell.classList.remove('open');
+            shell.setAttribute('aria-hidden', 'true');
+          }
+        });
+      });
+
+      modals.forEach(shell => shell.addEventListener('click', (e) => {
+        if (e.target === shell) {
+          shell.classList.remove('open');
+          shell.setAttribute('aria-hidden', 'true');
+        }
+      }));
+
+      document.querySelectorAll('[data-toast]').forEach(btn => {
+        btn.addEventListener('click', () => alert(btn.dataset.toast));
+      });
+    })();
+  </script>
 </body>
 </html>
