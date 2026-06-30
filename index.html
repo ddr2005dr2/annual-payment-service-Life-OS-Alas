@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifeOS Atlas | Private life operations</title>
-  <meta name="description" content="LifeOS Atlas gives adults one private place to organize tasks, documents, routines, reminders, support, and day-to-day life operations." />
+  <meta name="description" content="LifeOS Atlas gives adults one private place to organize tasks, documents, reminders, scheduling, household responsibilities, support workflows, and important life administration." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,15 +13,17 @@
       --bg:#f4f5f7;
       --surface:#ffffff;
       --surface-2:#eef1f4;
+      --surface-3:#e4e9ef;
       --text:#14181d;
-      --muted:#65707c;
+      --muted:#66717d;
       --line:#d6dde5;
       --nav:#dfe3e8;
       --blue:#2f6fed;
       --orange:#d97834;
-      --max:1160px;
+      --dark:#13181d;
       --shadow:0 18px 44px rgba(21,24,28,.08);
       --radius:22px;
+      --max:1160px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -33,39 +35,40 @@
       line-height:1.6;
     }
     a{text-decoration:none;color:inherit}
-    .shell{width:min(calc(100% - 24px),var(--max));margin:18px auto 32px}
     .skip{position:absolute;left:-9999px;top:auto}
     .skip:focus{left:12px;top:12px;background:#fff;padding:10px 14px;border-radius:12px;z-index:999}
+    .shell{width:min(calc(100% - 24px),var(--max));margin:18px auto 28px}
     .topbar{
       position:sticky;top:12px;z-index:50;
-      display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+      display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
       padding:14px 18px;background:color-mix(in srgb,var(--nav) 88%,transparent);
       border:1px solid color-mix(in srgb,var(--line) 70%,transparent);
       border-radius:20px;backdrop-filter:blur(14px);box-shadow:0 12px 30px rgba(21,24,28,.07)
     }
     .brand{display:flex;align-items:center;gap:12px}
     .logo{
-      width:42px;height:42px;border-radius:14px;background:#13181d;color:#fff;
+      width:42px;height:42px;border-radius:14px;background:var(--dark);color:#fff;
       display:grid;place-items:center;font-weight:800;font-size:1rem;letter-spacing:-.04em
     }
     .brandtext strong{display:block;font-size:1rem;letter-spacing:-.02em}
     .brandtext span{display:block;font-size:.86rem;color:var(--muted)}
     .nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
     .nav a{
+      min-height:44px;display:inline-flex;align-items:center;justify-content:center;
       padding:10px 14px;border-radius:999px;font-size:.94rem;font-weight:700;color:var(--text)
     }
-    .nav a:hover,.nav a:focus-visible{background:rgba(255,255,255,.6)}
-    .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .nav a:hover,.nav a:focus-visible{background:rgba(255,255,255,.62)}
+    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+      min-height:44px;display:inline-flex;align-items:center;justify-content:center;
       padding:12px 16px;border-radius:999px;font-weight:800;border:none;cursor:pointer
     }
-    .btn-dark{background:#14181d;color:#fff}
+    .btn-dark{background:var(--dark);color:#fff}
     .btn-light{background:#fff;border:1px solid var(--line);color:var(--text)}
     .btn-blue{background:var(--blue);color:#fff}
     .hero{
       padding:42px 0 24px;
-      display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:center
+      display:grid;grid-template-columns:1.06fr .94fr;gap:28px;align-items:center
     }
     .eyebrow{
       display:inline-flex;align-items:center;gap:8px;
@@ -79,12 +82,10 @@
       line-height:.95;letter-spacing:-.055em;max-width:10ch
     }
     .lead{
-      margin:0;max-width:62ch;color:var(--muted);font-size:1.05rem;line-height:1.82
+      margin:0;max-width:64ch;color:var(--muted);font-size:1.05rem;line-height:1.82
     }
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-    .hero-note{
-      margin-top:18px;color:var(--muted);font-size:.95rem
-    }
+    .hero-note{margin-top:18px;color:var(--muted);font-size:.95rem}
     .visual{
       background:linear-gradient(180deg,#ffffff 0%,#f0f3f7 100%);
       border:1px solid var(--line);border-radius:32px;padding:22px;box-shadow:var(--shadow)
@@ -100,72 +101,67 @@
     .dot{width:10px;height:10px;border-radius:50%;background:#bcc6d2}
     .dot.orange{background:var(--orange)}
     .dot.blue{background:var(--blue)}
-    .app-body{
-      display:grid;grid-template-columns:220px 1fr;min-height:350px
-    }
+    .app-body{display:grid;grid-template-columns:220px 1fr;min-height:360px}
     .app-nav{
       background:#eef2f6;border-right:1px solid #dde4eb;padding:16px;display:grid;gap:10px;align-content:start
     }
     .app-nav span{
       display:block;padding:10px 12px;border-radius:14px;color:#51606f;font-weight:700;background:rgba(255,255,255,.66)
     }
-    .app-nav span.active{background:#13181d;color:#fff}
+    .app-nav span.active{background:var(--dark);color:#fff}
     .app-main{padding:18px;display:grid;gap:14px}
     .mini-panel{
       background:#fff;border:1px solid #dde4eb;border-radius:18px;padding:16px
     }
     .mini-panel h3{margin:0 0 8px;font-size:1rem}
-    .mini-panel p{margin:0;color:#65707c;line-height:1.7}
-    .section{
-      padding:26px 0 10px
-    }
+    .mini-panel p{margin:0;color:#65707c;line-height:1.72}
+    .section{padding:24px 0 8px}
     .section h2{
       margin:0 0 12px;font-size:clamp(1.5rem,2.4vw,2.3rem);letter-spacing:-.04em
     }
     .section-intro{
-      margin:0 0 18px;max-width:72ch;color:var(--muted);line-height:1.8
+      margin:0 0 18px;max-width:74ch;color:var(--muted);line-height:1.82
     }
-    .grid{
-      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px
-    }
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
     .card{
-      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:0 10px 24px rgba(21,24,28,.05)
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:18px;box-shadow:0 10px 24px rgba(21,24,28,.05)
     }
     .card h3{margin:0 0 8px;font-size:1.03rem}
-    .card p{margin:0;color:var(--muted);line-height:1.75}
-    .how{
-      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px
-    }
+    .card p{margin:0;color:var(--muted);line-height:1.78}
     .step{
       background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px
     }
     .num{
       width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
-      font-weight:800;background:#13181d;color:#fff;margin-bottom:12px
+      font-weight:800;background:var(--dark);color:#fff;margin-bottom:12px
     }
-    .examples{
-      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px
+    .bottom-toolbar{
+      margin-top:28px;background:color-mix(in srgb,var(--nav) 92%,transparent);
+      border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:0 12px 28px rgba(21,24,28,.06)
     }
-    .faq-list{display:grid;gap:12px}
-    details{
-      background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px
+    .toolbar-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .toolbar-col{
+      background:rgba(255,255,255,.52);border:1px solid rgba(214,221,229,.85);border-radius:18px;padding:16px
     }
-    summary{
-      cursor:pointer;list-style:none;font-weight:800
+    .toolbar-col h3{
+      margin:0 0 12px;font-size:.98rem;letter-spacing:-.02em
     }
-    summary::-webkit-details-marker{display:none}
-    details p{margin:12px 0 0;color:var(--muted);line-height:1.8}
+    .toolbar-links{display:grid;gap:10px}
+    .toolbar-links a{
+      min-height:40px;display:flex;align-items:center;padding:10px 12px;border-radius:14px;
+      background:rgba(255,255,255,.76);font-weight:700;color:#42505d
+    }
+    .toolbar-links a:hover,.toolbar-links a:focus-visible{background:#fff;color:var(--text)}
     footer{
-      margin-top:26px;padding:20px 0 10px;
-      display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line)
+      margin-top:18px;padding:10px 0 6px;
+      display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap
     }
     .footer-brand strong{display:block}
     .footer-brand span{display:block;color:var(--muted);margin-top:6px}
-    .footer-links{display:flex;flex-wrap:wrap;gap:14px}
-    .footer-links a{color:var(--muted);font-weight:600}
-    .footer-links a:hover{color:var(--text)}
     @media (max-width:980px){
-      .hero,.grid,.how,.examples{grid-template-columns:1fr}
+      .hero,.grid-3,.grid-2,.toolbar-grid{grid-template-columns:1fr}
       .app-body{grid-template-columns:1fr}
       .app-nav{border-right:none;border-bottom:1px solid #dde4eb}
       .topbar{position:static}
@@ -174,7 +170,7 @@
       .shell{width:min(calc(100% - 18px),var(--max))}
       h1{max-width:none}
       .nav,.actions{width:100%}
-      .actions a{flex:1 1 auto}
+      .actions{justify-content:flex-end}
     }
   </style>
 </head>
@@ -195,9 +191,6 @@
         <a href="#product">Product</a>
         <a href="#how-it-works">How it works</a>
         <a href="/pricing.html">Pricing</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/cart.html" aria-label="Shopping cart">Cart</a>
       </nav>
 
       <div class="actions">
@@ -209,15 +202,14 @@
     <main id="main">
       <section class="hero">
         <div>
-          <div class="eyebrow">Private life operations</div>
+          <div class="eyebrow">Autonomous private life operations</div>
           <h1>One central place to run adult life.</h1>
           <p class="lead">
-            LifeOS Atlas helps you organize the moving parts of life without juggling scattered notes, inbox messages, documents, reminders, and half-finished tasks across different places. Use it for everything or start with just one part of life that needs structure right now.
+            LifeOS Atlas helps you manage the moving parts of life without juggling scattered notes, inbox messages, documents, reminders, and half-finished tasks across different places. Use it for one focused area or use it as a broader life-operations system that keeps you informed, organized, and alerted.
           </p>
           <div class="hero-actions">
             <a class="btn btn-dark" href="/register.html">Sign up now</a>
             <a class="btn btn-blue" href="/pricing.html">Preview pricing</a>
-            <a class="btn btn-light" href="/contact.html">Talk to us</a>
           </div>
           <p class="hero-note">
             Access is currently open. If paid service is introduced later, advance notice will be provided before billing begins.
@@ -237,24 +229,24 @@
             <div class="app-body">
               <div class="app-nav">
                 <span class="active">Today</span>
-                <span>Documents</span>
                 <span>Tasks</span>
+                <span>Documents</span>
                 <span>Reminders</span>
                 <span>Household</span>
                 <span>Support</span>
               </div>
               <div class="app-main">
                 <div class="mini-panel">
-                  <h3>Keep life in one controlled flow</h3>
-                  <p>Track what matters, know what is pending, and stop losing time jumping between disconnected apps and messages.</p>
+                  <h3>Stay ahead of what matters</h3>
+                  <p>Keep deadlines, renewals, appointments, follow-ups, and responsibilities from slipping through the cracks.</p>
                 </div>
                 <div class="mini-panel">
-                  <h3>Use only what you need</h3>
-                  <p>Some people will use it for documents and reminders. Others will use it for onboarding, coordination, support, and daily task management.</p>
+                  <h3>Use one part or many parts</h3>
+                  <p>Start with one need like reminders or documents, then expand only if it improves how you run your life.</p>
                 </div>
                 <div class="mini-panel">
-                  <h3>Stay informed</h3>
-                  <p>Get updates, reminders, and visibility into what has been completed, what needs attention, and what is next.</p>
+                  <h3>Get alerts and visibility</h3>
+                  <p>Use reminders and email-based notification flows to stay informed about what is due, changed, or completed.</p>
                 </div>
               </div>
             </div>
@@ -265,20 +257,20 @@
       <section class="section" id="product">
         <h2>What the product does</h2>
         <p class="section-intro">
-          LifeOS Atlas is for people who want one organized system for the parts of life that usually get buried under too many apps, emails, documents, and mental reminders. It gives you one place to keep track of what matters, what is due, what has been completed, and what still needs attention.
+          LifeOS Atlas gives adults one organized system for the parts of life that usually get buried under too many apps, emails, texts, files, and mental reminders. It helps you track what matters, what is coming up, what changed, and what still needs attention.
         </p>
-        <div class="grid">
+        <div class="grid-3">
           <article class="card">
-            <h3>Organize tasks and routines</h3>
-            <p>Manage recurring responsibilities, one-time tasks, personal checklists, and the things you do not want to keep rebuilding from memory.</p>
+            <h3>Organize personal responsibilities</h3>
+            <p>Track recurring tasks, one-time responsibilities, deadlines, paperwork, and life administration without rebuilding your system every week.</p>
           </article>
           <article class="card">
             <h3>Keep important information together</h3>
-            <p>Store and review documents, notes, references, reminders, and account-related details in one calmer system.</p>
+            <p>Manage documents, notes, account references, reminders, and key details in one place that is easier to review and update.</p>
           </article>
           <article class="card">
-            <h3>Stay in the loop</h3>
-            <p>See what changed, what needs attention, and what has already been handled so you are not operating in the dark.</p>
+            <h3>Know what needs attention</h3>
+            <p>See what is due, what has been completed, and what changed so you are not guessing or searching across disconnected places.</p>
           </article>
         </div>
       </section>
@@ -286,92 +278,94 @@
       <section class="section" id="how-it-works">
         <h2>How to use it</h2>
         <p class="section-intro">
-          You do not have to use LifeOS Atlas for everything. Start with one area where life feels scattered, then expand only if it helps.
+          You do not have to use LifeOS Atlas for everything. Start with one part of life that feels scattered, then expand only if it proves useful.
         </p>
-        <div class="how">
+        <div class="grid-3">
           <article class="step">
             <div class="num">1</div>
-            <h3>Choose one life area</h3>
-            <p>Start with something practical like reminders, documents, planning, household coordination, or personal task tracking.</p>
+            <h3>Pick one life area</h3>
+            <p>Start with something practical like reminders, scheduling, paperwork, household coordination, or important document management.</p>
           </article>
           <article class="step">
             <div class="num">2</div>
-            <h3>Build a cleaner routine</h3>
-            <p>Put the related items in one place so you can stop chasing information across multiple apps, tabs, and conversations.</p>
+            <h3>Create a cleaner system</h3>
+            <p>Bring the related tasks, notes, dates, and references into one organized flow instead of leaving them spread across multiple tools.</p>
           </article>
           <article class="step">
             <div class="num">3</div>
-            <h3>Expand if it works</h3>
-            <p>Once one area is working well, you can bring in more parts of life without losing control of the system.</p>
+            <h3>Stay alerted and in the loop</h3>
+            <p>Use reminders and email notices to stay aware of deadlines, updates, next actions, and completed items.</p>
           </article>
         </div>
       </section>
 
       <section class="section">
-        <h2>Ways people can use it</h2>
+        <h2>Examples of how it can be used</h2>
         <p class="section-intro">
-          The platform should feel flexible, not overwhelming. These examples show how someone can use it in a focused way instead of trying to do everything at once.
+          The platform should feel useful without forcing an all-or-nothing workflow. These examples show focused ways people can use it.
         </p>
-        <div class="examples">
+        <div class="grid-2">
           <article class="card">
-            <h3>Personal command center</h3>
-            <p>Use it to manage reminders, appointments, deadlines, recurring responsibilities, and follow-ups that normally get lost.</p>
+            <h3>MVA renewal and vehicle tasks</h3>
+            <p>Track renewal dates, registration paperwork, inspection reminders, insurance follow-ups, and the notices that should not be missed.</p>
           </article>
           <article class="card">
-            <h3>Document and account hub</h3>
-            <p>Use it as the place where important files, account details, references, and process notes stay organized and easier to find.</p>
+            <h3>Doctor appointments and health admin</h3>
+            <p>Keep appointment dates, prep notes, referrals, forms, reminders, and follow-up items easier to manage in one place.</p>
           </article>
           <article class="card">
-            <h3>Support and coordination</h3>
-            <p>Use it when you need a clearer way to track requests, next actions, communication points, and service progress.</p>
+            <h3>Household and family coordination</h3>
+            <p>Track recurring tasks, service schedules, household deadlines, documents, and shared responsibilities with more structure.</p>
           </article>
           <article class="card">
-            <h3>Lightweight daily structure</h3>
-            <p>Use it for just one routine if that is all you need right now, then keep the rest of your workflow unchanged.</p>
+            <h3>Important documents and records</h3>
+            <p>Use it to organize personal records, account references, renewal dates, confirmation details, and key supporting notes.</p>
           </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Frequently asked questions</h2>
-        <p class="section-intro">
-          The goal is to make the product easier to understand before someone signs up.
-        </p>
-        <div class="faq-list">
-          <details>
-            <summary>Do I have to use this for every part of my life?</summary>
-            <p>No. You can use it for one area only, such as reminders, task structure, documents, or coordination, and expand later only if it proves useful.</p>
-          </details>
-          <details>
-            <summary>What problem does it solve?</summary>
-            <p>It reduces the chaos of having important life information scattered across inboxes, notes, texts, files, and memory by giving you one central place to manage it.</p>
-          </details>
-          <details>
-            <summary>How do I stay updated?</summary>
-            <p>The platform is meant to keep you aware of what is pending, what changed, and what was completed so you can stay informed without chasing updates.</p>
-          </details>
-          <details>
-            <summary>Is it paid right now?</summary>
-            <p>Access is currently open. If billing is activated later, advance notice will be provided before charges begin.</p>
-          </details>
+          <article class="card">
+            <h3>Personal follow-ups</h3>
+            <p>Keep track of applications, callbacks, unresolved tasks, service requests, and the items that usually disappear into email chains.</p>
+          </article>
+          <article class="card">
+            <h3>Routine reminders and alerts</h3>
+            <p>Use reminders and email notifications to stay informed about deadlines, upcoming tasks, and changes that require attention.</p>
+          </article>
         </div>
       </section>
     </main>
+
+    <section class="bottom-toolbar" aria-label="Footer navigation groups">
+      <div class="toolbar-grid">
+        <div class="toolbar-col">
+          <h3>Support</h3>
+          <div class="toolbar-links">
+            <a href="/contact.html">Contact</a>
+            <a href="/faq.html">Frequently Asked Questions</a>
+          </div>
+        </div>
+        <div class="toolbar-col">
+          <h3>Legal</h3>
+          <div class="toolbar-links">
+            <a href="/terms.html">Terms and Conditions</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/refund.html">Refund Policy</a>
+            <a href="/data-deletion.html">Data Deletion</a>
+          </div>
+        </div>
+        <div class="toolbar-col">
+          <h3>Explore</h3>
+          <div class="toolbar-links">
+            <a href="/pricing.html">Pricing</a>
+            <a href="/community.html">Community</a>
+            <a href="/cart.html">Cart</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
       <div class="footer-brand">
         <strong>LifeOS Atlas</strong>
         <span>Private life operations, organized more clearly.</span>
-      </div>
-      <div class="footer-links">
-        <a href="/pricing.html">Pricing</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/community.html">Community</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/refund.html">Refund Policy</a>
-        <a href="/data-deletion.html">Data Deletion</a>
       </div>
     </footer>
   </div>
