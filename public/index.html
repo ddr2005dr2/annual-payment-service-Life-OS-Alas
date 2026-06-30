@@ -8,19 +8,15 @@
   <link rel="canonical" href="https://www.lifeosatlas.com/" />
   <style>
     :root{
-      --bg:#0b5f66;
-      --bg-deep:#084d53;
-      --bg-soft:#eaf4f4;
-      --surface:#ffffff;
-      --surface-2:#f5fbfb;
-      --text:#102325;
-      --muted:#5d7478;
-      --line:#d6e5e7;
-      --accent:#e98b2a;
-      --accent-2:#0f7d87;
-      --white:#ffffff;
-      --shadow:0 18px 50px rgba(8,33,36,.12);
-      --radius:20px;
+      --teal:#0f6f73;
+      --teal-rgb:15,111,115;
+      --text:#ffffff;
+      --text-soft:rgba(255,255,255,.84);
+      --text-faint:rgba(255,255,255,.68);
+      --line:rgba(255,255,255,.16);
+      --line-soft:rgba(255,255,255,.1);
+      --shadow:0 18px 55px rgba(0,0,0,.18);
+      --radius:24px;
       --max:1180px;
     }
     *{box-sizing:border-box}
@@ -29,133 +25,104 @@
       margin:0;
       font-family:Inter,Segoe UI,Arial,sans-serif;
       color:var(--text);
-      background:linear-gradient(180deg,var(--bg) 0%, var(--bg-deep) 26%, #f4f8f8 26%, #f4f8f8 100%);
-      line-height:1.55;
+      background:var(--teal);
+      line-height:1.6;
     }
     a{text-decoration:none;color:inherit}
     .shell{max-width:var(--max);margin:0 auto;padding:0 24px}
     .site-header{
       position:sticky;top:0;z-index:20;
-      backdrop-filter:blur(16px);
-      background:rgba(8,77,83,.86);
-      border-bottom:1px solid rgba(255,255,255,.12);
+      background:var(--teal);
+      border-bottom:1px solid var(--line-soft);
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
     }
-    .nav{
-      display:flex;align-items:center;justify-content:space-between;
-      min-height:76px;gap:20px;
-    }
-    .brand{
-      display:flex;flex-direction:column;color:#fff;
-    }
-    .brand strong{font-size:1.05rem;letter-spacing:.02em}
-    .brand span{font-size:.78rem;color:rgba(255,255,255,.74)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:78px}
+    .brand{display:flex;flex-direction:column}
+    .brand strong{font-size:1.04rem;letter-spacing:.02em}
+    .brand span{font-size:.8rem;color:var(--text-faint)}
     .nav-links{display:flex;gap:18px;flex-wrap:wrap}
-    .nav-links a{
-      color:rgba(255,255,255,.92);font-size:.95rem;
-      padding:10px 0;
-    }
-    .cta-mini{
+    .nav-links a{color:var(--text-soft);font-size:.95rem;padding:10px 0}
+    .cta-mini,.btn{
       display:inline-flex;align-items:center;justify-content:center;
-      min-height:44px;padding:0 16px;border-radius:999px;
-      background:var(--accent);color:#fff;font-weight:700;
-      box-shadow:0 10px 24px rgba(233,139,42,.22);
-    }
-    .hero{
-      padding:64px 0 34px;
+      min-height:48px;padding:0 18px;border-radius:999px;font-weight:800;
+      border:1px solid var(--line);backdrop-filter:blur(12px);
+      background:rgba(var(--teal-rgb),.22);
       color:#fff;
-    }
-    .hero-grid{
-      display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch;
-    }
-    .eyebrow{
-      display:inline-flex;gap:10px;align-items:center;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.16);
-      color:#fff;padding:10px 14px;border-radius:999px;
-      font-size:.9rem;
-    }
-    h1{
-      font-size:clamp(2.3rem,4vw,4.7rem);
-      line-height:1.03;margin:18px 0 14px;font-weight:800;letter-spacing:-.03em;
-      max-width:10.6ch;
-    }
-    .hero p{
-      max-width:64ch;
-      color:rgba(255,255,255,.88);
-      font-size:1.08rem;
-    }
-    .hero-actions{
-      display:flex;gap:14px;flex-wrap:wrap;margin:24px 0 18px;
-    }
-    .btn{
-      min-height:50px;padding:0 20px;border-radius:999px;
-      display:inline-flex;align-items:center;justify-content:center;font-weight:800;
-      border:1px solid transparent;
-    }
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.18)}
-    .hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .hero-tags span{
-      display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:999px;
-      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);
-      color:#fff;font-size:.92rem;
-    }
-    .panel{
-      background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.08));
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:28px;padding:24px;box-shadow:var(--shadow);
-    }
-    .card{
-      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
-    .mission{
-      background:#fff;color:var(--text);padding:18px;border-radius:18px;margin-bottom:16px;
+    .btn-secondary{background:rgba(255,255,255,.08)}
+    .hero{padding:54px 0 24px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+    .eyebrow,
+    .tag,
+    .floating,
+    .mission,
+    .mini,
+    .stat,
+    .section-soft,
+    .footer-cta{
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
     }
-    .mission h3,.mini h3{margin:0 0 8px;font-size:1rem}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;
+      color:#fff;font-size:.92rem;
+    }
+    h1{
+      font-size:clamp(2.4rem,4.5vw,4.8rem);
+      line-height:1.03;margin:18px 0 14px;font-weight:800;letter-spacing:-.035em;max-width:10.5ch;
+    }
+    .lead{max-width:62ch;color:var(--text-soft);font-size:1.06rem}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0 18px}
+    .hero-tags{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border-radius:999px;color:#fff;font-size:.92rem}
+    .floating{padding:18px;border-radius:var(--radius)}
+    .mission{padding:20px;border-radius:var(--radius);margin-bottom:14px}
     .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-    .mini{padding:16px;border-radius:18px;background:rgba(255,255,255,.92);color:var(--text)}
+    .mini{padding:16px;border-radius:22px}
+    .mini h3,.mission h3,.section-soft h3{margin:0 0 8px}
+    .mini p,.mission p,.stat span,.section-soft p,.lead-2,.faq-item p{margin:0;color:var(--text-soft)}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .stat{padding:14px;border-radius:18px;background:rgba(255,255,255,.92);color:var(--text)}
-    .stat strong{display:block;font-size:1.1rem;margin:4px 0}
-    .small{font-size:.82rem;color:var(--muted)}
-    section.section{padding:34px 0}
-    .surface{background:#f4f8f8}
-    .head{
-      display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px
-    }
-    .head h2{margin:0;font-size:clamp(1.7rem,2.4vw,2.6rem);letter-spacing:-.02em}
-    .head p{margin:8px 0 0;color:var(--muted);max-width:70ch}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-    .box{padding:24px}
-    .box h3{margin:0 0 10px}
-    .box p{margin:0;color:var(--muted)}
+    .stat{padding:14px;border-radius:22px}
+    .stat strong{display:block;font-size:1.12rem;margin:4px 0}
+    .small{font-size:.82rem;color:var(--text-faint)}
+    .section{padding:18px 0}
+    .section-head{margin-bottom:18px}
+    .section-head h2{margin:0;font-size:clamp(1.7rem,2.4vw,2.6rem);letter-spacing:-.02em}
+    .section-head p{margin:8px 0 0;max-width:72ch;color:var(--text-soft)}
+    .grid-3,.grid-2,.trust-strip,.footer-links{display:grid;gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .trust-strip{grid-template-columns:repeat(3,1fr)}
+    .section-soft{padding:22px;border-radius:28px}
     .timeline{display:grid;gap:16px}
     .timeline-item{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start}
     .step{
-      width:56px;height:56px;border-radius:18px;background:var(--bg-deep);color:#fff;
-      display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;
+      width:56px;height:56px;border-radius:18px;border:1px solid var(--line);
+      background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;font-weight:800;color:#fff;box-shadow:var(--shadow);
     }
     .bullets{display:grid;gap:12px;margin:0;padding:0;list-style:none}
-    .bullets li{display:flex;gap:10px;align-items:flex-start;color:var(--text)}
+    .bullets li{display:flex;gap:10px;align-items:flex-start}
     .tick{
-      width:24px;height:24px;flex:0 0 24px;border-radius:999px;background:#dff1ec;color:#0a6d4f;
-      display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;margin-top:2px;
+      width:24px;height:24px;flex:0 0 24px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
+      font-size:.9rem;font-weight:800;color:#fff;margin-top:2px;
     }
-    .trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .footer-cta{
-      background:linear-gradient(135deg,var(--bg-deep),var(--bg));
-      color:#fff;padding:30px;border-radius:28px;box-shadow:var(--shadow)
+    .faq-list{display:grid;gap:14px}
+    .faq-item{padding:20px;border-radius:24px;background:rgba(255,255,255,.05);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+    .footer-cta{padding:28px;border-radius:30px}
+    .footer-cta p{color:var(--text-soft)}
+    footer.site-footer{padding:30px 0 48px}
+    .footer-links{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:14px}
+    .footer-links a{
+      display:flex;align-items:center;min-height:48px;padding:0 14px;border-radius:16px;
+      background:rgba(255,255,255,.05);border:1px solid var(--line-soft);color:#fff;
     }
-    .footer-cta p{color:rgba(255,255,255,.82)}
-    footer.site-footer{
-      padding:28px 0 48px;color:#d7e5e7;background:#082f33;margin-top:34px
-    }
-    .footer-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px}
-    .footer-links a{color:#fff;opacity:.88}
     @media (max-width: 1024px){
-      .hero-grid,.grid-3,.grid-2,.trust-strip{grid-template-columns:1fr}
+      .hero-grid,.grid-3,.grid-2,.trust-strip,.footer-links{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}
     }
     @media (max-width: 720px){
@@ -189,27 +156,27 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div>
-          <span class="eyebrow">Autonomous life admin  Concierge-guided</span>
+          <span class="eyebrow">Autonomous life admin â€¢ Concierge-guided</span>
           <h1>Set it up once. Stop chasing life admin.</h1>
-          <p>
+          <p class="lead">
             LifeOS Atlas helps people organize reminders, deadlines, bills, routines, and next steps in one guided system.
             The concierge stays available across the site and product to answer questions, explain what matters, and move people toward completion without adding noise.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
+            <a class="btn" href="#onboarding">Start onboarding</a>
             <a class="btn btn-secondary" href="#security">View security standards</a>
           </div>
           <div class="hero-tags">
-            <span>Free entry now</span>
-            <span>Subscriptions later</span>
-            <span>Autonomous growth-ready</span>
-            <span>Trust-first design</span>
+            <span class="tag">Free entry now</span>
+            <span class="tag">Subscriptions later</span>
+            <span class="tag">Autonomous growth-ready</span>
+            <span class="tag">Trust-first design</span>
           </div>
         </div>
 
-        <aside class="panel" aria-label="Product preview">
+        <aside class="floating" aria-label="Product preview">
           <div class="mission">
-            <h3>Todays mission</h3>
+            <h3>Todayâ€™s mission</h3>
             <p>Renew benefits documents, confirm a doctor follow-up, and review one bill before it becomes urgent.</p>
           </div>
           <div class="mini-grid">
@@ -231,24 +198,22 @@
       </div>
     </section>
 
-    <section class="section surface" id="benefits">
+    <section class="section" id="benefits">
       <div class="shell">
-        <div class="head">
-          <div>
-            <h2>Why people would use this</h2>
-            <p>Every message on the page should sell the real benefit truthfully: less mental load, fewer missed obligations, and one reliable place to understand what needs attention.</p>
-          </div>
+        <div class="section-head">
+          <h2>Why people would use this</h2>
+          <p>Every message on the page should sell the real benefit truthfully: less mental load, fewer missed obligations, and one reliable place to understand what needs attention.</p>
         </div>
         <div class="grid-3">
-          <article class="card box">
+          <article class="section-soft">
             <h3>Reduce cognitive overload</h3>
             <p>Deadlines, renewals, reminders, and scattered life admin become one calm operating layer instead of many disconnected tools.</p>
           </article>
-          <article class="card box">
+          <article class="section-soft">
             <h3>Get guided next steps</h3>
             <p>The concierge explains what to do, why it matters, and where to start without pretending to be human or drifting into generic chatbot behavior.</p>
           </article>
-          <article class="card box">
+          <article class="section-soft">
             <h3>Stay organized after setup</h3>
             <p>Once the foundation is set, the system keeps surfacing reminders, obligations, and action paths so users do not have to rebuild their own memory every week.</p>
           </article>
@@ -256,55 +221,51 @@
       </div>
     </section>
 
-    <section class="section surface" id="onboarding">
+    <section class="section" id="onboarding">
       <div class="shell">
-        <div class="head">
-          <div>
-            <h2>Onboarding</h2>
-            <p>The onboarding path should stay on the landing page, remain slim and aesthetically clean, and show immediate value before the full dashboard.</p>
-          </div>
+        <div class="section-head">
+          <h2>Onboarding</h2>
+          <p>The onboarding path should stay on the landing page, remain slim and aesthetically clean, and show immediate value before the full dashboard.</p>
         </div>
         <div class="grid-2">
-          <div class="card box">
+          <div class="section-soft">
             <div class="timeline">
-              <div class="timeline-item"><div class="step">1</div><div><h3>Email and name</h3><p>Start with essentials only. No long form, no premature complexity.</p></div></div>
-              <div class="timeline-item"><div class="step">2</div><div><h3>Select a first goal</h3><p>Pick from a small set of real-life priorities so the system can shape the first useful experience.</p></div></div>
-              <div class="timeline-item"><div class="step">3</div><div><h3>Optional connection</h3><p>Connect calendar or email only with explicit explanation and minimal permissions.</p></div></div>
-              <div class="timeline-item"><div class="step">4</div><div><h3>See the first mission</h3><p>Deliver a visible value moment immediately so the user understands why the service matters.</p></div></div>
+              <div class="timeline-item"><div class="step">1</div><div><h3>Email and name</h3><p class="lead-2">Start with essentials only. No long form, no premature complexity.</p></div></div>
+              <div class="timeline-item"><div class="step">2</div><div><h3>Select a first goal</h3><p class="lead-2">Pick from a small set of real-life priorities so the system can shape the first useful experience.</p></div></div>
+              <div class="timeline-item"><div class="step">3</div><div><h3>Optional connection</h3><p class="lead-2">Connect calendar or email only with explicit explanation and minimal permissions.</p></div></div>
+              <div class="timeline-item"><div class="step">4</div><div><h3>See the first mission</h3><p class="lead-2">Deliver a visible value moment immediately so the user understands why the service matters.</p></div></div>
             </div>
           </div>
-          <div class="card box">
+          <div class="section-soft">
             <h3>Concierge support during setup</h3>
             <ul class="bullets">
-              <li><span class="tick"></span><span>Always available but never intrusive.</span></li>
-              <li><span class="tick"></span><span>Answers product, pricing, onboarding, and billing questions.</span></li>
-              <li><span class="tick"></span><span>Explains permissions in plain language.</span></li>
-              <li><span class="tick"></span><span>Guides to action instead of vague text walls.</span></li>
-              <li><span class="tick"></span><span>Remains scoped to LifeOS Atlas knowledge only.</span></li>
+              <li><span class="tick">âœ“</span><span>Always available but never intrusive.</span></li>
+              <li><span class="tick">âœ“</span><span>Answers product, pricing, onboarding, and billing questions.</span></li>
+              <li><span class="tick">âœ“</span><span>Explains permissions in plain language.</span></li>
+              <li><span class="tick">âœ“</span><span>Guides to action instead of vague text walls.</span></li>
+              <li><span class="tick">âœ“</span><span>Remains scoped to LifeOS Atlas knowledge only.</span></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section surface" id="security">
+    <section class="section" id="security">
       <div class="shell">
-        <div class="head">
-          <div>
-            <h2>Security and trust</h2>
-            <p>The platform should communicate visible trust architecture across the front end, middle layer, and backend so users understand the product is secure and deliberate.</p>
-          </div>
+        <div class="section-head">
+          <h2>Security and trust</h2>
+          <p>The platform should communicate visible trust architecture across the front end, middle layer, and backend so users understand the product is secure and deliberate.</p>
         </div>
         <div class="trust-strip">
-          <article class="card box">
+          <article class="section-soft">
             <h3>Encryption</h3>
             <p>Design target: TLS 1.3 for data in transit, AES-256 at rest, encrypted backups, and KMS-managed key controls.</p>
           </article>
-          <article class="card box">
+          <article class="section-soft">
             <h3>Access control</h3>
             <p>Least-privilege permissions, MFA-capable authentication, server-side secret handling, and audited administrative actions.</p>
           </article>
-          <article class="card box">
+          <article class="section-soft">
             <h3>User safety</h3>
             <p>Minimal permission requests, plain-language disclosures, visible policy pages, and deletion and cancellation pathways that are easy to understand.</p>
           </article>
@@ -312,13 +273,13 @@
       </div>
     </section>
 
-    <section class="section surface">
+    <section class="section">
       <div class="shell">
         <div class="footer-cta">
           <h2>Built to convert, guide, and protect</h2>
           <p>This page is designed to explain why the service matters, reduce hesitation, and prepare users for a secure onboarding experience with a persistent concierge and a clear trust posture.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
+            <a class="btn" href="#onboarding">Start onboarding</a>
             <a class="btn btn-secondary" href="/faq">See answers</a>
           </div>
         </div>
