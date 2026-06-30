@@ -4,18 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifeOS Atlas | The operating system for adult life</title>
-  <meta name="description" content="LifeOS Atlas is a premium concierge-style operating layer for adult life, combining onboarding, guidance, reminders, planning, and trust-first execution." />
+  <meta name="description" content="LifeOS Atlas is a premium life admin platform that helps people organize obligations, next steps, reminders, onboarding, and support in one guided operating layer." />
   <link rel="canonical" href="https://www.lifeosatlas.com/" />
   <style>
     :root{
       --teal:#0f6f73;
-      --teal-rgb:15,111,115;
-      --text:#ffffff;
-      --text-soft:rgba(255,255,255,.84);
-      --text-faint:rgba(255,255,255,.68);
-      --line:rgba(255,255,255,.16);
+      --gray:#6f747b;
+      --gray-dark:#5f646b;
+      --gray-soft:rgba(111,116,123,.18);
+      --white:rgba(255,255,255,.96);
+      --white-soft:rgba(255,255,255,.82);
+      --white-faint:rgba(255,255,255,.68);
+      --orange:#ef8a24;
+      --blue:#4c8fd6;
+      --line:rgba(255,255,255,.15);
       --line-soft:rgba(255,255,255,.1);
-      --shadow:0 18px 55px rgba(0,0,0,.18);
+      --shadow:0 18px 46px rgba(0,0,0,.16);
+      --shadow-soft:0 10px 28px rgba(0,0,0,.08);
       --radius:24px;
       --max:1180px;
     }
@@ -24,113 +29,184 @@
     body{
       margin:0;
       font-family:Inter,Segoe UI,Arial,sans-serif;
-      color:var(--text);
+      color:var(--white);
       background:var(--teal);
       line-height:1.6;
     }
     a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
     .shell{max-width:var(--max);margin:0 auto;padding:0 24px}
     .site-header{
-      position:sticky;top:0;z-index:20;
-      background:var(--teal);
-      border-bottom:1px solid var(--line-soft);
-      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      position:sticky;top:0;z-index:40;
+      background:var(--gray);
+      border-bottom:1px solid rgba(255,255,255,.14);
+      box-shadow:var(--shadow-soft);
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:78px}
-    .brand{display:flex;flex-direction:column}
+    .nav{
+      min-height:76px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:24px;
+    }
+    .brand{display:flex;flex-direction:column;padding:14px 0}
     .brand strong{font-size:1.04rem;letter-spacing:.02em}
-    .brand span{font-size:.8rem;color:var(--text-faint)}
-    .nav-links{display:flex;gap:18px;flex-wrap:wrap}
-    .nav-links a{color:var(--text-soft);font-size:.95rem;padding:10px 0}
-    .cta-mini,.btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      min-height:48px;padding:0 18px;border-radius:999px;font-weight:800;
-      border:1px solid var(--line);backdrop-filter:blur(12px);
-      background:rgba(var(--teal-rgb),.22);
+    .brand span{font-size:.8rem;color:rgba(255,255,255,.72)}
+    .nav-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .nav-links a,
+    .toolbar a,
+    .nav-login,
+    .nav-cta,
+    .expander{
+      display:inline-flex;align-items:center;justify-content:center;min-height:42px;
+      padding:0 14px;border-radius:999px;font-size:.95rem;font-weight:700;
+      transition:all .22s ease;
+    }
+    .nav-links a{
+      background:rgba(255,255,255,.08);
       color:#fff;
-      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.1);
     }
-    .btn-secondary{background:rgba(255,255,255,.08)}
-    .hero{padding:54px 0 24px}
-    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
-    .eyebrow,
-    .tag,
-    .floating,
-    .mission,
-    .mini,
-    .stat,
-    .section-soft,
-    .footer-cta{
-      background:rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(16px);
+    .nav-links a:hover,.toolbar a:hover,.expander:hover{transform:translateY(-1px)}
+    .nav-links a.accent-orange,.toolbar a.accent-orange,.accent-orange{
+      background:rgba(239,138,36,.2);
+      border:1px solid rgba(239,138,36,.38);
+      color:#fff;
+      box-shadow:0 0 0 1px rgba(239,138,36,.08) inset;
     }
+    .nav-links a.accent-blue,.toolbar a.accent-blue,.accent-blue{
+      background:rgba(76,143,214,.18);
+      border:1px solid rgba(76,143,214,.34);
+      color:#fff;
+      box-shadow:0 0 0 1px rgba(76,143,214,.08) inset;
+    }
+    .nav-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+    .nav-login{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+    }
+    .nav-cta{
+      background:#fff;
+      color:var(--gray-dark);
+      border:1px solid rgba(255,255,255,.3);
+      box-shadow:var(--shadow-soft);
+    }
+    .hero{padding:52px 0 18px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
     .eyebrow{
       display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;
-      color:#fff;font-size:.92rem;
+      background:rgba(255,255,255,.08);border:1px solid var(--line);box-shadow:var(--shadow-soft);color:#fff;
     }
-    h1{
-      font-size:clamp(2.4rem,4.5vw,4.8rem);
-      line-height:1.03;margin:18px 0 14px;font-weight:800;letter-spacing:-.035em;max-width:10.5ch;
+    h1{font-size:clamp(2.5rem,4.8vw,5rem);line-height:1.03;margin:18px 0 14px;font-weight:800;letter-spacing:-.035em;max-width:11ch}
+    .lead{max-width:64ch;color:var(--white-soft);font-size:1.06rem}
+    .hero-actions,.hero-tags,.toolbar,.quick-pills{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-actions{margin:24px 0 18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;
+      font-weight:800;border:1px solid rgba(255,255,255,.16);box-shadow:var(--shadow-soft)
     }
-    .lead{max-width:62ch;color:var(--text-soft);font-size:1.06rem}
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0 18px}
-    .hero-tags{display:flex;gap:10px;flex-wrap:wrap}
-    .tag{display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border-radius:999px;color:#fff;font-size:.92rem}
-    .floating{padding:18px;border-radius:var(--radius)}
-    .mission{padding:20px;border-radius:var(--radius);margin-bottom:14px}
-    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-    .mini{padding:16px;border-radius:22px}
-    .mini h3,.mission h3,.section-soft h3{margin:0 0 8px}
-    .mini p,.mission p,.stat span,.section-soft p,.lead-2,.faq-item p{margin:0;color:var(--text-soft)}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .stat{padding:14px;border-radius:22px}
-    .stat strong{display:block;font-size:1.12rem;margin:4px 0}
-    .small{font-size:.82rem;color:var(--text-faint)}
-    .section{padding:18px 0}
-    .section-head{margin-bottom:18px}
-    .section-head h2{margin:0;font-size:clamp(1.7rem,2.4vw,2.6rem);letter-spacing:-.02em}
-    .section-head p{margin:8px 0 0;max-width:72ch;color:var(--text-soft)}
-    .grid-3,.grid-2,.trust-strip,.footer-links{display:grid;gap:18px}
-    .grid-3{grid-template-columns:repeat(3,1fr)}
-    .grid-2{grid-template-columns:repeat(2,1fr)}
-    .trust-strip{grid-template-columns:repeat(3,1fr)}
-    .section-soft{padding:22px;border-radius:28px}
-    .timeline{display:grid;gap:16px}
-    .timeline-item{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start}
-    .step{
-      width:56px;height:56px;border-radius:18px;border:1px solid var(--line);
-      background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
-      font-size:1.1rem;font-weight:800;color:#fff;box-shadow:var(--shadow);
+    .btn-primary{background:#fff;color:var(--gray-dark)}
+    .btn-secondary{background:rgba(255,255,255,.08);color:#fff}
+    .tag,.quick-pill{
+      display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border-radius:999px;
+      background:rgba(255,255,255,.07);border:1px solid var(--line);color:#fff;font-size:.92rem
     }
-    .bullets{display:grid;gap:12px;margin:0;padding:0;list-style:none}
-    .bullets li{display:flex;gap:10px;align-items:flex-start}
-    .tick{
-      width:24px;height:24px;flex:0 0 24px;border-radius:999px;border:1px solid var(--line);
-      background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;
-      font-size:.9rem;font-weight:800;color:#fff;margin-top:2px;
+    .quick-pill.orange{border-color:rgba(239,138,36,.44);background:rgba(239,138,36,.15)}
+    .quick-pill.blue{border-color:rgba(76,143,214,.4);background:rgba(76,143,214,.14)}
+
+    .float-field{
+      display:grid;gap:16px;padding-top:10px;
     }
-    .faq-list{display:grid;gap:14px}
-    .faq-item{padding:20px;border-radius:24px;background:rgba(255,255,255,.05);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
-    .footer-cta{padding:28px;border-radius:30px}
-    .footer-cta p{color:var(--text-soft)}
-    footer.site-footer{padding:30px 0 48px}
-    .footer-links{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:14px}
-    .footer-links a{
-      display:flex;align-items:center;min-height:48px;padding:0 14px;border-radius:16px;
-      background:rgba(255,255,255,.05);border:1px solid var(--line-soft);color:#fff;
+    .floating-line,
+    .floating-summary,
+    .metric-row,
+    .footer-intro{
+      background:transparent;
+      border:none;
+      box-shadow:none;
     }
+    .floating-summary{
+      display:grid;gap:14px;padding:18px 0 8px;
+    }
+    .floating-summary h3,.section-title h2,.footer-intro h2{margin:0}
+    .floating-summary p,.section-title p,.metric-item span,.accordion-content p,.footer-intro p{color:var(--white-soft);margin:0}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}
+    .metric-item{
+      padding:10px 0;border-top:1px solid rgba(255,255,255,.14)
+    }
+    .metric-item strong{display:block;font-size:1.12rem;margin:4px 0}
+    .small{font-size:.82rem;color:var(--white-faint)}
+
+    .section{padding:16px 0}
+    .section-title{margin-bottom:16px}
+    .section-title h2{font-size:clamp(1.7rem,2.4vw,2.6rem);letter-spacing:-.02em}
+    .content-flow{display:grid;gap:18px}
+
+    .accordion-list{display:grid;gap:10px}
+    details.accordion{
+      border:none;
+      background:transparent;
+      padding:0;
+    }
+    details.accordion[open] .expander{
+      background:rgba(255,255,255,.1);
+      border-color:rgba(255,255,255,.18);
+    }
+    details.accordion[open] .accordion-content{grid-template-rows:1fr;opacity:1;padding-top:10px}
+    summary{list-style:none;cursor:pointer}
+    summary::-webkit-details-marker{display:none}
+    .expander{
+      width:100%;justify-content:space-between;text-align:left;
+      min-height:54px;padding:12px 16px;background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);color:#fff;box-shadow:var(--shadow-soft)
+    }
+    .expander .left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .expander .label{font-size:1rem;font-weight:800}
+    .expander .sub{font-size:.9rem;color:var(--white-faint);font-weight:500}
+    .marker{
+      width:10px;height:10px;border-radius:999px;display:inline-block;flex:0 0 10px
+    }
+    .marker.orange{background:var(--orange);box-shadow:0 0 0 5px rgba(239,138,36,.14)}
+    .marker.blue{background:var(--blue);box-shadow:0 0 0 5px rgba(76,143,214,.14)}
+    .marker.gray{background:#cfd2d6;box-shadow:0 0 0 5px rgba(255,255,255,.12)}
+
+    .accordion-content{
+      display:grid;grid-template-rows:0fr;opacity:.94;transition:grid-template-rows .25s ease,opacity .2s ease,padding .2s ease;
+      padding:0 2px 0;
+    }
+    .accordion-inner{overflow:hidden}
+    .accordion-copy{padding:2px 12px 10px 22px;max-width:84ch}
+    .accordion-copy ul{margin:10px 0 0;padding-left:18px;color:var(--white-soft)}
+    .accordion-copy li{margin:6px 0}
+
+    .footer-toolbar-wrap{padding:18px 0 34px}
+    .toolbar-shell{
+      background:var(--gray);
+      border-top:1px solid rgba(255,255,255,.14);
+      box-shadow:0 -8px 24px rgba(0,0,0,.08);
+    }
+    .toolbar{
+      min-height:72px;align-items:center;justify-content:center;padding:12px 0;
+    }
+    .toolbar a{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      color:#fff;
+    }
+    .footer-copy{padding:18px 0 2px;color:var(--white-faint);font-size:.88rem;text-align:center}
+
     @media (max-width: 1024px){
-      .hero-grid,.grid-3,.grid-2,.trust-strip,.footer-links{grid-template-columns:1fr}
-      .stats{grid-template-columns:1fr}
+      .nav{grid-template-columns:1fr;justify-items:start;padding:12px 0}
+      .nav-links,.nav-actions{justify-content:flex-start}
+      .hero-grid,.metric-grid{grid-template-columns:1fr}
     }
     @media (max-width: 720px){
-      .nav{align-items:flex-start;padding:16px 0;flex-direction:column}
-      .nav-links{gap:14px}
-      .hero{padding-top:38px}
       .shell{padding:0 16px}
-      .mini-grid{grid-template-columns:1fr}
+      .hero{padding-top:34px}
+      .nav-links,.toolbar,.hero-actions,.hero-tags,.quick-pills{gap:10px}
+      .expander .left{align-items:flex-start}
+      .accordion-copy{padding-left:10px}
     }
   </style>
 </head>
@@ -141,14 +217,19 @@
         <strong>LifeOS Atlas</strong>
         <span>The operating system for adult life</span>
       </a>
+
       <nav class="nav-links" aria-label="Primary">
         <a href="#benefits">Benefits</a>
-        <a href="#onboarding">Onboarding</a>
-        <a href="#security">Security</a>
+        <a href="#onboarding" class="accent-orange">Onboarding</a>
+        <a href="#security" class="accent-blue">Security</a>
         <a href="/community">Community</a>
         <a href="/faq">FAQ</a>
       </nav>
-      <a class="cta-mini" href="#onboarding">Get started</a>
+
+      <div class="nav-actions">
+        <a class="nav-login" href="/login">Login</a>
+        <a class="nav-cta" href="#onboarding">Get started</a>
+      </div>
     </div>
   </header>
 
@@ -156,14 +237,14 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div>
-          <span class="eyebrow">Autonomous life admin €¢ Concierge-guided</span>
+          <span class="eyebrow">Autonomous life admin â€¢ Concierge-guided</span>
           <h1>Set it up once. Stop chasing life admin.</h1>
           <p class="lead">
             LifeOS Atlas helps people organize reminders, deadlines, bills, routines, and next steps in one guided system.
             The concierge stays available across the site and product to answer questions, explain what matters, and move people toward completion without adding noise.
           </p>
           <div class="hero-actions">
-            <a class="btn" href="#onboarding">Start onboarding</a>
+            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
             <a class="btn btn-secondary" href="#security">View security standards</a>
           </div>
           <div class="hero-tags">
@@ -174,112 +255,149 @@
           </div>
         </div>
 
-        <aside class="floating" aria-label="Product preview">
-          <div class="mission">
-            <h3>Today€™s mission</h3>
+        <div class="float-field" aria-label="Product preview">
+          <div class="floating-summary">
+            <h3>Todayâ€™s mission</h3>
             <p>Renew benefits documents, confirm a doctor follow-up, and review one bill before it becomes urgent.</p>
-          </div>
-          <div class="mini-grid">
-            <div class="mini">
-              <h3>Concierge</h3>
-              <p>Explains what to do next and why it matters.</p>
-            </div>
-            <div class="mini">
-              <h3>Autopilot</h3>
-              <p>Turns obligations into clear tasks and reminders.</p>
+            <div class="quick-pills">
+              <span class="quick-pill orange">Concierge explains the next step</span>
+              <span class="quick-pill blue">Autopilot tracks obligations</span>
             </div>
           </div>
-          <div class="stats">
-            <div class="stat"><span class="small">Setup flow</span><strong>4 steps</strong><span class="small">Slim and fast</span></div>
-            <div class="stat"><span class="small">Security</span><strong>AES-256</strong><span class="small">At rest target</span></div>
-            <div class="stat"><span class="small">Transport</span><strong>TLS 1.3</strong><span class="small">In transit target</span></div>
+          <div class="metric-grid">
+            <div class="metric-item"><span class="small">Setup flow</span><strong>4 steps</strong><span class="small">Slim and fast</span></div>
+            <div class="metric-item"><span class="small">Security</span><strong>AES-256</strong><span class="small">At rest target</span></div>
+            <div class="metric-item"><span class="small">Transport</span><strong>TLS 1.3</strong><span class="small">In transit target</span></div>
           </div>
-        </aside>
+        </div>
       </div>
     </section>
 
     <section class="section" id="benefits">
       <div class="shell">
-        <div class="section-head">
+        <div class="section-title">
           <h2>Why people would use this</h2>
-          <p>Every message on the page should sell the real benefit truthfully: less mental load, fewer missed obligations, and one reliable place to understand what needs attention.</p>
+          <p>Everything below stays embedded on the page. Click any row to expand details without dropping content into boxy panels.</p>
         </div>
-        <div class="grid-3">
-          <article class="section-soft">
-            <h3>Reduce cognitive overload</h3>
-            <p>Deadlines, renewals, reminders, and scattered life admin become one calm operating layer instead of many disconnected tools.</p>
-          </article>
-          <article class="section-soft">
-            <h3>Get guided next steps</h3>
-            <p>The concierge explains what to do, why it matters, and where to start without pretending to be human or drifting into generic chatbot behavior.</p>
-          </article>
-          <article class="section-soft">
-            <h3>Stay organized after setup</h3>
-            <p>Once the foundation is set, the system keeps surfacing reminders, obligations, and action paths so users do not have to rebuild their own memory every week.</p>
-          </article>
+        <div class="content-flow accordion-list">
+          <details class="accordion" open>
+            <summary class="expander">
+              <span class="left"><span class="marker orange"></span><span class="label">Reduce cognitive overload</span><span class="sub">One calm operating layer instead of scattered life admin</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Deadlines, renewals, reminders, and scattered life admin become one calm operating layer instead of many disconnected tools. The content stays floating on the page instead of dropping into hard-edged cards.</p></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander">
+              <span class="left"><span class="marker blue"></span><span class="label">Get guided next steps</span><span class="sub">Concierge help stays embedded and actionable</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>The concierge explains what to do, why it matters, and where to start without pretending to be human or drifting into generic chatbot behavior.</p><ul><li>Answers product and onboarding questions.</li><li>Explains billing and permissions clearly.</li><li>Guides users toward completion.</li></ul></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander">
+              <span class="left"><span class="marker gray"></span><span class="label">Stay organized after setup</span><span class="sub">The system keeps surfacing obligations and action paths</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Once the foundation is set, the system keeps surfacing reminders, obligations, and action paths so users do not have to rebuild their own memory every week.</p></div></div></div>
+          </details>
         </div>
       </div>
     </section>
 
     <section class="section" id="onboarding">
       <div class="shell">
-        <div class="section-head">
+        <div class="section-title">
           <h2>Onboarding</h2>
-          <p>The onboarding path should stay on the landing page, remain slim and aesthetically clean, and show immediate value before the full dashboard.</p>
+          <p>The onboarding path stays slim, visible, and expandable right on the landing page. Nothing is hidden in a separate panel wall.</p>
         </div>
-        <div class="grid-2">
-          <div class="section-soft">
-            <div class="timeline">
-              <div class="timeline-item"><div class="step">1</div><div><h3>Email and name</h3><p class="lead-2">Start with essentials only. No long form, no premature complexity.</p></div></div>
-              <div class="timeline-item"><div class="step">2</div><div><h3>Select a first goal</h3><p class="lead-2">Pick from a small set of real-life priorities so the system can shape the first useful experience.</p></div></div>
-              <div class="timeline-item"><div class="step">3</div><div><h3>Optional connection</h3><p class="lead-2">Connect calendar or email only with explicit explanation and minimal permissions.</p></div></div>
-              <div class="timeline-item"><div class="step">4</div><div><h3>See the first mission</h3><p class="lead-2">Deliver a visible value moment immediately so the user understands why the service matters.</p></div></div>
-            </div>
-          </div>
-          <div class="section-soft">
-            <h3>Concierge support during setup</h3>
-            <ul class="bullets">
-              <li><span class="tick">œ“</span><span>Always available but never intrusive.</span></li>
-              <li><span class="tick">œ“</span><span>Answers product, pricing, onboarding, and billing questions.</span></li>
-              <li><span class="tick">œ“</span><span>Explains permissions in plain language.</span></li>
-              <li><span class="tick">œ“</span><span>Guides to action instead of vague text walls.</span></li>
-              <li><span class="tick">œ“</span><span>Remains scoped to LifeOS Atlas knowledge only.</span></li>
-            </ul>
-          </div>
+        <div class="content-flow accordion-list">
+          <details class="accordion" open>
+            <summary class="expander accent-orange">
+              <span class="left"><span class="marker orange"></span><span class="label">Step 1 â€” Email and name</span><span class="sub">Start with essentials only</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Start with essentials only. No long form, no premature complexity, and no crowded signup wall.</p></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander accent-blue">
+              <span class="left"><span class="marker blue"></span><span class="label">Step 2 â€” Select a first goal</span><span class="sub">Shape the first useful experience</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Pick from a small set of real-life priorities so the system can generate a first mission that feels immediately relevant and useful.</p></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander">
+              <span class="left"><span class="marker gray"></span><span class="label">Step 3 â€” Optional connection</span><span class="sub">Minimal permissions, clearly explained</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Connect calendar or email only with explicit explanation, clear reason, and minimal permission requests.</p></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander">
+              <span class="left"><span class="marker orange"></span><span class="label">Step 4 â€” See the first mission</span><span class="sub">Immediate visible value on day one</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Deliver a visible value moment immediately so the user understands why the service matters before entering the deeper product experience.</p></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander">
+              <span class="left"><span class="marker blue"></span><span class="label">Concierge support during setup</span><span class="sub">Persistent and visible across the experience</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><ul><li>âœ“ Always available but never intrusive.</li><li>âœ“ Answers product, pricing, onboarding, and billing questions.</li><li>âœ“ Explains permissions in plain language.</li><li>âœ“ Guides to action instead of vague text walls.</li><li>âœ“ Remains scoped to LifeOS Atlas knowledge only.</li></ul></div></div></div>
+          </details>
         </div>
       </div>
     </section>
 
     <section class="section" id="security">
       <div class="shell">
-        <div class="section-head">
+        <div class="section-title">
           <h2>Security and trust</h2>
-          <p>The platform should communicate visible trust architecture across the front end, middle layer, and backend so users understand the product is secure and deliberate.</p>
+          <p>The trust section is embedded the same way: floating, expandable, and organized instead of boxed into separate card panels.</p>
         </div>
-        <div class="trust-strip">
-          <article class="section-soft">
-            <h3>Encryption</h3>
-            <p>Design target: TLS 1.3 for data in transit, AES-256 at rest, encrypted backups, and KMS-managed key controls.</p>
-          </article>
-          <article class="section-soft">
-            <h3>Access control</h3>
-            <p>Least-privilege permissions, MFA-capable authentication, server-side secret handling, and audited administrative actions.</p>
-          </article>
-          <article class="section-soft">
-            <h3>User safety</h3>
-            <p>Minimal permission requests, plain-language disclosures, visible policy pages, and deletion and cancellation pathways that are easy to understand.</p>
-          </article>
+        <div class="content-flow accordion-list">
+          <details class="accordion" open>
+            <summary class="expander">
+              <span class="left"><span class="marker orange"></span><span class="label">Encryption</span><span class="sub">High-grade data protection targets</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Design target: TLS 1.3 for data in transit, AES-256 at rest, encrypted backups, and KMS-managed key controls.</p></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander">
+              <span class="left"><span class="marker blue"></span><span class="label">Access control</span><span class="sub">Least privilege and audited actions</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Least-privilege permissions, MFA-capable authentication, server-side secret handling, and audited administrative actions.</p></div></div></div>
+          </details>
+
+          <details class="accordion">
+            <summary class="expander">
+              <span class="left"><span class="marker gray"></span><span class="label">User safety</span><span class="sub">Plain-language disclosures and deletion paths</span></span>
+              <span>Expand</span>
+            </summary>
+            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Minimal permission requests, plain-language disclosures, visible policy pages, and deletion and cancellation pathways that are easy to understand.</p></div></div></div>
+          </details>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="shell">
-        <div class="footer-cta">
+        <div class="footer-intro">
           <h2>Built to convert, guide, and protect</h2>
-          <p>This page is designed to explain why the service matters, reduce hesitation, and prepare users for a secure onboarding experience with a persistent concierge and a clear trust posture.</p>
+          <p>This section now stays embedded on the page instead of appearing as a detached panel. The actions remain visible and simple.</p>
           <div class="hero-actions">
-            <a class="btn" href="#onboarding">Start onboarding</a>
+            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
             <a class="btn btn-secondary" href="/faq">See answers</a>
           </div>
         </div>
@@ -287,21 +405,21 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell">
-      <strong>LifeOS Atlas</strong>
-      <div class="footer-links">
-        <a href="/community">Community</a>
-        <a href="/faq">FAQ</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms</a>
-        <a href="/refund-policy">Refund Policy</a>
-        <a href="/cancellation-policy">Cancellation Policy</a>
-        <a href="/ai-disclosure">AI Disclosure</a>
-        <a href="/data-deletion">Data Deletion</a>
-      </div>
+  <div class="toolbar-shell">
+    <div class="shell toolbar" aria-label="Footer toolbar">
+      <a href="/community">Community</a>
+      <a href="/faq" class="accent-orange">FAQ</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms</a>
+      <a href="/refund-policy">Refund Policy</a>
+      <a href="/cancellation-policy">Cancellation Policy</a>
+      <a href="/ai-disclosure" class="accent-blue">AI Disclosure</a>
+      <a href="/data-deletion">Data Deletion</a>
     </div>
+  </div>
+
+  <footer class="footer-toolbar-wrap">
+    <div class="shell footer-copy">LifeOS Atlas</div>
   </footer>
 </body>
 </html>
-
