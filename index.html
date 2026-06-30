@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifeOS Atlas | Private life operations</title>
-  <meta name="description" content="LifeOS Atlas is a premium life operations system with cleaner landing-page structure, expandable policy and pricing tabs, and guided account access." />
+  <meta name="description" content="LifeOS Atlas is a premium life operations system with a cleaner landing page and expandable tab surfaces for pricing, legal, and contact." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
     .btn-orange{background:var(--orange);color:#fff}
     .hero{
       display:grid;
-      grid-template-columns:1.15fr .85fr;
+      grid-template-columns:1.1fr .9fr;
       gap:22px;
       margin-top:18px;
       align-items:stretch;
@@ -91,7 +91,7 @@
       box-shadow:var(--shadow);
       border-radius:30px;
     }
-    .hero-copy{padding:34px;display:flex;flex-direction:column;justify-content:space-between;min-height:510px}
+    .hero-copy{padding:34px;display:flex;flex-direction:column;justify-content:space-between;min-height:470px}
     .eyebrow{
       display:inline-flex;
       width:max-content;
@@ -118,7 +118,7 @@
       line-height:1.75;
       font-size:1.05rem;
     }
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
     .micro{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -142,10 +142,9 @@
     .micro strong{display:block;font-size:.97rem;line-height:1.35}
     .hero-side{
       padding:24px;
-      display:flex;
-      flex-direction:column;
+      display:grid;
       gap:14px;
-      min-height:510px;
+      align-content:start;
     }
     .hero-card{
       background:#11161c;
@@ -153,7 +152,7 @@
       border-radius:24px;
       padding:24px;
     }
-    .hero-card p{color:rgba(255,255,255,.76);line-height:1.7}
+    .hero-card p{color:rgba(255,255,255,.76);line-height:1.7;margin:10px 0 0}
     .soft-card{
       padding:18px;
       border-radius:20px;
@@ -223,7 +222,7 @@
       border:1px solid rgba(21,24,28,.05);
     }
     .inner-card h3{margin:0 0 8px;font-size:1.04rem}
-    .inner-card p{margin:0 0 10px;color:var(--muted);line-height:1.7}
+    .inner-card p{margin:0;color:var(--muted);line-height:1.7}
     .price-card{
       padding:18px;
       border-radius:18px;
@@ -308,7 +307,7 @@
           <div class="eyebrow">Premium life operations</div>
           <h1>One cleaner place to run adult life.</h1>
           <p class="lead">
-            LifeOS Atlas helps organize private life administration, onboarding, workflow setup, and concierge-backed support without turning the homepage into a cluttered dashboard. Deeper information now lives behind expandable tabs so the landing page stays cleaner while still giving visitors access to pricing, policies, and contact.
+            LifeOS Atlas helps organize private life administration, onboarding, workflow setup, and concierge-backed support without turning the homepage into a cluttered dashboard.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#pricing">See plans</a>
@@ -336,7 +335,7 @@
       <aside class="panel hero-side">
         <div class="hero-card">
           <strong>What this page now does</strong>
-          <p>It introduces the product, keeps the visual tone premium, and places pricing, legal, and contact behind expandable surfaces instead of exposing everything directly on the landing page.</p>
+          <p>It introduces the product and keeps pricing, legal, and contact hidden until the user opens those tabs.</p>
         </div>
         <div class="soft-card">
           <div class="k">Product guidance</div>
@@ -344,11 +343,11 @@
         </div>
         <div class="soft-card">
           <div class="k">Policy structure</div>
-          <div class="v">Legal and policy content opens from one tab surface with sub-sections inside it.</div>
+          <div class="v">Legal and policy content stays collapsed until it is intentionally opened.</div>
         </div>
         <div class="soft-card">
           <div class="k">Pricing structure</div>
-          <div class="v">Monthly and yearly options are now grouped inside a pricing tab instead of the main landing flow.</div>
+          <div class="v">Monthly and yearly options are grouped inside a collapsed pricing tab.</div>
         </div>
       </aside>
     </section>
@@ -357,7 +356,7 @@
       <div class="section-head">
         <div>
           <h2>Product</h2>
-          <p>This stays on the landing page because it is the core explanation visitors need first. The deeper administrative content has been moved out of the main flow.</p>
+          <p>This stays on the landing page as the only always-visible explanation section.</p>
         </div>
       </div>
 
@@ -368,7 +367,7 @@
         </article>
         <article class="inner-card">
           <h3>Why it feels cleaner now</h3>
-          <p>The page explains the offer first and hides policy, pricing, and contact detail behind expandable tabs rather than exposing everything at once.</p>
+          <p>Pricing, legal, and contact detail stay collapsed until a visitor chooses to open them.</p>
         </article>
       </div>
     </section>
@@ -377,12 +376,12 @@
       <div class="section-head">
         <div>
           <h2>Pricing</h2>
-          <p>Plans are now organized in one expandable pricing tab with monthly and yearly choices instead of being spread across the landing page.</p>
+          <p>Plans stay tucked into one expandable surface instead of sitting open on the landing page.</p>
         </div>
       </div>
 
       <div class="tab-shell">
-        <details class="tab" open>
+        <details class="tab">
           <summary>
             <span class="summary-left">
               <strong>Plans and pricing</strong>
@@ -445,12 +444,12 @@
       <div class="section-head">
         <div>
           <h2>Legal</h2>
-          <p>Policies now live under one legal tab with expandable sub-sections instead of sitting openly on the landing page.</p>
+          <p>Policies stay under one legal surface with closed sub-sections by default.</p>
         </div>
       </div>
 
       <div class="tab-shell">
-        <details class="tab" open>
+        <details class="tab">
           <summary>
             <span class="summary-left">
               <strong>Terms and conditions</strong>
@@ -524,12 +523,12 @@
       <div class="section-head">
         <div>
           <h2>Contact</h2>
-          <p>Contact now exists as one expandable tab with a stronger form and categories, without exposing the email address directly on the page.</p>
+          <p>The form stays hidden until the contact surface is opened.</p>
         </div>
       </div>
 
       <div class="tab-shell">
-        <details class="tab" open>
+        <details class="tab">
           <summary>
             <span class="summary-left">
               <strong>Reach out to us</strong>
