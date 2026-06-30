@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f4f5f7;color:#15181c}
+    .wrap{width:min(calc(100% - 24px),900px);margin:32px auto}
+    .card{background:#fff;border:1px solid #d7dde5;border-radius:24px;padding:28px;box-shadow:0 18px 44px rgba(21,24,28,.08)}
+    form{display:grid;gap:12px}
+    label{display:grid;gap:8px;font-weight:700}
+    input,textarea,select{width:100%;padding:14px 15px;border:1px solid #d7dde5;border-radius:14px;background:#fff}
+    textarea{min-height:140px;resize:vertical}
+    button{border:none;border-radius:999px;padding:12px 16px;background:#13181d;color:#fff;font-weight:800;cursor:pointer}
+    a{color:inherit}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Contact</h1>
+      <p>Use this page for product, billing, concierge, policy, or account questions.</p>
+      <form action="mailto:support@lifeosatlas.com" method="post" enctype="text/plain">
+        <label>Full name<input type="text" name="name" placeholder="Your full name" required /></label>
+        <label>Email<input type="email" name="email" placeholder="you@example.com" required /></label>
+        <label>Subject<input type="text" name="subject" placeholder="What is this about?" required /></label>
+        <label>Reason for contact
+          <select name="reason">
+            <option>Product question</option>
+            <option>Pricing question</option>
+            <option>Concierge request</option>
+            <option>Billing issue</option>
+            <option>Policy question</option>
+            <option>Account issue</option>
+          </select>
+        </label>
+        <label>Message<textarea name="message" placeholder="Tell us what you need." required></textarea></label>
+        <button type="submit">Send message</button>
+      </form>
+      <p><a href="/index.html">Back to home</a></p>
+    </div>
+  </div>
+</body>
+</html>

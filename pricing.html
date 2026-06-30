@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Pricing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f4f5f7;color:#15181c}
+    .wrap{width:min(calc(100% - 24px),1080px);margin:32px auto}
+    .card{background:#fff;border:1px solid #d7dde5;border-radius:24px;padding:28px;box-shadow:0 18px 44px rgba(21,24,28,.08)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+    .plan{background:#fff;border:1px solid #d7dde5;border-radius:18px;padding:18px}
+    .plan.blue{box-shadow:inset 0 3px 0 #2f6fed}
+    .plan.orange{box-shadow:inset 0 3px 0 #d7742d}
+    .price{font-size:2rem;font-weight:800;letter-spacing:-.04em}
+    a{color:inherit}
+    @media (max-width:800px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Pricing</h1>
+      <p>Monthly and yearly options are presented here on a dedicated pricing page instead of the landing page.</p>
+      <div class="grid">
+        <div class="plan blue"><h3>Core Monthly</h3><div class="price">$29</div><p>Core workspace access, structured onboarding path, standard support coverage.</p></div>
+        <div class="plan blue"><h3>Core Yearly</h3><div class="price">$299</div><p>Everything in monthly core, lower annualized cost, cleaner long-term setup path.</p></div>
+        <div class="plan orange"><h3>Concierge Monthly</h3><div class="price">$49</div><p>Priority support orientation, more direct help with setup, service-focused assistance.</p></div>
+        <div class="plan orange"><h3>Concierge Yearly</h3><div class="price">$499</div><p>Everything in concierge monthly, priority annual support positioning, stronger guidance through setup and use.</p></div>
+      </div>
+      <p><a href="/index.html">Back to home</a></p>
+    </div>
+  </div>
+</body>
+</html>
