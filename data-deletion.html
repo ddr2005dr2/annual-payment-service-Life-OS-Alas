@@ -1,2 +1,51 @@
 ﻿<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>LifeOS Atlas | Data Deletion</title><style>body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f4f5f7;color:#15181c}.wrap{width:min(calc(100% - 24px),900px);margin:32px auto}.card{background:#fff;border:1px solid #d7dde5;border-radius:24px;padding:28px;box-shadow:0 18px 44px rgba(21,24,28,.08)}a{color:inherit}</style></head><body><div class="wrap"><div class="card"><h1>Data Deletion Policy</h1><ul><li>Deletion requests must be submitted through the contact process.</li><li>Identity verification may be required before action is taken.</li><li>Operational or legal retention rules may still apply where necessary.</li></ul><p><a href="/index.html">Back to home</a></p></div></div></body></html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Data Deletion</title>
+  <style>
+    :root{--bg:#f4f5f7;--surface:#fff;--text:#15181c;--muted:#67707b;--line:#d7dde5}
+    [data-theme="dark"]{--bg:#0f1318;--surface:#171c22;--text:#eef2f6;--muted:#a9b3bf;--line:#303844}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(calc(100% - 24px),980px);margin:32px auto}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
+    h1,h2{letter-spacing:-.03em} p,li{line-height:1.8;color:var(--muted)} a{color:inherit}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;padding:12px 16px;border-radius:999px;font-weight:800;background:transparent;border:1px solid var(--line);color:var(--text)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <h1>Data Deletion Policy</h1>
+        <button class="btn" id="themeToggle" type="button">Dark mode</button>
+      </div>
+      <p>Users should be able to request deletion of their account and associated personal data, subject to identity verification, legal exceptions, security controls, backup limitations, and retention obligations. Account deletion should be straightforward to initiate and should not be made unnecessarily difficult.[web:712][web:714]</p>
+      <h2>User-initiated deletion</h2>
+      <ul>
+        <li>Users may request deletion of their account and associated personal data through designated account or support controls.[web:712]</li>
+        <li>Reauthentication, confirmation, or additional verification may be required to protect against unauthorized deletion requests.[web:712]</li>
+        <li>If deletion takes additional time, users should be informed about the expected completion process and timing.[web:712]</li>
+      </ul>
+      <h2>What may be retained</h2>
+      <ul>
+        <li>Certain data may be retained where necessary for fraud prevention, dispute resolution, security logging, legal compliance, financial recordkeeping, platform obligations, or other lawful purposes.[web:712][web:714]</li>
+        <li>Backups and archived systems may not update instantly, and deletion may occur in staged processes over a reasonable operational period.</li>
+        <li>Where required, retained data will be limited to what is reasonably necessary for the applicable obligation or protection purpose.</li>
+      </ul>
+      <h2>Subscriptions and deletion</h2>
+      <ul>
+        <li>If subscription billing is controlled through a platform, users may need to manage or cancel subscriptions through that platform before or alongside account deletion.[web:712][web:715]</li>
+        <li>Deleting an account does not automatically guarantee cancellation or refund of platform-managed subscriptions unless separately canceled through the required billing mechanism.[web:712]</li>
+        <li>Where appropriate, users may be offered options to delete immediately or coordinate deletion with the end of a billing period.[web:712]</li>
+      </ul>
+      <p><a href="/index.html">Back to home</a></p>
+    </div>
+  </div>
+  <script>
+    (function () { const root=document.documentElement,btn=document.getElementById('themeToggle'); let mode=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; root.setAttribute('data-theme',mode); const sync=()=>btn.textContent=mode==='dark'?'Light mode':'Dark mode'; sync(); btn.addEventListener('click',function(){mode=mode==='dark'?'light':'dark'; root.setAttribute('data-theme',mode); sync();}); })();
+  </script>
+</body>
+</html>
