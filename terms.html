@@ -1,1 +1,57 @@
-﻿<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>LifeOS Atlas | Terms and Conditions</title><style>:root{--bg:#f4f5f7;--surface:#fff;--text:#14181d;--muted:#65707c;--line:#d6dde5}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}.wrap{width:min(calc(100% - 24px),980px);margin:32px auto}.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}p,li{line-height:1.8;color:var(--muted)}a{color:inherit;text-decoration:none}</style></head><body><div class="wrap"><div class="card"><h1>Terms and Conditions</h1><p>LifeOS Atlas provides a private life operations system for organizing tasks, reminders, documents, and related workflows.</p><ul><li>Users are responsible for the accuracy of submitted information.</li><li>Abusive, unlawful, or fraudulent use may result in access restrictions.</li><li>Future pricing or subscription changes may be introduced with advance notice.</li></ul><p><a href="/index.html">Back to home</a></p></div></div></body></html>
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Terms and Conditions</title>
+  <style>
+    :root{--bg:#f4f5f7;--surface:#fff;--text:#15181c;--muted:#67707b;--line:#d7dde5}
+    [data-theme="dark"]{--bg:#0f1318;--surface:#171c22;--text:#eef2f6;--muted:#a9b3bf;--line:#303844}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(calc(100% - 24px),980px);margin:32px auto}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
+    h1,h2{letter-spacing:-.03em} p,li{line-height:1.8;color:var(--muted)} a{color:inherit}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;padding:12px 16px;border-radius:999px;font-weight:800;background:transparent;border:1px solid var(--line);color:var(--text)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <h1>Terms and Conditions</h1>
+        <button class="btn" id="themeToggle" type="button">Dark mode</button>
+      </div>
+      <p>These Terms and Conditions govern access to and use of LifeOS Atlas. By registering, accessing, or using the service, the user agrees to be bound by these terms, any incorporated policies, and any additional rules or notices presented within the service.</p>
+      <h2>Service access</h2>
+      <ul>
+        <li>Access is granted as a limited, revocable, non-transferable license for personal or authorized internal use only.</li>
+        <li>Users may not copy, sublicense, resell, reverse engineer, misuse, or interfere with the service, its infrastructure, or related security controls.</li>
+        <li>The service may evolve, change, suspend features, or introduce paid plans later, and continued use after notice constitutes acceptance of updated terms where permitted by law.</li>
+      </ul>
+      <h2>Accounts and security</h2>
+      <ul>
+        <li>Users are responsible for maintaining accurate account details, protecting credentials, and limiting unauthorized access to their account and devices.</li>
+        <li>We may require identity verification, email confirmation, password reset steps, anti-abuse controls, or reauthentication to protect account integrity and platform security.</li>
+        <li>We may suspend or terminate accounts involved in fraud, abuse, unlawful conduct, payment risk, spam, scraping, impersonation, or behavior that creates legal, operational, or security risk.</li>
+      </ul>
+      <h2>Open access and future billing</h2>
+      <ul>
+        <li>The service may currently be offered during an open access period without active billing.</li>
+        <li>If paid plans are activated later, pricing, billing terms, renewal rules, and effective dates will be disclosed in advance before charges begin.</li>
+        <li>Where applicable, notice of material billing activation or subscription changes should be provided before those changes take effect.</li>
+      </ul>
+      <h2>Termination and availability</h2>
+      <ul>
+        <li>We do not guarantee uninterrupted availability, error-free performance, or continued availability of any specific feature.</li>
+        <li>We may suspend, restrict, or discontinue access where necessary for security, maintenance, legal compliance, service integrity, or platform obligations.</li>
+        <li>Users may stop using the service at any time and may request account deletion subject to verification, retention obligations, and lawful exceptions.</li>
+      </ul>
+      <p><a href="/index.html">Back to home</a></p>
+    </div>
+  </div>
+  <script>
+    (function () { const root=document.documentElement,btn=document.getElementById('themeToggle'); let mode=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; root.setAttribute('data-theme',mode); const sync=()=>btn.textContent=mode==='dark'?'Light mode':'Dark mode'; sync(); btn.addEventListener('click',function(){mode=mode==='dark'?'light':'dark'; root.setAttribute('data-theme',mode); sync();}); })();
+  </script>
+</body>
+</html>

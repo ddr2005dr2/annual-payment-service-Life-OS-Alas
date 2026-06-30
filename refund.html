@@ -1,1 +1,51 @@
-﻿<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>LifeOS Atlas | Refund Policy</title><style>:root{--bg:#f4f5f7;--surface:#fff;--text:#14181d;--muted:#65707c;--line:#d6dde5}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}.wrap{width:min(calc(100% - 24px),980px);margin:32px auto}.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}p,li{line-height:1.8;color:var(--muted)}a{color:inherit;text-decoration:none}</style></head><body><div class="wrap"><div class="card"><h1>Refund Policy</h1><p>Access is currently open. If paid services are introduced later, refund rules will apply according to the terms in effect at the time of purchase.</p><p><a href="/index.html">Back to home</a></p></div></div></body></html>
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Refund Policy</title>
+  <style>
+    :root{--bg:#f4f5f7;--surface:#fff;--text:#15181c;--muted:#67707b;--line:#d7dde5}
+    [data-theme="dark"]{--bg:#0f1318;--surface:#171c22;--text:#eef2f6;--muted:#a9b3bf;--line:#303844}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(calc(100% - 24px),980px);margin:32px auto}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
+    h1,h2{letter-spacing:-.03em} p,li{line-height:1.8;color:var(--muted)} a{color:inherit}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:none;cursor:pointer;padding:12px 16px;border-radius:999px;font-weight:800;background:transparent;border:1px solid var(--line);color:var(--text)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <h1>Refund Policy</h1>
+        <button class="btn" id="themeToggle" type="button">Dark mode</button>
+      </div>
+      <p>This policy explains how LifeOS Atlas handles cancellations, billing disputes, and refund review. Because the service is digital and may begin delivering access, support, configuration, or account-level value immediately, refunds are limited and not guaranteed.</p>
+      <h2>General refund rule</h2>
+      <ul>
+        <li>Except where required by law, digital services, activated access, delivered onboarding, completed support work, or used subscription periods are generally non-refundable.</li>
+        <li>Once service delivery, account activation, concierge handling, or material digital access has begun, the user may cancel future service where applicable, but completed or already-delivered service is not ordinarily refundable.</li>
+        <li>Any exception is reviewed case by case in light of applicable law, service status, technical failure, duplicate billing, fraud, or verified non-delivery.</li>
+      </ul>
+      <h2>Cancellations</h2>
+      <ul>
+        <li>Users may request cancellation of future recurring billing where subscriptions are active.</li>
+        <li>Cancellation stops future renewals but does not automatically create a refund for the current or prior billing period unless required by law or specifically approved after review.</li>
+        <li>Platform purchases may also be subject to Apple or Google platform billing and refund processes where those systems control the payment relationship.</li>
+      </ul>
+      <h2>Review factors</h2>
+      <ul>
+        <li>We may review whether service was accessed, whether onboarding or concierge work was started, whether the claim involves duplicate payment, unauthorized payment, billing error, or technical non-delivery.</li>
+        <li>We may request supporting information, verification, timestamps, account identifiers, or billing evidence before making a determination.</li>
+        <li>Approved exceptions, if any, may be partial, full, account-credit based, or denied depending on the circumstances and governing law.</li>
+      </ul>
+      <p><a href="/index.html">Back to home</a></p>
+    </div>
+  </div>
+  <script>
+    (function () { const root=document.documentElement,btn=document.getElementById('themeToggle'); let mode=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; root.setAttribute('data-theme',mode); const sync=()=>btn.textContent=mode==='dark'?'Light mode':'Dark mode'; sync(); btn.addEventListener('click',function(){mode=mode==='dark'?'light':'dark'; root.setAttribute('data-theme',mode); sync();}); })();
+  </script>
+</body>
+</html>
