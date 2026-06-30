@@ -1,425 +1,391 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LifeOS Atlas | The operating system for adult life</title>
-  <meta name="description" content="LifeOS Atlas is a premium life admin platform that helps people organize obligations, next steps, reminders, onboarding, and support in one guided operating layer." />
-  <link rel="canonical" href="https://www.lifeosatlas.com/" />
+  <title>LifeOS Atlas — Premium Landing</title>
+  <meta name="description" content="Premium glossy landing page with black navigation, structured panels, visible concierge, and separated blue and orange accents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --teal:#0f6f73;
-      --gray:#6f747b;
-      --gray-dark:#5f646b;
-      --gray-soft:rgba(111,116,123,.18);
-      --white:rgba(255,255,255,.96);
-      --white-soft:rgba(255,255,255,.82);
-      --white-faint:rgba(255,255,255,.68);
-      --orange:#ef8a24;
-      --blue:#4c8fd6;
-      --line:rgba(255,255,255,.15);
-      --line-soft:rgba(255,255,255,.1);
-      --shadow:0 18px 46px rgba(0,0,0,.16);
-      --shadow-soft:0 10px 28px rgba(0,0,0,.08);
+      --bg:#07090d;
+      --bg-2:#0c1018;
+      --panel:#101625;
+      --panel-2:#121a2b;
+      --panel-3:#0d1422;
+      --line:rgba(255,255,255,.09);
+      --text:#f4f7fb;
+      --muted:#9ca8bc;
+      --blue:#5aa6ff;
+      --blue-2:#2f7ef7;
+      --orange:#ff9a3d;
+      --orange-2:#ff7a1a;
+      --shadow:0 28px 80px rgba(0,0,0,.45);
       --radius:24px;
-      --max:1180px;
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family:Inter,Segoe UI,Arial,sans-serif;
-      color:var(--white);
-      background:var(--teal);
-      line-height:1.6;
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47,126,247,.10), transparent 28%),
+        radial-gradient(circle at 88% 14%, rgba(255,122,26,.12), transparent 22%),
+        linear-gradient(180deg,var(--bg) 0%, var(--bg-2) 100%);
+      color:var(--text);
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    .shell{max-width:var(--max);margin:0 auto;padding:0 24px}
-    .site-header{
-      position:sticky;top:0;z-index:40;
-      background:var(--gray);
-      border-bottom:1px solid rgba(255,255,255,.14);
-      box-shadow:var(--shadow-soft);
+    .shell{width:min(1280px,calc(100% - 28px));margin:18px auto 32px}
+    .statusbar{
+      background:#000;
+      color:#c4cede;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:22px 22px 0 0;
+      padding:12px 22px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      font-size:13px;
+      letter-spacing:.02em;
+    }
+    .statusbar strong{color:#fff}
+    .frame{
+      border:1px solid rgba(255,255,255,.06);
+      border-top:0;
+      border-radius:0 0 28px 28px;
+      background:linear-gradient(180deg, rgba(16,22,37,.95), rgba(8,12,20,.98));
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
     .nav{
-      min-height:76px;
-      display:grid;
-      grid-template-columns:auto 1fr auto;
+      background:#000;
+      padding:18px 24px;
+      display:flex;
       align-items:center;
-      gap:24px;
+      justify-content:space-between;
+      gap:18px;
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .brand{display:flex;flex-direction:column;padding:14px 0}
-    .brand strong{font-size:1.04rem;letter-spacing:.02em}
-    .brand span{font-size:.8rem;color:rgba(255,255,255,.72)}
-    .nav-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-    .nav-links a,
-    .toolbar a,
-    .nav-login,
-    .nav-cta,
-    .expander{
-      display:inline-flex;align-items:center;justify-content:center;min-height:42px;
-      padding:0 14px;border-radius:999px;font-size:.95rem;font-weight:700;
-      transition:all .22s ease;
+    .brand{display:flex;align-items:center;gap:14px;font-weight:800;letter-spacing:-.04em;font-size:24px}
+    .mark{
+      width:38px;height:38px;border-radius:14px;
+      background:linear-gradient(135deg,var(--blue) 0%, #8ec5ff 40%, var(--orange) 100%);
+      box-shadow:inset 0 0 18px rgba(255,255,255,.28),0 10px 30px rgba(47,126,247,.22);
+      position:relative;
     }
-    .nav-links a{
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.1);
+    .mark:before,.mark:after{content:'';position:absolute;border-radius:999px;background:rgba(255,255,255,.78)}
+    .mark:before{width:18px;height:4px;left:10px;top:11px}
+    .mark:after{width:11px;height:4px;left:10px;top:21px}
+    .navlinks{display:flex;gap:26px;color:#c9d4e6;font-size:14px}
+    .actions{display:flex;align-items:center;gap:12px}
+    .ghost,.primary,.warm{
+      display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+      padding:0 16px;border-radius:14px;font-weight:700;border:1px solid transparent
     }
-    .nav-links a:hover,.toolbar a:hover,.expander:hover{transform:translateY(-1px)}
-    .nav-links a.accent-orange,.toolbar a.accent-orange,.accent-orange{
-      background:rgba(239,138,36,.2);
-      border:1px solid rgba(239,138,36,.38);
-      color:#fff;
-      box-shadow:0 0 0 1px rgba(239,138,36,.08) inset;
+    .ghost{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08);color:#eef4ff}
+    .primary{background:linear-gradient(180deg,var(--blue),var(--blue-2));color:#fff;box-shadow:0 14px 30px rgba(47,126,247,.28)}
+    .warm{background:linear-gradient(180deg,var(--orange),var(--orange-2));color:#111;box-shadow:0 14px 30px rgba(255,122,26,.22)}
+    .hero{
+      padding:42px 24px 24px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
     }
-    .nav-links a.accent-blue,.toolbar a.accent-blue,.accent-blue{
-      background:rgba(76,143,214,.18);
-      border:1px solid rgba(76,143,214,.34);
-      color:#fff;
-      box-shadow:0 0 0 1px rgba(76,143,214,.08) inset;
+    .hero-copy,.hero-visual,.section-panel,.card,.trust-card,.plan,.feature-card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(18,26,43,.96), rgba(12,18,30,.96))
     }
-    .nav-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-    .nav-login{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
+    .hero-copy{padding:34px;position:relative;overflow:hidden}
+    .hero-copy:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg, rgba(90,166,255,.10), transparent 35%, rgba(255,154,61,.08) 100%);pointer-events:none}
+    .eyebrow{display:inline-flex;gap:10px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:12px;color:#b8c6dd;text-transform:uppercase;letter-spacing:.14em}
+    h1{margin-top:18px;font-size:clamp(42px,6vw,84px);line-height:.94;letter-spacing:-.06em;max-width:9ch}
+    .lead{margin-top:18px;max-width:60ch;color:var(--muted);font-size:18px}
+    .hero-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .micro-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+    .mini{padding:14px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .mini span{display:block;font-size:12px;color:#8fa0ba;text-transform:uppercase;letter-spacing:.12em}
+    .mini strong{display:block;margin-top:8px;font-size:18px}
+    .hero-visual{padding:22px;display:grid;grid-template-rows:auto 1fr auto;gap:16px}
+    .visual-top{display:flex;justify-content:space-between;align-items:center;color:#dce6f7}
+    .orbital{
+      border-radius:24px;
+      min-height:360px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(90,166,255,.24), transparent 24%),
+        radial-gradient(circle at 48% 52%, rgba(255,154,61,.20), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.06);
     }
-    .nav-cta{
-      background:#fff;
-      color:var(--gray-dark);
-      border:1px solid rgba(255,255,255,.3);
-      box-shadow:var(--shadow-soft);
+    .ring,.ring2,.dot,.dot2,.dot3{position:absolute;border-radius:999px}
+    .ring{inset:44px;border:1px solid rgba(90,166,255,.28)}
+    .ring2{inset:84px;border:1px solid rgba(255,154,61,.26)}
+    .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:170px;height:170px;border-radius:32px;background:linear-gradient(180deg, rgba(14,24,40,.92), rgba(7,12,20,.98));border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.45);padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+    .core .label{font-size:12px;color:#9fb0c8;text-transform:uppercase;letter-spacing:.13em}
+    .core .big{font-size:46px;font-weight:800;letter-spacing:-.06em}
+    .core .split{display:flex;justify-content:space-between;color:#adc1da;font-size:13px}
+    .dot{width:14px;height:14px;background:var(--blue);top:72px;left:78px;box-shadow:0 0 18px rgba(90,166,255,.7)}
+    .dot2{width:14px;height:14px;background:var(--orange);bottom:88px;right:78px;box-shadow:0 0 18px rgba(255,154,61,.7)}
+    .dot3{width:10px;height:10px;background:#fff;right:120px;top:110px;opacity:.8}
+    .visual-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .pill{padding:14px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .pill .k{font-size:12px;color:#8ea1bc;text-transform:uppercase;letter-spacing:.12em}
+    .pill .v{margin-top:8px;font-size:22px;font-weight:800}
+    .grid-sections{padding:0 24px 24px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+    .section-panel{padding:22px}
+    .section-header{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:16px}
+    .section-header h2{font-size:28px;letter-spacing:-.04em}
+    .section-header p{max-width:46ch;color:var(--muted)}
+    .stack{display:grid;gap:14px}
+    .card{padding:18px;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015))}
+    .card h3{font-size:20px;letter-spacing:-.03em}
+    .card p{margin-top:10px;color:var(--muted)}
+    .card.blue-accent{box-shadow:inset 3px 0 0 var(--blue)}
+    .card.orange-accent{box-shadow:inset 3px 0 0 var(--orange)}
+    .reasons{padding:0 24px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature-card{padding:22px;min-height:220px;background:linear-gradient(180deg, rgba(15,21,35,.96), rgba(10,15,24,.98))}
+    .feature-card .tag{display:inline-flex;padding:7px 10px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;border:1px solid rgba(255,255,255,.08);margin-bottom:18px}
+    .feature-card h3{font-size:24px;letter-spacing:-.04em}
+    .feature-card p{margin-top:12px;color:var(--muted)}
+    .feature-card.blue .tag{color:#bfdaff;background:rgba(90,166,255,.10)}
+    .feature-card.orange .tag{color:#ffd7b3;background:rgba(255,154,61,.10)}
+    .trust-wrap{padding:0 24px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .trust-card{padding:20px}
+    .trust-card h3{font-size:18px}
+    .trust-card p{margin-top:10px;color:var(--muted)}
+    .plans{padding:0 24px 34px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+    .plan-board,.concierge-board{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg, rgba(14,20,33,.98), rgba(8,12,20,.98));padding:24px}
+    .plan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+    .plan{padding:20px}
+    .plan h3{font-size:22px;letter-spacing:-.04em}
+    .price{margin-top:12px;font-size:40px;font-weight:800;letter-spacing:-.05em}
+    .plan ul{margin-top:14px;padding-left:18px;color:var(--muted)}
+    .plan li+li{margin-top:8px}
+    .concierge-board{display:grid;gap:18px}
+    .concierge-board h2{font-size:30px;letter-spacing:-.05em}
+    .concierge-line{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);color:#d5deec}
+    .concierge-line span:last-child{color:#8fa2bc}
+    .footer{padding:22px 24px 30px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#9fb0c8;font-size:14px}
+    @media (max-width:1080px){
+      .hero,.grid-sections,.plans{grid-template-columns:1fr}
+      .reasons,.trust-wrap{grid-template-columns:1fr 1fr}
     }
-    .hero{padding:52px 0 18px}
-    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;
-      background:rgba(255,255,255,.08);border:1px solid var(--line);box-shadow:var(--shadow-soft);color:#fff;
-    }
-    h1{font-size:clamp(2.5rem,4.8vw,5rem);line-height:1.03;margin:18px 0 14px;font-weight:800;letter-spacing:-.035em;max-width:11ch}
-    .lead{max-width:64ch;color:var(--white-soft);font-size:1.06rem}
-    .hero-actions,.hero-tags,.toolbar,.quick-pills{display:flex;gap:12px;flex-wrap:wrap}
-    .hero-actions{margin:24px 0 18px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;
-      font-weight:800;border:1px solid rgba(255,255,255,.16);box-shadow:var(--shadow-soft)
-    }
-    .btn-primary{background:#fff;color:var(--gray-dark)}
-    .btn-secondary{background:rgba(255,255,255,.08);color:#fff}
-    .tag,.quick-pill{
-      display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border-radius:999px;
-      background:rgba(255,255,255,.07);border:1px solid var(--line);color:#fff;font-size:.92rem
-    }
-    .quick-pill.orange{border-color:rgba(239,138,36,.44);background:rgba(239,138,36,.15)}
-    .quick-pill.blue{border-color:rgba(76,143,214,.4);background:rgba(76,143,214,.14)}
-
-    .float-field{
-      display:grid;gap:16px;padding-top:10px;
-    }
-    .floating-line,
-    .floating-summary,
-    .metric-row,
-    .footer-intro{
-      background:transparent;
-      border:none;
-      box-shadow:none;
-    }
-    .floating-summary{
-      display:grid;gap:14px;padding:18px 0 8px;
-    }
-    .floating-summary h3,.section-title h2,.footer-intro h2{margin:0}
-    .floating-summary p,.section-title p,.metric-item span,.accordion-content p,.footer-intro p{color:var(--white-soft);margin:0}
-    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}
-    .metric-item{
-      padding:10px 0;border-top:1px solid rgba(255,255,255,.14)
-    }
-    .metric-item strong{display:block;font-size:1.12rem;margin:4px 0}
-    .small{font-size:.82rem;color:var(--white-faint)}
-
-    .section{padding:16px 0}
-    .section-title{margin-bottom:16px}
-    .section-title h2{font-size:clamp(1.7rem,2.4vw,2.6rem);letter-spacing:-.02em}
-    .content-flow{display:grid;gap:18px}
-
-    .accordion-list{display:grid;gap:10px}
-    details.accordion{
-      border:none;
-      background:transparent;
-      padding:0;
-    }
-    details.accordion[open] .expander{
-      background:rgba(255,255,255,.1);
-      border-color:rgba(255,255,255,.18);
-    }
-    details.accordion[open] .accordion-content{grid-template-rows:1fr;opacity:1;padding-top:10px}
-    summary{list-style:none;cursor:pointer}
-    summary::-webkit-details-marker{display:none}
-    .expander{
-      width:100%;justify-content:space-between;text-align:left;
-      min-height:54px;padding:12px 16px;background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);color:#fff;box-shadow:var(--shadow-soft)
-    }
-    .expander .left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-    .expander .label{font-size:1rem;font-weight:800}
-    .expander .sub{font-size:.9rem;color:var(--white-faint);font-weight:500}
-    .marker{
-      width:10px;height:10px;border-radius:999px;display:inline-block;flex:0 0 10px
-    }
-    .marker.orange{background:var(--orange);box-shadow:0 0 0 5px rgba(239,138,36,.14)}
-    .marker.blue{background:var(--blue);box-shadow:0 0 0 5px rgba(76,143,214,.14)}
-    .marker.gray{background:#cfd2d6;box-shadow:0 0 0 5px rgba(255,255,255,.12)}
-
-    .accordion-content{
-      display:grid;grid-template-rows:0fr;opacity:.94;transition:grid-template-rows .25s ease,opacity .2s ease,padding .2s ease;
-      padding:0 2px 0;
-    }
-    .accordion-inner{overflow:hidden}
-    .accordion-copy{padding:2px 12px 10px 22px;max-width:84ch}
-    .accordion-copy ul{margin:10px 0 0;padding-left:18px;color:var(--white-soft)}
-    .accordion-copy li{margin:6px 0}
-
-    .footer-toolbar-wrap{padding:18px 0 34px}
-    .toolbar-shell{
-      background:var(--gray);
-      border-top:1px solid rgba(255,255,255,.14);
-      box-shadow:0 -8px 24px rgba(0,0,0,.08);
-    }
-    .toolbar{
-      min-height:72px;align-items:center;justify-content:center;padding:12px 0;
-    }
-    .toolbar a{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.1);
-      color:#fff;
-    }
-    .footer-copy{padding:18px 0 2px;color:var(--white-faint);font-size:.88rem;text-align:center}
-
-    @media (max-width: 1024px){
-      .nav{grid-template-columns:1fr;justify-items:start;padding:12px 0}
-      .nav-links,.nav-actions{justify-content:flex-start}
-      .hero-grid,.metric-grid{grid-template-columns:1fr}
-    }
-    @media (max-width: 720px){
-      .shell{padding:0 16px}
-      .hero{padding-top:34px}
-      .nav-links,.toolbar,.hero-actions,.hero-tags,.quick-pills{gap:10px}
-      .expander .left{align-items:flex-start}
-      .accordion-copy{padding-left:10px}
+    @media (max-width:780px){
+      .shell{width:min(100%,calc(100% - 12px));margin:8px auto 18px}
+      .statusbar,.nav,.hero,.grid-sections,.reasons,.trust-wrap,.plans{padding-left:14px;padding-right:14px}
+      .nav{flex-wrap:wrap}
+      .navlinks{order:3;width:100%;overflow:auto;padding-bottom:4px}
+      .micro-proof,.visual-bottom,.plan-grid,.reasons,.trust-wrap{grid-template-columns:1fr}
+      h1{font-size:42px}
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="shell nav">
-      <a class="brand" href="/">
-        <strong>LifeOS Atlas</strong>
-        <span>The operating system for adult life</span>
-      </a>
-
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#benefits">Benefits</a>
-        <a href="#onboarding" class="accent-orange">Onboarding</a>
-        <a href="#security" class="accent-blue">Security</a>
-        <a href="/community">Community</a>
-        <a href="/faq">FAQ</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a class="nav-login" href="/login">Login</a>
-        <a class="nav-cta" href="#onboarding">Get started</a>
-      </div>
+  <div class="shell">
+    <div class="statusbar">
+      <div><strong>LifeOS Atlas</strong> premium operating surface</div>
+      <div>Black navigation • Blue product accent • Orange concierge accent</div>
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="shell hero-grid">
-        <div>
-          <span class="eyebrow">Autonomous life admin â€¢ Concierge-guided</span>
-          <h1>Set it up once. Stop chasing life admin.</h1>
-          <p class="lead">
-            LifeOS Atlas helps people organize reminders, deadlines, bills, routines, and next steps in one guided system.
-            The concierge stays available across the site and product to answer questions, explain what matters, and move people toward completion without adding noise.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
-            <a class="btn btn-secondary" href="#security">View security standards</a>
+    <div class="frame">
+      <header class="nav">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <span>LifeOS Atlas</span>
+        </div>
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#product">Product</a>
+          <a href="#why">Why buy</a>
+          <a href="#trust">Security</a>
+          <a href="#plans">Plans</a>
+          <a href="#concierge">Concierge</a>
+        </nav>
+        <div class="actions">
+          <a class="ghost" href="#trust">Trust center</a>
+          <a class="primary" href="#plans">Start annual</a>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Premium grade landing system</div>
+          <h1>Organized. Premium. Built to sell the product.</h1>
+          <p class="lead">This redesign uses a black two-bar navigation system, keeps the page structured instead of scattered, makes concierge visible, and separates the blue and orange accents so the interface feels deliberate and high-end.</p>
+          <div class="hero-buttons">
+            <a class="primary" href="#plans">Choose annual access</a>
+            <a class="warm" href="#concierge">Talk to concierge</a>
+            <a class="ghost" href="#why">See why people buy</a>
           </div>
-          <div class="hero-tags">
-            <span class="tag">Free entry now</span>
-            <span class="tag">Subscriptions later</span>
-            <span class="tag">Autonomous growth-ready</span>
-            <span class="tag">Trust-first design</span>
+          <div class="micro-proof">
+            <div class="mini"><span>Clarity</span><strong>Focused panels</strong></div>
+            <div class="mini"><span>Trust</span><strong>Security grouped</strong></div>
+            <div class="mini"><span>Support</span><strong>Concierge visible</strong></div>
           </div>
         </div>
 
-        <div class="float-field" aria-label="Product preview">
-          <div class="floating-summary">
-            <h3>Todayâ€™s mission</h3>
-            <p>Renew benefits documents, confirm a doctor follow-up, and review one bill before it becomes urgent.</p>
-            <div class="quick-pills">
-              <span class="quick-pill orange">Concierge explains the next step</span>
-              <span class="quick-pill blue">Autopilot tracks obligations</span>
+        <div class="hero-visual">
+          <div class="visual-top">
+            <strong>Premium operating view</strong>
+            <span style="color:#8ea2bc">AA++ layout</span>
+          </div>
+          <div class="orbital">
+            <div class="ring"></div>
+            <div class="ring2"></div>
+            <div class="dot"></div>
+            <div class="dot2"></div>
+            <div class="dot3"></div>
+            <div class="core">
+              <div>
+                <div class="label">Conversion surface</div>
+                <div class="big">94</div>
+              </div>
+              <div class="split">
+                <span style="color:var(--blue)">Product clarity</span>
+                <span style="color:var(--orange)">Service access</span>
+              </div>
             </div>
           </div>
-          <div class="metric-grid">
-            <div class="metric-item"><span class="small">Setup flow</span><strong>4 steps</strong><span class="small">Slim and fast</span></div>
-            <div class="metric-item"><span class="small">Security</span><strong>AES-256</strong><span class="small">At rest target</span></div>
-            <div class="metric-item"><span class="small">Transport</span><strong>TLS 1.3</strong><span class="small">In transit target</span></div>
+          <div class="visual-bottom">
+            <div class="pill"><div class="k">Blue accent</div><div class="v">Product</div></div>
+            <div class="pill"><div class="k">Orange accent</div><div class="v">Concierge</div></div>
+            <div class="pill"><div class="k">Navigation</div><div class="v">Black</div></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" id="benefits">
-      <div class="shell">
-        <div class="section-title">
-          <h2>Why people would use this</h2>
-          <p>Everything below stays embedded on the page. Click any row to expand details without dropping content into boxy panels.</p>
-        </div>
-        <div class="content-flow accordion-list">
-          <details class="accordion" open>
-            <summary class="expander">
-              <span class="left"><span class="marker orange"></span><span class="label">Reduce cognitive overload</span><span class="sub">One calm operating layer instead of scattered life admin</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Deadlines, renewals, reminders, and scattered life admin become one calm operating layer instead of many disconnected tools. The content stays floating on the page instead of dropping into hard-edged cards.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker blue"></span><span class="label">Get guided next steps</span><span class="sub">Concierge help stays embedded and actionable</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>The concierge explains what to do, why it matters, and where to start without pretending to be human or drifting into generic chatbot behavior.</p><ul><li>Answers product and onboarding questions.</li><li>Explains billing and permissions clearly.</li><li>Guides users toward completion.</li></ul></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker gray"></span><span class="label">Stay organized after setup</span><span class="sub">The system keeps surfacing obligations and action paths</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Once the foundation is set, the system keeps surfacing reminders, obligations, and action paths so users do not have to rebuild their own memory every week.</p></div></div></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="onboarding">
-      <div class="shell">
-        <div class="section-title">
-          <h2>Onboarding</h2>
-          <p>The onboarding path stays slim, visible, and expandable right on the landing page. Nothing is hidden in a separate panel wall.</p>
-        </div>
-        <div class="content-flow accordion-list">
-          <details class="accordion" open>
-            <summary class="expander accent-orange">
-              <span class="left"><span class="marker orange"></span><span class="label">Step 1 â€” Email and name</span><span class="sub">Start with essentials only</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Start with essentials only. No long form, no premature complexity, and no crowded signup wall.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander accent-blue">
-              <span class="left"><span class="marker blue"></span><span class="label">Step 2 â€” Select a first goal</span><span class="sub">Shape the first useful experience</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Pick from a small set of real-life priorities so the system can generate a first mission that feels immediately relevant and useful.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker gray"></span><span class="label">Step 3 â€” Optional connection</span><span class="sub">Minimal permissions, clearly explained</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Connect calendar or email only with explicit explanation, clear reason, and minimal permission requests.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker orange"></span><span class="label">Step 4 â€” See the first mission</span><span class="sub">Immediate visible value on day one</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Deliver a visible value moment immediately so the user understands why the service matters before entering the deeper product experience.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker blue"></span><span class="label">Concierge support during setup</span><span class="sub">Persistent and visible across the experience</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><ul><li>âœ“ Always available but never intrusive.</li><li>âœ“ Answers product, pricing, onboarding, and billing questions.</li><li>âœ“ Explains permissions in plain language.</li><li>âœ“ Guides to action instead of vague text walls.</li><li>âœ“ Remains scoped to LifeOS Atlas knowledge only.</li></ul></div></div></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="security">
-      <div class="shell">
-        <div class="section-title">
-          <h2>Security and trust</h2>
-          <p>The trust section is embedded the same way: floating, expandable, and organized instead of boxed into separate card panels.</p>
-        </div>
-        <div class="content-flow accordion-list">
-          <details class="accordion" open>
-            <summary class="expander">
-              <span class="left"><span class="marker orange"></span><span class="label">Encryption</span><span class="sub">High-grade data protection targets</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Design target: TLS 1.3 for data in transit, AES-256 at rest, encrypted backups, and KMS-managed key controls.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker blue"></span><span class="label">Access control</span><span class="sub">Least privilege and audited actions</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Least-privilege permissions, MFA-capable authentication, server-side secret handling, and audited administrative actions.</p></div></div></div>
-          </details>
-
-          <details class="accordion">
-            <summary class="expander">
-              <span class="left"><span class="marker gray"></span><span class="label">User safety</span><span class="sub">Plain-language disclosures and deletion paths</span></span>
-              <span>Expand</span>
-            </summary>
-            <div class="accordion-content"><div class="accordion-inner"><div class="accordion-copy"><p>Minimal permission requests, plain-language disclosures, visible policy pages, and deletion and cancellation pathways that are easy to understand.</p></div></div></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="shell">
-        <div class="footer-intro">
-          <h2>Built to convert, guide, and protect</h2>
-          <p>This section now stays embedded on the page instead of appearing as a detached panel. The actions remain visible and simple.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#onboarding">Start onboarding</a>
-            <a class="btn btn-secondary" href="/faq">See answers</a>
+      <section class="grid-sections" id="product">
+        <div class="section-panel">
+          <div class="section-header">
+            <div>
+              <h2>Product layout</h2>
+              <p>Core selling points are grouped into premium panels so the page feels confident and easy to scan.</p>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="card blue-accent">
+              <h3>Guided onboarding</h3>
+              <p>Onboarding is included, but it lives inside a dedicated product block instead of spilling across the whole landing page.</p>
+            </div>
+            <div class="card blue-accent">
+              <h3>Clear product reasons</h3>
+              <p>Each section explains what the product does, why it matters, and why the annual plan is worth buying.</p>
+            </div>
+            <div class="card blue-accent">
+              <h3>Visual hierarchy</h3>
+              <p>The headline, CTA stack, metrics, and product cards now work together instead of competing for attention.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <div class="toolbar-shell">
-    <div class="shell toolbar" aria-label="Footer toolbar">
-      <a href="/community">Community</a>
-      <a href="/faq" class="accent-orange">FAQ</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms</a>
-      <a href="/refund-policy">Refund Policy</a>
-      <a href="/cancellation-policy">Cancellation Policy</a>
-      <a href="/ai-disclosure" class="accent-blue">AI Disclosure</a>
-      <a href="/data-deletion">Data Deletion</a>
+        <div class="section-panel" id="concierge">
+          <div class="section-header">
+            <div>
+              <h2>Concierge</h2>
+              <p>The concierge now has a clear home and a separate orange accent system so support feels premium instead of hidden.</p>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="card orange-accent">
+              <h3>Fast answers</h3>
+              <p>Visible support for pricing, onboarding, and product questions directly from the landing page.</p>
+            </div>
+            <div class="card orange-accent">
+              <h3>White-glove help</h3>
+              <p>Premium service placement gives visitors a reason to trust the buying process and ask questions before checkout.</p>
+            </div>
+            <div class="card orange-accent">
+              <h3>Separate visual language</h3>
+              <p>Orange is reserved for service and access, while blue remains dedicated to product value and system performance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reasons" id="why">
+        <article class="feature-card blue">
+          <div class="tag">Why buy</div>
+          <h3>Premium polish builds confidence.</h3>
+          <p>People buy faster when the page looks deliberate, organized, and expensive instead of improvised and crowded.</p>
+        </article>
+        <article class="feature-card orange">
+          <div class="tag">Why buy</div>
+          <h3>Concierge support reduces hesitation.</h3>
+          <p>Visible guidance makes high-intent visitors more comfortable moving from interest to payment.</p>
+        </article>
+        <article class="feature-card blue">
+          <div class="tag">Why buy</div>
+          <h3>Clear sections improve comprehension.</h3>
+          <p>Security, onboarding, product, and plans are now grouped into a structured narrative that sells the offer.</p>
+        </article>
+      </section>
+
+      <section class="trust-wrap" id="trust">
+        <article class="trust-card">
+          <h3>Security and trust</h3>
+          <p>Trust content is no longer scattered. It now lives in its own clean section with a premium presentation.</p>
+        </article>
+        <article class="trust-card">
+          <h3>Uniform panels</h3>
+          <p>The landing page uses a tighter panel system so blocks feel related and intentionally designed.</p>
+        </article>
+        <article class="trust-card">
+          <h3>Professional rhythm</h3>
+          <p>Spacing, typography, and panel sizing now create a calmer premium flow from hero to plans.</p>
+        </article>
+      </section>
+
+      <section class="plans" id="plans">
+        <div class="plan-board">
+          <div class="section-header">
+            <div>
+              <h2>Choose the product</h2>
+              <p>The page now ends in a clearer buying decision with premium plan cards instead of a scattered closing section.</p>
+            </div>
+          </div>
+          <div class="plan-grid">
+            <div class="plan">
+              <h3>Annual Core</h3>
+              <div class="price">$399</div>
+              <ul>
+                <li>Premium product access</li>
+                <li>Structured onboarding flow</li>
+                <li>Core trust and support features</li>
+              </ul>
+            </div>
+            <div class="plan">
+              <h3>Annual Concierge</h3>
+              <div class="price">$799</div>
+              <ul>
+                <li>Everything in Core</li>
+                <li>Priority concierge assistance</li>
+                <li>Premium guided setup experience</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <aside class="concierge-board">
+          <h2>Built for questions, not confusion.</h2>
+          <div class="concierge-line"><span>Product walkthrough</span><span>Blue product guidance</span></div>
+          <div class="concierge-line"><span>Pricing assistance</span><span>Orange concierge response</span></div>
+          <div class="concierge-line"><span>Security clarification</span><span>Trust-first messaging</span></div>
+          <div class="concierge-line"><span>Onboarding help</span><span>Visible from landing page</span></div>
+          <a class="warm" href="#">Open concierge</a>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <div>LifeOS Atlas premium landing page system</div>
+        <div>Black nav • Structured sections • Separate blue/orange accents</div>
+      </footer>
     </div>
   </div>
-
-  <footer class="footer-toolbar-wrap">
-    <div class="shell footer-copy">LifeOS Atlas</div>
-  </footer>
 </body>
 </html>
