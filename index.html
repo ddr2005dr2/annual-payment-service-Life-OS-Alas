@@ -1,296 +1,625 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifeOS Atlas</title>
-  <meta name="description" content="LifeOS Atlas â€” premium life operations dashboard with concierge-guided execution, onboarding, workspace, billing preview, and polished light/dark UI." />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=zodiak@400,700&display=swap" rel="stylesheet">
+  <meta name="description" content="LifeOS Atlas is a premium concierge-style workspace for onboarding, planning, billing, and life administration." />
   <style>
-    :root, [data-theme="light"] {
-      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
-      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
-      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
-      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
-      --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
-      --color-bg:#f7f6f2; --color-surface:#f9f8f5; --color-surface-2:#fbfbf9; --color-surface-offset:#f3f0ec; --color-border:#d4d1ca; --color-divider:#dcd9d5;
-      --color-text:#28251d; --color-text-muted:#6f6a62; --color-text-faint:#9d978d; --color-text-inverse:#f9f8f4;
-      --color-primary:#01696f; --color-primary-hover:#0c4e54; --color-primary-highlight:#cedcd8; --color-success:#437a22; --color-blue:#006494; --color-warning:#964219;
-      --radius-sm:.375rem; --radius-md:.5rem; --radius-lg:.75rem; --radius-xl:1rem; --radius-full:9999px;
-      --shadow-sm:0 1px 2px rgb(20 20 20 / 0.06); --shadow-md:0 4px 12px rgb(20 20 20 / 0.08); --shadow-lg:0 12px 32px rgb(20 20 20 / 0.12);
-      --font-body:'Satoshi',system-ui,sans-serif; --font-display:'Zodiak',Georgia,serif;
+    :root {
+      --teal: #0B8C8C;
+      --teal-deep: #066b6b;
+      --orange: #FF8A3C;
+      --orange-deep: #e2742b;
+      --blue: #2155A3;
+      --white: #FFFFFF;
+      --ink: #101316;
+      --muted: #5C6A73;
+      --soft: #F4F7F8;
+      --line: rgba(16,19,22,0.08);
+      --shadow: 0 18px 40px rgba(0,0,0,0.16);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-pill: 999px;
     }
-    [data-theme="dark"] {
-      --color-bg:#171614; --color-surface:#1c1b19; --color-surface-2:#201f1d; --color-surface-offset:#22201d; --color-border:#393836; --color-divider:#262523;
-      --color-text:#ece6dc; --color-text-muted:#b4afa8; --color-text-faint:#7e7a74; --color-text-inverse:#171614;
-      --color-primary:#4f98a3; --color-primary-hover:#227f8b; --color-primary-highlight:#313b3b; --color-success:#6daa45; --color-blue:#5591c7; --color-warning:#bb653b;
-      --shadow-sm:0 1px 2px rgb(0 0 0 / 0.2); --shadow-md:0 4px 12px rgb(0 0 0 / 0.3); --shadow-lg:0 12px 32px rgb(0 0 0 / 0.4);
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--white);
+      background: linear-gradient(135deg, #0b8c8c 0%, #0a7070 38%, #0b8c8c 100%);
+      line-height: 1.55;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
-    body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);background:var(--color-bg);color:var(--color-text);line-height:1.6}
-    img,svg{display:block;max-width:100%}
-    button,a,input,textarea,select{font:inherit;color:inherit}
-    button{cursor:pointer;border:none;background:none}
-    a{text-decoration:none;color:inherit}
-    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
-    .shell{display:grid;grid-template-columns:290px 1fr;min-height:100dvh}
-    .sidebar{position:sticky;top:0;height:100dvh;padding:var(--space-6);border-right:1px solid color-mix(in srgb,var(--color-text) 12%, transparent);background:color-mix(in srgb,var(--color-surface) 92%, transparent)}
-    .brand{display:flex;gap:var(--space-3);align-items:center;margin-bottom:var(--space-8)}
-    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--color-primary),color-mix(in srgb,var(--color-primary) 45%, var(--color-blue)));display:grid;place-items:center;box-shadow:var(--shadow-md)}
-    .logo svg{width:24px;height:24px;color:white}
-    .brand-name{font-family:var(--font-display);font-size:var(--text-lg);line-height:1.1}
-    .brand-sub{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:2px}
-    .nav{display:grid;gap:var(--space-2)}
-    .nav button{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-4);border-radius:var(--radius-lg);text-align:left}
-    .nav button.active,.nav button:hover{background:var(--color-surface-offset)}
-    .sidebar-footer{margin-top:auto;padding-top:var(--space-8);display:grid;gap:var(--space-3)}
-    .theme-toggle,.cta{width:100%;padding:var(--space-3) var(--space-4);border-radius:var(--radius-lg)}
-    .theme-toggle{background:var(--color-surface-offset);border:1px solid color-mix(in srgb,var(--color-text) 12%, transparent)}
-    .cta{background:var(--color-primary);color:var(--color-text-inverse);font-weight:700}
-    main{padding:var(--space-6);display:grid;gap:var(--space-6)}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4)}
-    .eyebrow{font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted)}
-    h1{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.05;max-width:12ch}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-6);align-items:stretch}
-    .panel{background:var(--color-surface);border:1px solid color-mix(in srgb,var(--color-text) 12%, transparent);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
-    .hero-copy{padding:var(--space-8);display:grid;gap:var(--space-5)}
-    .hero-copy p{color:var(--color-text-muted);max-width:60ch}
-    .hero-actions{display:flex;gap:var(--space-3);flex-wrap:wrap}
-    .btn-primary,.btn-secondary{padding:var(--space-3) var(--space-5);border-radius:var(--radius-full);font-weight:700}
-    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse)}
-    .btn-secondary{background:var(--color-surface-offset);border:1px solid color-mix(in srgb,var(--color-text) 12%, transparent)}
-    .hero-status{padding:var(--space-6);display:grid;gap:var(--space-4);background:linear-gradient(180deg,color-mix(in srgb,var(--color-primary) 10%, var(--color-surface)),var(--color-surface))}
-    .stat-grid,.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
-    .mini-card{padding:var(--space-5);background:var(--color-surface-2);border-radius:var(--radius-lg);border:1px solid color-mix(in srgb,var(--color-text) 10%, transparent)}
-    .mini-card .label{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted)}
-    .mini-card .value{font-size:var(--text-xl);font-weight:700;margin-top:var(--space-2)}
-    .section{display:grid;gap:var(--space-4)}
-    .section-head{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4)}
-    .section-head h2{font-family:var(--font-display);font-size:var(--text-xl)}
-    .section-head p{color:var(--color-text-muted)}
-    .card{padding:var(--space-5)}
-    .task-list,.check-list{display:grid;gap:var(--space-3)}
-    .task,.check-item{display:flex;justify-content:space-between;gap:var(--space-3);padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-2);border:1px solid color-mix(in srgb,var(--color-text) 10%, transparent)}
-    .task-meta,.muted{color:var(--color-text-muted)}
-    .badge{display:inline-flex;align-items:center;padding:.35rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:700;background:var(--color-primary-highlight);color:var(--color-primary)}
-    .badge.success{background:color-mix(in srgb,var(--color-success) 18%, transparent);color:var(--color-success)}
-    .badge.warn{background:color-mix(in srgb,var(--color-warning) 18%, transparent);color:var(--color-warning)}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
-    .assistant{display:grid;gap:var(--space-4)}
-    .bubble{padding:var(--space-4);border-radius:var(--radius-lg);max-width:70ch}
-    .bubble.user{background:var(--color-surface-offset);justify-self:end}
-    .bubble.ai{background:color-mix(in srgb,var(--color-primary) 10%, var(--color-surface-2));border:1px solid color-mix(in srgb,var(--color-primary) 18%, transparent)}
-    .input-row{display:flex;gap:var(--space-3)}
-    .input-row input{flex:1;padding:var(--space-4);border-radius:var(--radius-lg);border:1px solid color-mix(in srgb,var(--color-text) 12%, transparent);background:var(--color-surface-2)}
-    .billing{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--space-4)}
-    .price{font-size:var(--text-2xl);font-weight:700}
-    .progress{height:10px;background:var(--color-surface-offset);border-radius:999px;overflow:hidden}
-    .progress > span{display:block;height:100%;width:68%;background:linear-gradient(90deg,var(--color-primary),var(--color-blue))}
-    .footnote{font-size:var(--text-xs);color:var(--color-text-faint)}
-    @media (max-width: 1100px){.shell{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.hero,.billing,.two-col,.stat-grid,.card-grid{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column}}
-    @media (max-width: 640px){main,.sidebar{padding:var(--space-4)}.hero-copy,.hero-status,.card{padding:var(--space-5)}.hero-actions,.input-row{flex-direction:column}h1{max-width:none}}
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(6, 37, 37, 0.28);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      opacity: 0.92;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 13px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover { background: var(--orange-deep); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.30);
+    }
+
+    .hero {
+      padding: 64px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    h1 {
+      margin: 14px 0 14px;
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      max-width: 12ch;
+    }
+
+    .hero-copy p {
+      max-width: 620px;
+      font-size: 1.08rem;
+      opacity: 0.94;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      font-size: 0.92rem;
+      opacity: 0.86;
+    }
+
+    .hero-card {
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.14), rgba(255,255,255,0.03) 45%),
+        linear-gradient(180deg, rgba(8,58,58,0.94), rgba(6,44,44,0.96));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-xl);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: var(--radius-pill);
+      padding: 6px 12px;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .chip.orange {
+      background: rgba(255,138,60,0.18);
+      color: #ffd2ad;
+    }
+
+    .mini-brand {
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+
+    .chat {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .bubble {
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-size: 0.93rem;
+    }
+
+    .bubble.user {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .bubble.bot {
+      background: #ffffff;
+      color: #0e3030;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .mini-stat {
+      background: rgba(0,0,0,0.18);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+
+    .section-light {
+      background: var(--white);
+      color: var(--ink);
+      padding: 64px 0;
+    }
+
+    .section-soft {
+      background: var(--soft);
+      color: var(--ink);
+      padding: 64px 0;
+    }
+
+    .section-teal {
+      padding: 64px 0;
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      line-height: 1.05;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .benefit {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .benefit h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      padding: 20px 20px 20px 68px;
+      position: relative;
+    }
+
+    .step-num {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+    }
+
+    .showcase {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .showcase-panel,
+    .pricing-card,
+    .trust-card {
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .showcase-panel h3,
+    .pricing-card h3,
+    .trust-card h3 {
+      margin-top: 0;
+    }
+
+    .pricing-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .pricing-card {
+      max-width: 540px;
+      width: 100%;
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .price strong {
+      font-size: 2.5rem;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .pricing-list {
+      padding-left: 18px;
+      margin-bottom: 22px;
+    }
+
+    .pricing-list li { margin-bottom: 8px; }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .trust-card {
+      box-shadow: none;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.10);
+      color: var(--white);
+    }
+
+    .trust-card p {
+      opacity: 0.92;
+    }
+
+    .final-cta {
+      padding: 72px 0 88px;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 12px;
+    }
+
+    .final-cta p {
+      max-width: 640px;
+      margin: 0 auto 22px;
+      opacity: 0.92;
+    }
+
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding: 22px 0 28px;
+      font-size: 0.92rem;
+      opacity: 0.86;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .showcase,
+      .benefits,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      h1 {
+        max-width: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12c2-5 5-7 8-7 3.5 0 6.2 1.9 8 7-1.8 5.1-4.5 7-8 7-3 0-6-2-8-7Z"></path><path d="M9.2 12a2.8 2.8 0 1 0 5.6 0 2.8 2.8 0 0 0-5.6 0Z" fill="currentColor" stroke="none"></path></svg>
-        </div>
-        <div>
-          <div class="brand-name">LifeOS Atlas</div>
-          <div class="brand-sub">Autonomous life operations</div>
-        </div>
-      </div>
-      <nav class="nav" aria-label="Primary">
-        <button class="active"><span>Overview</span></button>
-        <button><span>Concierge</span></button>
-        <button><span>Workflows</span></button>
-        <button><span>Billing</span></button>
-        <button><span>Privacy</span></button>
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <div class="brand">LifeOS Atlas</div>
+      <nav class="nav">
+        <a href="#benefits">Benefits</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#concierge">Concierge</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#workspace" class="btn btn-primary">Enter live workspace</a>
       </nav>
-      <div class="sidebar-footer">
-        <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">Toggle light / dark</button>
-        <button class="cta">Enter live workspace</button>
-      </div>
-    </aside>
-    <main>
-      <div class="topbar">
-        <div>
-          <div class="eyebrow">Production-ready rebuild</div>
-          <h1>Run your life with one intelligent operating layer.</h1>
-        </div>
-        <span class="badge success">Enterprise visual validation passed</span>
-      </div>
+    </div>
+  </header>
 
-      <section class="hero">
-        <div class="panel hero-copy">
-          <p>LifeOS Atlas unifies onboarding, guided task execution, billing readiness, and concierge support into one premium interface built for fast time-to-value and low-friction adoption.</p>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Concierge-style life operations</div>
+          <h1>Run your life with one calm operating layer.</h1>
+          <p>
+            LifeOS Atlas helps you handle onboarding, planning, paperwork, billing, and follow-through
+            in one premium concierge-style workspace built to reduce friction and create clarity.
+          </p>
           <div class="hero-actions">
-            <a class="btn-primary" href="#workspace">Open concierge</a>
-            <a class="btn-secondary" href="#billing">Review monetization</a>
+            <a href="#workspace" class="btn btn-primary">Enter live workspace</a>
+            <a href="#how-it-works" class="btn btn-secondary">See how it works</a>
           </div>
-          <div class="stat-grid">
-            <div class="mini-card"><div class="label">Activation readiness</div><div class="value">94%</div></div>
-            <div class="mini-card"><div class="label">Core workflows</div><div class="value">12</div></div>
-            <div class="mini-card"><div class="label">Guided support</div><div class="value">24/7</div></div>
+          <div class="hero-note">
+            Designed to feel premium, clear, and guided  not like another noisy dashboard.
           </div>
         </div>
-        <div class="panel hero-status">
-          <div class="section-head"><div><h2>Launch state</h2><p>Clarity-first production shell with premium dark and light mode.</p></div></div>
-          <div class="task-list">
-            <div class="task"><div><strong>Domain presence</strong><div class="task-meta">Brand, email, and launch posture aligned</div></div><span class="badge success">Ready</span></div>
-            <div class="task"><div><strong>Concierge-led onboarding</strong><div class="task-meta">Slim, low-friction entry with guided next steps</div></div><span class="badge success">Ready</span></div>
-            <div class="task"><div><strong>Billing architecture preview</strong><div class="task-meta">Annual subscription framing and value communication</div></div><span class="badge warn">Pending live payments</span></div>
-          </div>
-        </div>
-      </section>
 
-      <section class="section" id="workspace">
-        <div class="section-head"><div><h2>Concierge workspace</h2><p>Persistent assistant behavior across landing, onboarding, and operations.</p></div></div>
-        <div class="two-col">
-          <div class="panel card assistant">
-            <span class="badge">Atlas concierge</span>
-            <div class="bubble ai">Welcome back. I can help with onboarding, billing questions, account guidance, workflow activation, and next-best actions without forcing the user through a confusing maze.</div>
+        <aside class="hero-card" id="concierge">
+          <div class="card-top">
+            <span class="chip orange">Concierge preview</span>
+            <span class="mini-brand">Atlas</span>
+          </div>
+          <div class="chat">
             <div class="bubble user">Set up my annual plan, show what comes next, and keep it simple.</div>
-            <div class="bubble ai">Done. The next best sequence is workspace setup, core profile completion, first workflow activation, and billing enrollment when you are ready to monetize.</div>
-            <div class="input-row"><input type="text" placeholder="Ask Atlas anything about your account, billing, setup, or workflow." /><button class="btn-primary" type="button">Send</button></div>
+            <div class="bubble bot">Well start with workspace setup, profile completion, your first workflow, and billing when youre ready. Ill guide each step clearly.</div>
           </div>
-          <div class="panel card">
-            <div class="section-head"><div><h2>Execution queue</h2><p>Clear next actions with no dead ends.</p></div></div>
-            <div class="check-list">
-              <div class="check-item"><div><strong>Complete account profile</strong><div class="muted">Adds personalization and concierge context.</div></div><span class="badge success">Step 1</span></div>
-              <div class="check-item"><div><strong>Activate first workflow</strong><div class="muted">Choose life admin, planning, or billing preparation.</div></div><span class="badge success">Step 2</span></div>
-              <div class="check-item"><div><strong>Enable annual plan</strong><div class="muted">Unlock premium operations and concierge depth.</div></div><span class="badge warn">Step 3</span></div>
+          <div class="mini-grid">
+            <div class="mini-stat">
+              <strong>Less admin overhead</strong>
+              <span>One place instead of scattered tools.</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Guided next actions</strong>
+              <span>Clear progress without dead ends.</span>
             </div>
           </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-light" id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <h2>Why LifeOS Atlas feels different</h2>
+          <p>A calmer public landing page, a clearer value story, and premium support positioning built around real life operations.</p>
         </div>
-      </section>
+        <div class="benefits">
+          <article class="benefit">
+            <h3>Less admin overhead</h3>
+            <p>See what is due, what is waiting on you, and what Atlas can help organize so you are not carrying every obligation in your head.</p>
+          </article>
+          <article class="benefit">
+            <h3>Guided next steps</h3>
+            <p>Move through setup, workflows, billing, and support with a clear path instead of a confusing maze of screens and settings.</p>
+          </article>
+          <article class="benefit">
+            <h3>Premium, private support</h3>
+            <p>Ask onboarding, workflow, and billing questions in one place with concierge-style guidance and a more trustworthy experience.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-      <section class="section" id="billing">
-        <div class="section-head"><div><h2>Monetization view</h2><p>Annual plan framing with premium positioning.</p></div></div>
-        <div class="billing">
-          <div class="panel card">
-            <span class="badge">Annual membership</span>
-            <div class="price" style="margin-top: var(--space-3);">$299<span class="muted" style="font-size:var(--text-base);font-weight:400;"> / year</span></div>
-            <p class="muted" style="margin-top: var(--space-3);">Positioned as a premium operating layer for life administration, guidance, and concierge-backed execution.</p>
-            <div style="margin-top: var(--space-5);" class="progress"><span></span></div>
-            <div class="footnote" style="margin-top: var(--space-2);">Value communication, trust copy, and conversion path visually aligned.</div>
+    <section class="section-soft" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p>Simple, guided, and built to move you forward without making the homepage feel like an internal dashboard.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-num">1</div>
+            <h3>Set up your workspace</h3>
+            <p>Answer a few starter questions so Atlas understands your priorities, context, and what kind of support you need.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">2</div>
+            <h3>Activate your first workflow</h3>
+            <p>Choose life admin, planning, or billing prep and get a clear next sequence instead of a generic feature dump.</p>
+          </article>
+          <article class="step">
+            <div class="step-num">3</div>
+            <h3>Enable the annual plan</h3>
+            <p>Unlock a premium concierge-backed operating layer designed for consistent follow-through and lower-friction adoption.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-light" id="workspace">
+      <div class="container">
+        <div class="section-head">
+          <h2>A better preview of the workspace</h2>
+          <p>Keep the homepage public-facing, then introduce the product experience with a concise, polished preview instead of leading with app chrome.</p>
+        </div>
+        <div class="showcase">
+          <div class="showcase-panel">
+            <h3>Atlas concierge</h3>
+            <p>Ask for onboarding help, billing clarification, workflow guidance, or the simplest next action. The experience should feel calm and premium, not clinical or overbuilt.</p>
+            <p>This section previews the product without making the entire landing page look like a logged-in dashboard.</p>
           </div>
-          <div class="panel card">
-            <div class="section-head"><div><h2>Validation checks</h2><p>Design system quality gate.</p></div></div>
-            <div class="check-list">
-              <div class="check-item"><div><strong>Light mode</strong><div class="muted">Manual theme toggle enabled.</div></div><span class="badge success">Pass</span></div>
-              <div class="check-item"><div><strong>Dark mode</strong><div class="muted">Contrast-safe neutral surfaces.</div></div><span class="badge success">Pass</span></div>
-              <div class="check-item"><div><strong>Color restraint</strong><div class="muted">Neutral base with teal emphasis.</div></div><span class="badge success">Pass</span></div>
-              <div class="check-item"><div><strong>Mobile responsiveness</strong><div class="muted">Single-column collapse below 1100px.</div></div><span class="badge success">Pass</span></div>
-            </div>
+          <div class="showcase-panel">
+            <h3>What you can handle here</h3>
+            <ul>
+              <li>Onboarding and account setup</li>
+              <li>Billing and annual membership guidance</li>
+              <li>Planning and life-admin workflows</li>
+              <li>Concierge-backed next-best actions</li>
+            </ul>
           </div>
         </div>
-      </section>
-    </main>
-  </div>
-  <script>
-    (function(){
-      const root = document.documentElement;
-      const toggle = document.querySelector('[data-theme-toggle]');
-      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.setAttribute('data-theme', theme);
-      function update(){
-        toggle.textContent = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-      }
-      update();
-      toggle.addEventListener('click', function(){
-        theme = theme === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', theme);
-        update();
-      });
-    })();
-  </script>
+      </div>
+    </section>
 
-<script>
-(function () {
-  function normalizeHash() {
-    var hash = window.location.hash || '#/';
-    if (hash === '#') hash = '#/';
-    return hash;
-  }
+    <section class="section-soft" id="pricing">
+      <div class="container pricing-wrap">
+        <div class="pricing-card">
+          <h3>Annual membership</h3>
+          <p>A premium operating layer for life administration, planning, guidance, and concierge-backed execution.</p>
+          <div class="price">
+            <strong>$299</strong>
+            <span>/ year</span>
+          </div>
+          <ul class="pricing-list">
+            <li>Concierge-guided onboarding and workflows</li>
+            <li>Annual planning and billing preparation support</li>
+            <li>Priority responses for workflow and billing questions</li>
+          </ul>
+          <a href="#workspace" class="btn btn-primary">Start with a guided walkthrough</a>
+        </div>
+      </div>
+    </section>
 
-  function route() {
-    var hash = normalizeHash();
-    var route = hash.replace(/^#/, '');
-    var path = route.split('?')[0];
+    <section class="section-teal" id="privacy">
+      <div class="container">
+        <div class="section-head">
+          <h2>Private, human-grounded operations</h2>
+          <p style="color: rgba(255,255,255,0.84);">The experience should feel trustworthy, premium, and clear from the first screen onward.</p>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-card">
+            <h3>Privacy by design</h3>
+            <p>Your life details are treated as sensitive from the start, without dark-pattern pressure or ad-style exploitation.</p>
+          </article>
+          <article class="trust-card">
+            <h3>Human in the loop</h3>
+            <p>Automation handles the repetitive parts, while the concierge layer keeps judgement, nuance, and guidance available.</p>
+          </article>
+          <article class="trust-card">
+            <h3>Clear commitments</h3>
+            <p>No surprise charges, no ambiguous value framing, and a calmer membership story visitors can understand quickly.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    var page = document.body;
-    if (!page) return;
+    <section class="final-cta">
+      <div class="container">
+        <h2>Ready for a calmer way to run life admin?</h2>
+        <p>LifeOS Atlas combines guidance, planning, billing clarity, and concierge-backed execution in one premium operating layer.</p>
+        <a href="#workspace" class="btn btn-primary">Enter live workspace</a>
+      </div>
+    </section>
+  </main>
 
-    page.setAttribute('data-route', path);
-
-    var loginViews = document.querySelectorAll('[data-route-view=""login""],[data-route-view=""\/login""]');
-    var signupViews = document.querySelectorAll('[data-route-view=""signup""],[data-route-view=""\/signup""]');
-    var dashboardViews = document.querySelectorAll('[data-route-view=""dashboard""],[data-route-view=""\/dashboard""]');
-    var homeViews = document.querySelectorAll('[data-route-view=""home""],[data-route-view=""\/""]');
-
-    [loginViews, signupViews, dashboardViews, homeViews].forEach(function(group){
-      group.forEach(function(el){ el.style.display = 'none'; });
-    });
-
-    if (path === '/login') {
-      loginViews.forEach(function(el){ el.style.display = ''; });
-      return;
-    }
-
-    if (path === '/signup') {
-      signupViews.forEach(function(el){ el.style.display = ''; });
-      return;
-    }
-
-    if (path === '/dashboard') {
-      dashboardViews.forEach(function(el){ el.style.display = ''; });
-      return;
-    }
-
-    homeViews.forEach(function(el){ el.style.display = ''; });
-  }
-
-  window.addEventListener('hashchange', route);
-  document.addEventListener('DOMContentLoaded', route);
-
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href]');
-    if (!a) return;
-    var href = a.getAttribute('href');
-    if (!href) return;
-    if (href === '/login' || href === '/signup' || href === '/dashboard') {
-      e.preventDefault();
-      window.location.hash = href;
-    }
-  });
-
-  document.addEventListener('submit', function (e) {
-    var form = e.target;
-    if (!form || !form.getAttribute) return;
-    var action = form.getAttribute('action');
-    if (action === '#/login' || action === '#/signup') {
-      e.preventDefault();
-      window.location.hash = action.replace('#','');
-    }
-  });
-})();
-</script>
-
-<style>
-[data-route-view] { display: none; }
-body[data-route="/"] [data-route-view="home"],
-body[data-route="/login"] [data-route-view="login"],
-body[data-route="/signup"] [data-route-view="signup"],
-body[data-route="/dashboard"] [data-route-view="dashboard"] { display: block !important; }
-</style>
+  <footer class="site-footer">
+    <div class="container">
+      LifeOS Atlas  premium concierge-style life operations.
+    </div>
+  </footer>
 </body>
 </html>
-
