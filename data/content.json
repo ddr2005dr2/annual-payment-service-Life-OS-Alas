@@ -1,0 +1,18 @@
+{
+  "affiliates": [
+    {
+      "id": "aff-1",
+      "name": "Insurance Partner",
+      "url": "https://example.com/insurance",
+      "category": "admin",
+      "active": true
+    },
+    {
+      "id": "aff-2",
+      "name": "Calendar Tools Partner",
+      "url": "https://example.com/calendar",
+      "category": "productivity",
+      "active": true
+    }
+  ]
+}
