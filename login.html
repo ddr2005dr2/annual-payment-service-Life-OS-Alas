@@ -4,52 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifeOS Atlas | Login</title>
+  <meta name="robots" content="noindex,nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0f1318;--surface:#171c22;--surface-2:#20262e;--text:#eef2f6;--muted:#aab4bf;--line:#303844;--blue:#5f8fff
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
-    .wrap{width:min(calc(100% - 24px),520px);margin:40px auto}
-    .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
-    h1{margin:0 0 10px;letter-spacing:-.04em}
-    p{color:var(--muted);line-height:1.8}
+    :root{--bg:#0f1318;--surface:#171c22;--surface2:#20262e;--text:#eef2f6;--muted:#aab4bf;--line:#303844;--blue:#5f8fff}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(calc(100% - 24px),520px);margin:42px auto}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
     form{display:grid;gap:14px;margin-top:18px}
     label{display:grid;gap:8px;font-weight:700}
-    input{width:100%;min-height:48px;padding:14px 15px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);color:var(--text)}
-    button,.linkbtn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 16px;border-radius:999px;font-weight:800;text-decoration:none}
+    input{width:100%;min-height:48px;padding:14px 15px;border-radius:14px;border:1px solid var(--line);background:var(--surface2);color:var(--text)}
+    button,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 16px;border-radius:999px;font-weight:800}
     button{border:none;background:var(--blue);color:#fff;cursor:pointer}
-    .row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px}
     a{color:#d7e3ff}
-    .note{margin-top:18px;padding:14px 16px;border-radius:16px;background:#11161c;border:1px solid var(--line)}
+    .msg{margin-top:12px;color:#ffb4b4;min-height:24px}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
       <h1>Login</h1>
-      <p>Access your account workspace here.</p>
-      <form action="/login" method="post">
-        <label>Email
-          <input type="email" name="email" autocomplete="email" required />
-        </label>
-        <label>Password
-          <input type="password" name="password" autocomplete="current-password" required />
-        </label>
+      <p style="color:#aab4bf">Access your account workspace here.</p>
+      <form id="loginForm">
+        <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+        <label>Password<input type="password" name="password" autocomplete="current-password" required /></label>
         <button type="submit">Login</button>
       </form>
-      <div class="row">
-        <a href="/register.html">Create account</a>
-        <a href="/reset-password.html">Reset password</a>
-      </div>
-      <div class="note">
-        Dark mode belongs in the account area and auth flow, so this screen uses the darker account-style presentation.
-      </div>
+      <div class="msg" id="msg"></div>
+      <p><a href="/register.html">Create account</a>  <a href="/reset-password.html">Reset password</a></p>
       <p><a href="/index.html">Back to home</a></p>
     </div>
   </div>
+  <script src="/app.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const payload = Object.fromEntries(fd.entries());
+      const res = await window.LifeOS.post('/api/auth/login', payload);
+      if (!res.ok) {
+        document.getElementById('msg').textContent = res.error || 'Login failed';
+        return;
+      }
+      window.LifeOS.track('login_success', 'auth', res.user.email);
+      location.href = res.user.role === 'admin' ? '/admin.html' : '/dashboard.html';
+    });
+  </script>
 </body>
 </html>

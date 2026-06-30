@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Dashboard</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=$MeasurementId"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    if ('$MeasurementId' !== 'G-REPLACE_ME') { gtag('config', '$MeasurementId'); }
+  </script>
+  <style>
+    :root{--bg:#0f1318;--surface:#171c22;--surface2:#20262e;--text:#eef2f6;--muted:#aab4bf;--line:#303844;--blue:#5f8fff}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(calc(100% - 24px),1180px);margin:28px auto}
+    .top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#1f2630;border:1px solid var(--line);color:var(--muted);font-weight:700}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px}
+    .metric{font-size:2rem;font-weight:800;letter-spacing:-.04em;margin-top:6px}
+    .list{display:grid;gap:10px;margin-top:18px}
+    .event{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:14px}
+    a,button{font:inherit} .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 16px;border:none;border-radius:999px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer;text-decoration:none}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="pill">Private account workspace</div>
+        <h1>Dashboard</h1>
+        <p id="welcome" style="color:var(--muted)">Loading your account...</p>
+      </div>
+      <div class="row">
+        <a class="btn" href="/admin.html">Admin</a>
+        <button class="btn" id="logoutBtn" type="button">Logout</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div style="color:var(--muted)">Tracked reminders</div>
+        <div class="metric" id="remindersMetric">0</div>
+      </div>
+      <div class="card">
+        <div style="color:var(--muted)">Total signups</div>
+        <div class="metric" id="signupsMetric">0</div>
+      </div>
+      <div class="card">
+        <div style="color:var(--muted)">Page views</div>
+        <div class="metric" id="viewsMetric">0</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2>Use cases wired into the system</h2>
+      <div class="list">
+        <div class="event">MVA renewal reminders and deadline tracking.</div>
+        <div class="event">Doctor appointments, referrals, follow-ups, and prep notes.</div>
+        <div class="event">Household scheduling, recurring responsibilities, and paperwork.</div>
+        <div class="event">Email-style alert events and notification tracking.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2>Recent activity</h2>
+      <div class="list" id="recentEvents"></div>
+    </div>
+  </div>
+  <script src="/app.js"></script>
+  <script>
+    async function loadDashboard() {
+      const me = await window.LifeOS.get('/api/auth/me');
+      if (!me.ok) { location.href = '/login.html'; return; }
+      document.getElementById('welcome').textContent = 'Welcome back, ' + me.user.firstName + '.';
+      const res = await window.LifeOS.get('/api/dashboard/summary');
+      if (!res.ok) return;
+      document.getElementById('remindersMetric').textContent = res.summary.remindersTracked;
+      document.getElementById('signupsMetric').textContent = res.summary.signups;
+      document.getElementById('viewsMetric').textContent = res.summary.pageViews;
+      document.getElementById('recentEvents').innerHTML = res.summary.recentEvents.map(evt =>
+        '<div class="event"><strong>' + evt.type + '</strong><div style="color:#aab4bf;margin-top:6px">' + new Date(evt.createdAt).toLocaleString() + '</div></div>'
+      ).join('');
+    }
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await window.LifeOS.post('/api/auth/logout', {});
+      location.href = '/index.html';
+    });
+    loadDashboard();
+  </script>
+</body>
+</html>

@@ -4,46 +4,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifeOS Atlas | Contact</title>
+  <link rel="canonical" href="/contact.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>:root{--bg:#f4f5f7;--surface:#fff;--text:#15181c;--muted:#67707b;--line:#d7dde5}[data-theme="dark"]{--bg:#0f1318;--surface:#171c22;--text:#eef2f6;--muted:#a9b3bf;--line:#303844}
-    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
-    .wrap{width:min(calc(100% - 24px),900px);margin:32px auto}
-    .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 18px 44px rgba(21,24,28,.08)}
-    form{display:grid;gap:12px}
-    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap} label{display:grid;gap:8px;font-weight:700}
-    input,textarea,select{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--text)}
-    textarea{min-height:140px;resize:vertical}
-    button{border:none;border-radius:999px;padding:12px 16px;background:#13181d;color:#fff;font-weight:800;cursor:pointer}.mode{background:transparent;border:1px solid var(--line);color:var(--text)}
-    a{color:inherit}
+  <style>
+    :root{--bg:#f4f5f7;--surface:#fff;--text:#14181d;--muted:#65707c;--line:#d6dde5;--blue:#2f6fed}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(calc(100% - 24px),880px);margin:32px auto}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
+    form{display:grid;gap:14px;margin-top:18px}
+    label{display:grid;gap:8px;font-weight:700}
+    input,textarea{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    button{min-height:46px;padding:12px 16px;border-radius:999px;border:none;background:var(--blue);color:#fff;font-weight:800;cursor:pointer}
+    p{line-height:1.8;color:var(--muted)} a{color:inherit;text-decoration:none}
+    .msg{margin-top:12px;color:#2f6fed;min-height:24px}
   </style>
 </head>
-<body data-theme="light">
+<body>
   <div class="wrap">
     <div class="card">
-      <div class="top"><h1>Contact</h1><button class="mode" id="themeToggle" type="button">Dark mode</button></div>
-      <p>Use this page for product, billing, concierge, policy, or account questions.</p>
-      <form action="mailto:support@lifeosatlas.com" method="post" enctype="text/plain">
-        <label>Full name<input type="text" name="name" placeholder="Your full name" required /></label>
-        <label>Email<input type="email" name="email" placeholder="you@example.com" required /></label>
-        <label>Subject<input type="text" name="subject" placeholder="What is this about?" required /></label>
-        <label>Reason for contact
-          <select name="reason">
-            <option>Product question</option>
-            <option>Pricing question</option>
-            <option>Concierge request</option>
-            <option>Billing issue</option>
-            <option>Policy question</option>
-            <option>Account issue</option>
-          </select>
-        </label>
-        <label>Message<textarea name="message" placeholder="Tell us what you need." required></textarea></label>
+      <h1>Contact</h1>
+      <p>Contact is available as a structured written channel. This autonomous system is designed to minimize direct support dependency.</p>
+      <form id="contactForm">
+        <label>Name<input type="text" name="name" required /></label>
+        <label>Email<input type="email" name="email" required /></label>
+        <label>Message<textarea name="message" rows="6" required></textarea></label>
         <button type="submit">Send message</button>
       </form>
+      <div class="msg" id="msg"></div>
       <p><a href="/index.html">Back to home</a></p>
     </div>
   </div>
-<script>(function(){const root=document.body,btn=document.getElementById('themeToggle');let mode=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';root.setAttribute('data-theme',mode);const sync=()=>btn.textContent=mode==='dark'?'Light mode':'Dark mode';sync();btn.addEventListener('click',function(){mode=mode==='dark'?'light':'dark';root.setAttribute('data-theme',mode);sync();});})();</script></body>
+  <script src="/app.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const payload = Object.fromEntries(fd.entries());
+      await window.LifeOS.post('/api/events', { type: 'contact_request', label: payload.email, value: payload.message });
+      document.getElementById('msg').textContent = 'Message recorded.';
+      e.target.reset();
+    });
+  </script>
+</body>
 </html>
-

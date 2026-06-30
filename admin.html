@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Admin</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0f1318;--surface:#171c22;--surface2:#20262e;--text:#eef2f6;--muted:#aab4bf;--line:#303844;--blue:#5f8fff}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{width:min(calc(100% - 24px),1200px);margin:28px auto}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:18px}
+    .metric{font-size:2rem;font-weight:800;letter-spacing:-.04em;margin-top:6px}
+    .list{display:grid;gap:10px}
+    .item{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:14px}
+    form{display:grid;gap:12px}
+    input{width:100%;min-height:46px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface2);color:var(--text)}
+    button{min-height:44px;padding:12px 16px;border:none;border-radius:999px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Admin</h1>
+    <p style="color:var(--muted)">Daily visitors, traffic sources, signups, live events, and affiliate controls.</p>
+
+    <div class="grid" id="metrics"></div>
+
+    <div class="card" style="margin-top:18px">
+      <h2>Traffic sources</h2>
+      <div class="list" id="sources"></div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2>Live events</h2>
+      <div class="list" id="events"></div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2>Add affiliate or monetization partner</h2>
+      <form id="affiliateForm">
+        <input name="name" placeholder="Partner name" required />
+        <input name="url" placeholder="Partner URL" required />
+        <input name="category" placeholder="Category" required />
+        <button type="submit">Save affiliate</button>
+      </form>
+      <div class="list" id="affiliates" style="margin-top:14px"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>
+    async function loadAdmin() {
+      const me = await window.LifeOS.get('/api/auth/me');
+      if (!me.ok || me.user.role !== 'admin') { location.href = '/login.html'; return; }
+
+      const res = await window.LifeOS.get('/api/admin/metrics');
+      if (!res.ok) return;
+
+      const m = res.metrics;
+      document.getElementById('metrics').innerHTML = [
+        ['Daily visitors', m.dailyVisitors],
+        ['Total users', m.totalUsers],
+        ['Signups', m.signups],
+        ['Live events tracked', m.liveEvents.length]
+      ].map(x => '<div class="card"><div style="color:#aab4bf">' + x[0] + '</div><div class="metric">' + x[1] + '</div></div>').join('');
+
+      document.getElementById('sources').innerHTML = Object.entries(m.trafficSources).map(([k, v]) =>
+        '<div class="item"><strong>' + k + '</strong><div style="color:#aab4bf;margin-top:6px">' + v + ' visits</div></div>'
+      ).join('');
+
+      document.getElementById('events').innerHTML = m.liveEvents.map(evt =>
+        '<div class="item"><strong>' + evt.type + '</strong><div style="color:#aab4bf;margin-top:6px">' + JSON.stringify(evt.payload) + '</div></div>'
+      ).join('');
+
+      const aff = await window.LifeOS.get('/api/admin/affiliates');
+      if (aff.ok) renderAffiliates(aff.affiliates);
+    }
+
+    function renderAffiliates(list) {
+      document.getElementById('affiliates').innerHTML = list.map(a =>
+        '<div class="item"><strong>' + a.name + '</strong><div style="color:#aab4bf;margin-top:6px">' + a.category + '  ' + a.url + '</div></div>'
+      ).join('');
+    }
+
+    document.getElementById('affiliateForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const payload = Object.fromEntries(fd.entries());
+      const res = await window.LifeOS.post('/api/admin/affiliates', payload);
+      if (res.ok) {
+        renderAffiliates(res.affiliates);
+        e.target.reset();
+      }
+    });
+
+    loadAdmin();
+  </script>
+</body>
+</html>
