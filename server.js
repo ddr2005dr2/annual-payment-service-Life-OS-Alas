@@ -103,8 +103,57 @@ app.use((req, _res, next) => {
   next();
 });
 
-app.get('/health', (_req, res) => res.json({ ok: true, service: 'lifeos-atlas', storage: 'in-memory', time: nowIso() }));
-app.get('/api/health', (_req, res) => res.json({ ok: true, service: 'lifeos-atlas', storage: 'in-memory', time: nowIso() }));
+app.get('/health', async (_req, res) => {
+  try {
+    const dbState = await db.testConnection().catch(() => ({
+      ok: false,
+      storage: db.getStorageMode(),
+      db: 'error'
+    }));
+
+    return res.status(200).json({
+      ok: true,
+      service: 'lifeos-atlas',
+      storage: dbState.storage || db.getStorageMode(),
+      db: dbState.db,
+      time: nowIso()
+    });
+  } catch (_error) {
+    return res.status(200).json({
+      ok: true,
+      service: 'lifeos-atlas',
+      storage: db.getStorageMode(),
+      db: 'unknown',
+      time: nowIso()
+    });
+  }
+});
+
+app.get('/api/health', async (_req, res) => {
+  try {
+    const dbState = await db.testConnection().catch(() => ({
+      ok: false,
+      storage: db.getStorageMode(),
+      db: 'error'
+    }));
+
+    return res.status(200).json({
+      ok: true,
+      service: 'lifeos-atlas',
+      storage: dbState.storage || db.getStorageMode(),
+      db: dbState.db,
+      time: nowIso()
+    });
+  } catch (_error) {
+    return res.status(200).json({
+      ok: true,
+      service: 'lifeos-atlas',
+      storage: db.getStorageMode(),
+      db: 'unknown',
+      time: nowIso()
+    });
+  }
+});
 
 app.post('/api/auth/signup', (req, res) => {
   const email = String(req.body?.email || '').trim().toLowerCase();
@@ -303,3 +352,4 @@ app.get('*', (req, res, next) => {
 });
 
 app.listen(port, () => console.log(`LifeOS Atlas listening on ${port}`));
+
