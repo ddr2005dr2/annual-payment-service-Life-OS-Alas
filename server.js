@@ -2,275 +2,153 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
-const Database = require('better-sqlite3');
 const multer = require('multer');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const dbFile = path.join(__dirname, process.env.DB_FILE || 'data/lifeos-atlas.db');
-fs.mkdirSync(path.dirname(dbFile), { recursive: true });
-fs.mkdirSync(path.join(__dirname, 'public', 'uploads'), { recursive: true });
+const publicDir = path.join(__dirname, 'public');
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
-const db = new Database(dbFile);
-db.pragma('journal_mode = WAL');
+const storage = multer.diskStorage({
+  destination: (_req, _file, cb) => cb(null, uploadsDir),
+  filename: (_req, file, cb) => {
+    const ext = path.extname(file.originalname || '').toLowerCase() || '.bin';
+    cb(null, Date.now() + '-' + crypto.randomBytes(6).toString('hex') + ext);
+  }
+});
+const upload = multer({ storage });
 
-db.exec(`
-CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  email TEXT NOT NULL UNIQUE,
-  password_hash TEXT NOT NULL,
-  role TEXT NOT NULL DEFAULT 'member',
-  first_name TEXT NOT NULL DEFAULT '',
-  last_name TEXT NOT NULL DEFAULT '',
-  profile_picture TEXT NOT NULL DEFAULT '',
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS sessions (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  token TEXT NOT NULL UNIQUE,
-  user_id INTEGER NOT NULL,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS families (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
-  owner_user_id INTEGER NOT NULL,
-  seat_limit INTEGER NOT NULL DEFAULT 4,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS family_members (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  family_id INTEGER NOT NULL,
-  user_id INTEGER NOT NULL,
-  access_role TEXT NOT NULL DEFAULT 'member',
-  can_view_finance INTEGER NOT NULL DEFAULT 0,
-  can_manage_family INTEGER NOT NULL DEFAULT 0,
-  can_manage_promos INTEGER NOT NULL DEFAULT 0,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE(family_id, user_id)
-);
-CREATE TABLE IF NOT EXISTS reminders (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  family_id INTEGER NOT NULL,
-  created_by_user_id INTEGER NOT NULL,
-  title TEXT NOT NULL,
-  due_date TEXT NOT NULL DEFAULT '',
-  category TEXT NOT NULL DEFAULT 'admin',
-  priority TEXT NOT NULL DEFAULT 'normal',
-  notes TEXT NOT NULL DEFAULT '',
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS tasks (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  family_id INTEGER NOT NULL,
-  created_by_user_id INTEGER NOT NULL,
-  title TEXT NOT NULL,
-  owner TEXT NOT NULL DEFAULT '',
-  notes TEXT NOT NULL DEFAULT '',
-  status TEXT NOT NULL DEFAULT 'open',
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS contact_messages (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
-  email TEXT NOT NULL,
-  topic TEXT NOT NULL,
-  message TEXT NOT NULL,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS promo_campaigns (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  family_id INTEGER,
-  created_by_user_id INTEGER NOT NULL,
-  title TEXT NOT NULL,
-  channel TEXT NOT NULL,
-  instruction TEXT NOT NULL,
-  hashtags TEXT NOT NULL DEFAULT '',
-  scheduled_for TEXT NOT NULL DEFAULT '',
-  status TEXT NOT NULL DEFAULT 'draft',
-  throttle_per_hour INTEGER NOT NULL DEFAULT 12,
-  manual_override INTEGER NOT NULL DEFAULT 0,
-  last_action TEXT NOT NULL DEFAULT 'created',
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS campaign_events (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  campaign_id INTEGER NOT NULL,
-  event_name TEXT NOT NULL,
-  event_detail TEXT NOT NULL,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS audit_log (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  actor TEXT NOT NULL,
-  event_name TEXT NOT NULL,
-  event_detail TEXT NOT NULL,
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE IF NOT EXISTS page_hits (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  path TEXT NOT NULL,
-  referrer TEXT NOT NULL DEFAULT '',
-  user_agent TEXT NOT NULL DEFAULT '',
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-`);
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(uploadsDir));
+app.use(express.static(publicDir));
 
-function hashPassword(password) {
-  return crypto.createHash('sha256').update(password).digest('hex');
+const state = {
+  users: [{ id: 1, email: 'admin@lifeos.local', password: 'admin', role: 'admin', first_name: 'LifeOS', last_name: 'Admin', profile_picture: '' }],
+  sessions: new Map(),
+  pageHits: [],
+  reminders: [],
+  tasks: [],
+  promos: [],
+  campaignEvents: [],
+  contactMessages: [],
+  auditLog: [],
+  family: { id: 1, name: 'Atlas Family', seat_limit: 4, can_manage_family: 1, can_manage_promos: 1, can_view_finance: 1 },
+  familyMembers: [{ family_id: 1, user_id: 1, access_role: 'owner', can_view_finance: 1, can_manage_family: 1, can_manage_promos: 1 }],
+  nextIds: { user: 2, reminder: 1, task: 1, promo: 1, contact: 1 }
+};
+
+const nowIso = () => new Date().toISOString();
+
+function audit(email, type, detail) {
+  state.auditLog.unshift({ id: state.auditLog.length + 1, email: email || 'anonymous', type, detail, created_at: nowIso() });
+  state.auditLog = state.auditLog.slice(0, 200);
 }
 
 function parseCookies(req) {
   const header = req.headers.cookie || '';
-  const out = {};
-  header.split(';').map(v => v.trim()).filter(Boolean).forEach(part => {
+  return header.split(';').reduce((acc, part) => {
     const idx = part.indexOf('=');
-    if (idx > -1) out[part.slice(0, idx)] = decodeURIComponent(part.slice(idx + 1));
-  });
-  return out;
+    if (idx === -1) return acc;
+    acc[part.slice(0, idx).trim()] = decodeURIComponent(part.slice(idx + 1).trim());
+    return acc;
+  }, {});
 }
 
-function audit(actor, eventName, detail) {
-  db.prepare('INSERT INTO audit_log (actor, event_name, event_detail) VALUES (?, ?, ?)').run(actor || 'system', eventName, detail || '');
-}
-
-function currentUser(req) {
-  const cookies = parseCookies(req);
-  const token = cookies[process.env.SESSION_COOKIE_NAME || 'session_token'];
-  if (!token) return null;
-  const session = db.prepare('SELECT user_id FROM sessions WHERE token=?').get(token);
-  if (!session) return null;
-  return db.prepare('SELECT id,email,role,first_name,last_name,profile_picture FROM users WHERE id=?').get(session.user_id) || null;
-}
-
-function setSession(res, userId) {
+function setSession(res, user) {
   const token = crypto.randomBytes(24).toString('hex');
-  db.prepare('INSERT INTO sessions (token, user_id) VALUES (?, ?)').run(token, userId);
-  res.setHeader('Set-Cookie', `${process.env.SESSION_COOKIE_NAME || 'session_token'}=${token}; Path=/; HttpOnly; SameSite=Lax`);
+  state.sessions.set(token, user.id);
+  res.setHeader('Set-Cookie', `lifeos_session=${token}; Path=/; HttpOnly; SameSite=Lax`);
 }
 
 function clearSession(req, res) {
   const cookies = parseCookies(req);
-  const name = process.env.SESSION_COOKIE_NAME || 'session_token';
-  if (cookies[name]) db.prepare('DELETE FROM sessions WHERE token=?').run(cookies[name]);
-  res.setHeader('Set-Cookie', `${name}=; Path=/; HttpOnly; Max-Age=0; SameSite=Lax`);
+  if (cookies.lifeos_session) state.sessions.delete(cookies.lifeos_session);
+  res.setHeader('Set-Cookie', 'lifeos_session=; Path=/; HttpOnly; Max-Age=0; SameSite=Lax');
+}
+
+function getUserFromSession(req) {
+  const cookies = parseCookies(req);
+  const token = cookies.lifeos_session;
+  if (!token) return null;
+  const userId = state.sessions.get(token);
+  if (!userId) return null;
+  return state.users.find(u => u.id === userId) || null;
 }
 
 function ensureAuth(req, res, next) {
-  const user = currentUser(req);
+  const user = getUserFromSession(req);
   if (!user) return res.status(401).json({ message: 'Authentication required.' });
   req.user = user;
   next();
 }
 
+function publicUser(user) {
+  return { id: user.id, email: user.email, role: user.role, firstName: user.first_name || '', lastName: user.last_name || '', profile_picture: user.profile_picture || '' };
+}
+
 function familyForUser(userId) {
-  return db.prepare(`
-    SELECT f.*, fm.access_role, fm.can_view_finance, fm.can_manage_family, fm.can_manage_promos
-    FROM family_members fm
-    JOIN families f ON f.id = fm.family_id
-    WHERE fm.user_id = ?
-    ORDER BY f.id ASC
-    LIMIT 1
-  `).get(userId) || null;
+  const membership = state.familyMembers.find(m => m.user_id === userId);
+  if (!membership) return null;
+  return { id: state.family.id, name: state.family.name, seat_limit: state.family.seat_limit, can_manage_family: membership.can_manage_family, can_manage_promos: membership.can_manage_promos, can_view_finance: membership.can_view_finance };
 }
-
-function seed() {
-  const userCount = db.prepare('SELECT COUNT(*) c FROM users').get().c;
-  if (!userCount) {
-    const info = db.prepare('INSERT INTO users (email,password_hash,role,first_name,last_name) VALUES (?,?,?,?,?)').run('owner@lifeosatlas.com', hashPassword('AtlasDemo123!'), 'admin', 'Atlas', 'Owner');
-    const ownerId = info.lastInsertRowid;
-    const family = db.prepare('INSERT INTO families (name, owner_user_id, seat_limit) VALUES (?,?,?)').run('Atlas Household', ownerId, 4);
-    db.prepare('INSERT INTO family_members (family_id,user_id,access_role,can_view_finance,can_manage_family,can_manage_promos) VALUES (?,?,?,?,?,?)').run(family.lastInsertRowid, ownerId, 'owner', 1, 1, 1);
-    db.prepare('INSERT INTO reminders (family_id,created_by_user_id,title,due_date,category,priority,notes) VALUES (?,?,?,?,?,?,?)').run(family.lastInsertRowid, ownerId, 'MVA renewal reminder', '2026-07-12', 'admin', 'high', 'Bring payment method and supporting ID.');
-    db.prepare('INSERT INTO tasks (family_id,created_by_user_id,title,owner,notes,status) VALUES (?,?,?,?,?,?)').run(family.lastInsertRowid, ownerId, 'Doctor follow-up prep', 'Atlas', 'Collect referral notes and questions.', 'open');
-    db.prepare('INSERT INTO promo_campaigns (family_id,created_by_user_id,title,channel,instruction,hashtags,scheduled_for,status,throttle_per_hour,manual_override,last_action) VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(family.lastInsertRowid, ownerId, 'Free launch awareness', 'social', 'Promote the free-first LifeOS Atlas concierge launch without oversharing and stay within compliant frequency caps.', '#lifeops #familyadmin #tealworkflow', '', 'paused', 8, 1, 'seeded');
-    audit('system', 'bootstrap', 'Seeded owner account and starter family workspace.');
-  }
-}
-seed();
-
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: (_req, _file, cb) => cb(null, path.join(__dirname, 'public', 'uploads')),
-    filename: (_req, file, cb) => cb(null, `${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9._-]/g, '-')}`)
-  }),
-  limits: { fileSize: 2 * 1024 * 1024 }
-});
-
-app.use(express.json({ limit: '1mb' }));
-app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-  next();
-});
 
 app.use((req, _res, next) => {
-  if (req.method === 'GET' && !req.path.startsWith('/api/') && !req.path.startsWith('/uploads/')) {
-    db.prepare('INSERT INTO page_hits (path, referrer, user_agent) VALUES (?, ?, ?)').run(req.path, req.headers.referer || '', req.headers['user-agent'] || '');
+  if (!req.path.startsWith('/api/') && !req.path.startsWith('/uploads/')) {
+    state.pageHits.push({ path: req.path, referrer: req.headers.referer || '', user_agent: req.headers['user-agent'] || '', created_at: nowIso() });
+    if (state.pageHits.length > 1000) state.pageHits.shift();
   }
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
-
-app.get('/health', (_req, res) => {
-  res.json({ ok: true, app: 'lifeos-atlas', db: 'sqlite', time: new Date().toISOString() });
-});
-
-app.get('/api/auth/me', (req, res) => {
-  const user = currentUser(req);
-  if (!user) return res.json({ user: null });
-  const family = familyForUser(user.id);
-  res.json({ user, family });
-});
+app.get('/health', (_req, res) => res.json({ ok: true, service: 'lifeos-atlas', storage: 'in-memory', time: nowIso() }));
+app.get('/api/health', (_req, res) => res.json({ ok: true, service: 'lifeos-atlas', storage: 'in-memory', time: nowIso() }));
 
 app.post('/api/auth/signup', (req, res) => {
-  const { email, password, firstName, lastName } = req.body || {};
-  if (!email || !password) return res.status(400).json({ message: 'Email and password are required.' });
-  try {
-    const info = db.prepare('INSERT INTO users (email,password_hash,role,first_name,last_name) VALUES (?,?,?,?,?)').run(email.trim().toLowerCase(), hashPassword(password), 'admin', firstName || '', lastName || '');
-    const userId = info.lastInsertRowid;
-    const fam = db.prepare('INSERT INTO families (name, owner_user_id, seat_limit) VALUES (?,?,?)').run((firstName || 'My') + ' Household', userId, 4);
-    db.prepare('INSERT INTO family_members (family_id,user_id,access_role,can_view_finance,can_manage_family,can_manage_promos) VALUES (?,?,?,?,?,?)').run(fam.lastInsertRowid, userId, 'owner', 1, 1, 1);
-    audit(email, 'signup', 'Created owner account and family workspace.');
-    setSession(res, userId);
-    res.json({ message: 'Account created.', redirect: './dashboard.html' });
-  } catch (error) {
-    res.status(400).json({ message: 'Account already exists.' });
-  }
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const password = String(req.body?.password || '').trim();
+  const firstName = String(req.body?.firstName || '').trim();
+  const lastName = String(req.body?.lastName || '').trim();
+  if (!email || !password) return res.status(400).json({ message: 'Email and password required.' });
+  if (state.users.some(u => u.email === email)) return res.status(409).json({ message: 'Account already exists.' });
+  const user = { id: state.nextIds.user++, email, password, role: 'member', first_name: firstName, last_name: lastName, profile_picture: '' };
+  state.users.push(user);
+  state.familyMembers.push({ family_id: 1, user_id: user.id, access_role: 'member', can_view_finance: 0, can_manage_family: 0, can_manage_promos: 0 });
+  audit(email, 'signup', 'Account created.');
+  setSession(res, user);
+  res.json({ message: 'Account created.', user: publicUser(user) });
 });
 
 app.post('/api/auth/login', (req, res) => {
-  const { email, password } = req.body || {};
-  if (!email || !password) return res.status(400).json({ message: 'Email and password are required.' });
-  const user = db.prepare('SELECT * FROM users WHERE email=?').get(email.trim().toLowerCase());
-  if (!user || user.password_hash !== hashPassword(password)) return res.status(401).json({ message: 'Invalid login.' });
-  setSession(res, user.id);
-  audit(email, 'login', 'User login successful.');
-  res.json({ message: 'Login successful.', redirect: user.role === 'admin' ? './admin.html' : './dashboard.html' });
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const password = String(req.body?.password || '').trim();
+  const user = state.users.find(u => u.email === email && u.password === password);
+  if (!user) return res.status(401).json({ message: 'Invalid credentials.' });
+  setSession(res, user);
+  audit(email, 'login', 'User logged in.');
+  res.json({ message: 'Logged in.', user: publicUser(user) });
 });
 
 app.post('/api/auth/logout', (req, res) => {
-  const user = currentUser(req);
   clearSession(req, res);
-  audit(user?.email || 'unknown', 'logout', 'Session cleared.');
+  audit('logout', 'logout', 'Session cleared.');
   res.json({ message: 'Logged out.' });
 });
+
+app.get('/api/auth/me', ensureAuth, (req, res) => res.json({ user: publicUser(req.user) }));
 
 app.post('/api/profile/photo', ensureAuth, upload.single('profilePhoto'), (req, res) => {
   if (!req.file) return res.status(400).json({ message: 'Profile image required.' });
   const photoPath = '/uploads/' + req.file.filename;
-  db.prepare('UPDATE users SET profile_picture=? WHERE id=?').run(photoPath, req.user.id);
+  req.user.profile_picture = photoPath;
   audit(req.user.email, 'profile-photo', 'Profile picture updated.');
   res.json({ message: 'Profile picture updated.', profile_picture: photoPath });
 });
 
 app.post('/api/profile', ensureAuth, (req, res) => {
-  const { firstName, lastName } = req.body || {};
-  db.prepare('UPDATE users SET first_name=?, last_name=? WHERE id=?').run(firstName || '', lastName || '', req.user.id);
+  req.user.first_name = String(req.body?.firstName || '').trim();
+  req.user.last_name = String(req.body?.lastName || '').trim();
   audit(req.user.email, 'profile-update', 'Updated profile details.');
   res.json({ message: 'Profile updated.' });
 });
@@ -278,20 +156,19 @@ app.post('/api/profile', ensureAuth, (req, res) => {
 app.get('/api/family', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family) return res.status(404).json({ message: 'Family not found.' });
-  const members = db.prepare(`
-    SELECT u.id,u.email,u.first_name,u.last_name,u.profile_picture,fm.access_role,fm.can_view_finance,fm.can_manage_family,fm.can_manage_promos
-    FROM family_members fm JOIN users u ON u.id = fm.user_id
-    WHERE fm.family_id=? ORDER BY fm.id ASC
-  `).all(family.id);
+  const members = state.familyMembers.filter(m => m.family_id === family.id).map(m => {
+    const u = state.users.find(x => x.id === m.user_id);
+    return { id: u.id, email: u.email, first_name: u.first_name, last_name: u.last_name, profile_picture: u.profile_picture, access_role: m.access_role, can_view_finance: m.can_view_finance, can_manage_family: m.can_manage_family, can_manage_promos: m.can_manage_promos };
+  });
   res.json({ family, members });
 });
 
 app.post('/api/family/settings', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family || !family.can_manage_family) return res.status(403).json({ message: 'Manage-family permission required.' });
-  let seatLimit = Number(req.body?.seatLimit || family.seat_limit);
-  if (![4,5].includes(seatLimit)) seatLimit = 4;
-  db.prepare('UPDATE families SET seat_limit=? WHERE id=?').run(seatLimit, family.id);
+  let seatLimit = Number(req.body?.seatLimit || state.family.seat_limit);
+  if (![4, 5].includes(seatLimit)) seatLimit = 4;
+  state.family.seat_limit = seatLimit;
   audit(req.user.email, 'family-settings', 'Seat limit updated to ' + seatLimit);
   res.json({ message: 'Family settings updated.', seatLimit });
 });
@@ -299,67 +176,61 @@ app.post('/api/family/settings', ensureAuth, (req, res) => {
 app.post('/api/family/members', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family || !family.can_manage_family) return res.status(403).json({ message: 'Manage-family permission required.' });
-  const memberCount = db.prepare('SELECT COUNT(*) c FROM family_members WHERE family_id=?').get(family.id).c;
-  if (memberCount >= family.seat_limit) return res.status(400).json({ message: 'Seat limit reached.' });
-
-  const { email, firstName, lastName, accessRole, canViewFinance, canManageFamily, canManagePromos } = req.body || {};
+  const memberCount = state.familyMembers.filter(m => m.family_id === family.id).length;
+  if (memberCount >= state.family.seat_limit) return res.status(400).json({ message: 'Seat limit reached.' });
+  const email = String(req.body?.email || '').trim().toLowerCase();
   if (!email) return res.status(400).json({ message: 'Member email required.' });
-
-  let user = db.prepare('SELECT * FROM users WHERE email=?').get(String(email).trim().toLowerCase());
+  let user = state.users.find(u => u.email === email);
   if (!user) {
-    const tempPassword = crypto.randomBytes(8).toString('hex');
-    const created = db.prepare('INSERT INTO users (email,password_hash,role,first_name,last_name) VALUES (?,?,?,?,?)').run(String(email).trim().toLowerCase(), hashPassword(tempPassword), 'member', firstName || '', lastName || '');
-    user = db.prepare('SELECT * FROM users WHERE id=?').get(created.lastInsertRowid);
+    user = { id: state.nextIds.user++, email, password: crypto.randomBytes(8).toString('hex'), role: 'member', first_name: String(req.body?.firstName || '').trim(), last_name: String(req.body?.lastName || '').trim(), profile_picture: '' };
+    state.users.push(user);
   }
-
-  db.prepare('INSERT INTO family_members (family_id,user_id,access_role,can_view_finance,can_manage_family,can_manage_promos) VALUES (?,?,?,?,?,?)').run(
-    family.id,
-    user.id,
-    accessRole || 'member',
-    canViewFinance ? 1 : 0,
-    canManageFamily ? 1 : 0,
-    canManagePromos ? 1 : 0
-  );
+  if (state.familyMembers.some(m => m.family_id === family.id && m.user_id === user.id)) return res.status(409).json({ message: 'Member already exists.' });
+  state.familyMembers.push({ family_id: family.id, user_id: user.id, access_role: String(req.body?.accessRole || 'member'), can_view_finance: req.body?.canViewFinance ? 1 : 0, can_manage_family: req.body?.canManageFamily ? 1 : 0, can_manage_promos: req.body?.canManagePromos ? 1 : 0 });
   audit(req.user.email, 'family-member-added', 'Added family member ' + user.email);
   res.json({ message: 'Family member added.' });
 });
 
 app.get('/api/reminders', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
-  const items = family ? db.prepare('SELECT * FROM reminders WHERE family_id=? ORDER BY due_date ASC, id DESC').all(family.id) : [];
+  const items = family ? state.reminders.filter(x => x.family_id === family.id).sort((a, b) => String(a.due_date).localeCompare(String(b.due_date))) : [];
   res.json({ items });
 });
 
 app.post('/api/reminders', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family) return res.status(404).json({ message: 'Family not found.' });
-  const { title, dueDate, category, priority, notes } = req.body || {};
+  const title = String(req.body?.title || '').trim();
+  const dueDate = String(req.body?.dueDate || '').trim();
   if (!title || !dueDate) return res.status(400).json({ message: 'Title and due date are required.' });
-  db.prepare('INSERT INTO reminders (family_id,created_by_user_id,title,due_date,category,priority,notes) VALUES (?,?,?,?,?,?,?)').run(family.id, req.user.id, title, dueDate, category || 'admin', priority || 'normal', notes || '');
+  state.reminders.unshift({ id: state.nextIds.reminder++, family_id: family.id, created_by_user_id: req.user.id, title, due_date: dueDate, category: String(req.body?.category || 'admin'), priority: String(req.body?.priority || 'normal'), notes: String(req.body?.notes || ''), created_at: nowIso() });
   audit(req.user.email, 'reminder-created', 'Reminder created: ' + title);
   res.json({ message: 'Reminder saved.' });
 });
 
 app.get('/api/tasks', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
-  const items = family ? db.prepare('SELECT * FROM tasks WHERE family_id=? ORDER BY id DESC').all(family.id) : [];
+  const items = family ? state.tasks.filter(x => x.family_id === family.id) : [];
   res.json({ items });
 });
 
 app.post('/api/tasks', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family) return res.status(404).json({ message: 'Family not found.' });
-  const { title, owner, notes } = req.body || {};
+  const title = String(req.body?.title || '').trim();
   if (!title) return res.status(400).json({ message: 'Task title required.' });
-  db.prepare('INSERT INTO tasks (family_id,created_by_user_id,title,owner,notes,status) VALUES (?,?,?,?,?,?)').run(family.id, req.user.id, title, owner || '', notes || '', 'open');
+  state.tasks.unshift({ id: state.nextIds.task++, family_id: family.id, created_by_user_id: req.user.id, title, owner: String(req.body?.owner || ''), notes: String(req.body?.notes || ''), status: 'open', created_at: nowIso() });
   audit(req.user.email, 'task-created', 'Task created: ' + title);
   res.json({ message: 'Task saved.' });
 });
 
 app.post('/api/contact', (req, res) => {
-  const { name, email, topic, message } = req.body || {};
+  const name = String(req.body?.name || '').trim();
+  const email = String(req.body?.email || '').trim();
+  const topic = String(req.body?.topic || '').trim();
+  const message = String(req.body?.message || '').trim();
   if (!name || !email || !topic || !message) return res.status(400).json({ message: 'All contact fields are required.' });
-  db.prepare('INSERT INTO contact_messages (name,email,topic,message) VALUES (?,?,?,?)').run(name, email, topic, message);
+  state.contactMessages.unshift({ id: state.nextIds.contact++, name, email, topic, message, created_at: nowIso() });
   audit(email, 'contact-message', 'Contact form submitted: ' + topic);
   res.json({ message: 'Message received.' });
 });
@@ -367,18 +238,20 @@ app.post('/api/contact', (req, res) => {
 app.get('/api/promos', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family) return res.json({ items: [] });
-  const items = db.prepare('SELECT * FROM promo_campaigns WHERE family_id=? ORDER BY id DESC').all(family.id);
-  res.json({ items });
+  res.json({ items: state.promos.filter(x => x.family_id === family.id) });
 });
 
 app.post('/api/promos', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family || !family.can_manage_promos) return res.status(403).json({ message: 'Manage-promo permission required.' });
-  const { title, channel, instruction, hashtags, scheduledFor, throttlePerHour } = req.body || {};
+  const title = String(req.body?.title || '').trim();
+  const channel = String(req.body?.channel || '').trim();
+  const instruction = String(req.body?.instruction || '').trim();
   if (!title || !channel || !instruction) return res.status(400).json({ message: 'Title, channel, and instruction are required.' });
-  const throttle = Math.max(1, Math.min(24, Number(throttlePerHour || 8)));
-  const info = db.prepare('INSERT INTO promo_campaigns (family_id,created_by_user_id,title,channel,instruction,hashtags,scheduled_for,status,throttle_per_hour,manual_override,last_action) VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(family.id, req.user.id, title, channel, instruction, hashtags || '', scheduledFor || '', 'scheduled', throttle, 0, 'scheduled');
-  db.prepare('INSERT INTO campaign_events (campaign_id,event_name,event_detail) VALUES (?,?,?)').run(info.lastInsertRowid, 'scheduled', 'Campaign scheduled with throttling safeguard.');
+  const throttle = Math.max(1, Math.min(24, Number(req.body?.throttlePerHour || 8)));
+  const promo = { id: state.nextIds.promo++, family_id: family.id, created_by_user_id: req.user.id, title, channel, instruction, hashtags: String(req.body?.hashtags || ''), scheduled_for: String(req.body?.scheduledFor || ''), status: 'scheduled', throttle_per_hour: throttle, manual_override: 0, last_action: 'scheduled', created_at: nowIso() };
+  state.promos.unshift(promo);
+  state.campaignEvents.unshift({ campaign_id: promo.id, event_name: 'scheduled', event_detail: 'Campaign scheduled with throttling safeguard.', created_at: nowIso() });
   audit(req.user.email, 'promo-created', 'Campaign created: ' + title);
   res.json({ message: 'Promotion scheduled.' });
 });
@@ -387,57 +260,45 @@ app.post('/api/promos/:id/action', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
   if (!family || !family.can_manage_promos) return res.status(403).json({ message: 'Manage-promo permission required.' });
   const action = String(req.body?.action || '').toLowerCase();
-  const allowed = ['pause','resume','stop','manual-run'];
+  const allowed = ['pause', 'resume', 'stop', 'manual-run'];
   if (!allowed.includes(action)) return res.status(400).json({ message: 'Invalid promo action.' });
-  const status = action === 'resume' ? 'scheduled' : action === 'manual-run' ? 'manual-running' : action;
-  db.prepare('UPDATE promo_campaigns SET status=?, manual_override=?, last_action=? WHERE id=?').run(status, action === 'manual-run' ? 1 : 0, action, req.params.id);
-  db.prepare('INSERT INTO campaign_events (campaign_id,event_name,event_detail) VALUES (?,?,?)').run(req.params.id, action, 'Manual control action executed.');
+  const promo = state.promos.find(x => String(x.id) === String(req.params.id));
+  if (!promo) return res.status(404).json({ message: 'Campaign not found.' });
+  promo.status = action === 'resume' ? 'scheduled' : action === 'manual-run' ? 'manual-running' : action;
+  promo.manual_override = action === 'manual-run' ? 1 : 0;
+  promo.last_action = action;
+  state.campaignEvents.unshift({ campaign_id: promo.id, event_name: action, event_detail: 'Manual control action executed.', created_at: nowIso() });
   audit(req.user.email, 'promo-action', `Campaign ${req.params.id} -> ${action}`);
   res.json({ message: 'Promotion action applied.' });
 });
 
 app.get('/api/stats', ensureAuth, (req, res) => {
   const family = familyForUser(req.user.id);
-  const totalSignups = db.prepare('SELECT COUNT(*) c FROM users').get().c;
-  const pageViews = db.prepare('SELECT COUNT(*) c FROM page_hits').get().c;
-  const dailyVisitors = db.prepare("SELECT COUNT(DISTINCT substr(user_agent,1,60) || '|' || substr(referrer,1,60)) c FROM page_hits WHERE created_at >= datetime('now','-1 day')").get().c;
-  const reminders = family ? db.prepare('SELECT COUNT(*) c FROM reminders WHERE family_id=?').get(family.id).c : 0;
-  const tasks = family ? db.prepare('SELECT COUNT(*) c FROM tasks WHERE family_id=? AND status=?').get(family.id, 'open').c : 0;
-  const campaigns = family ? db.prepare('SELECT COUNT(*) c FROM promo_campaigns WHERE family_id=?').get(family.id).c : 0;
-  const recentActivity = db.prepare('SELECT event_name AS type, event_detail AS detail, created_at FROM audit_log ORDER BY id DESC LIMIT 20').all();
-  res.json({
-    totalSignups,
-    pageViews,
-    dailyVisitors,
-    campaigns,
-    reminders,
-    openTasks: tasks,
-    recentActivity,
-    trafficSources: db.prepare('SELECT COALESCE(NULLIF(referrer,\'\'),\'direct\') AS source, COUNT(*) AS hits FROM page_hits GROUP BY source ORDER BY hits DESC LIMIT 8').all()
-  });
+  const recentActivity = state.auditLog.slice(0, 20).map(x => ({ type: x.type, detail: x.detail, createdAt: x.created_at }));
+  const familyId = family ? family.id : null;
+  const reminders = familyId ? state.reminders.filter(x => x.family_id === familyId).length : 0;
+  const tasks = familyId ? state.tasks.filter(x => x.family_id === familyId && x.status === 'open').length : 0;
+  const campaigns = familyId ? state.promos.filter(x => x.family_id === familyId).length : 0;
+  const sourceCounts = {};
+  for (const hit of state.pageHits) {
+    const key = (hit.referrer || '').trim() || 'direct';
+    sourceCounts[key] = (sourceCounts[key] || 0) + 1;
+  }
+  const trafficSources = Object.entries(sourceCounts).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([source, hits]) => ({ source, hits }));
+  const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
+  const dailyVisitors = new Set(state.pageHits.filter(hit => new Date(hit.created_at).getTime() >= oneDayAgo).map(hit => `${String(hit.user_agent).slice(0,60)}|${String(hit.referrer).slice(0,60)}`)).size;
+  res.json({ totalSignups: state.users.length, pageViews: state.pageHits.length, dailyVisitors, campaigns, reminders, openTasks: tasks, recentActivity, trafficSources });
 });
 
 app.get('/api/admin/overview', ensureAuth, (req, res) => {
   if (req.user.role !== 'admin') return res.status(403).json({ message: 'Admin only.' });
-  res.json({
-    users: db.prepare('SELECT COUNT(*) c FROM users').get().c,
-    families: db.prepare('SELECT COUNT(*) c FROM families').get().c,
-    familySeats: db.prepare('SELECT COALESCE(SUM(seat_limit),0) c FROM families').get().c,
-    campaigns: db.prepare('SELECT COUNT(*) c FROM promo_campaigns').get().c,
-    liveEvents: db.prepare('SELECT event_name AS type, event_detail AS detail, created_at FROM audit_log ORDER BY id DESC LIMIT 25').all(),
-    contactMessages: db.prepare('SELECT COUNT(*) c FROM contact_messages').get().c,
-    health: 'Healthy'
-  });
+  res.json({ users: state.users.length, families: 1, familySeats: state.family.seat_limit, campaigns: state.promos.length, liveEvents: state.auditLog.slice(0, 25).map(x => ({ type: x.type, detail: x.detail, created_at: x.created_at })), contactMessages: state.contactMessages.length, health: 'Healthy' });
 });
 
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api/')) return next();
-  if (req.path === '/' || req.path === '/index' || req.path === '/index.html') {
-    return res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  }
+  if (req.path === '/' || req.path === '/index' || req.path === '/index.html') return res.sendFile(path.join(publicDir, 'index.html'));
   next();
 });
 
-app.listen(port, () => {
-  console.log(`LifeOS Atlas listening on ${port}`);
-});
+app.listen(port, () => console.log(`LifeOS Atlas listening on ${port}`));
