@@ -3,9 +3,9 @@ const path = require('path');
 const express = require('express');
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')));
 const root = __dirname;
 const dataDir = path.join(root, 'data');
+
 const files = {
   analytics: path.join(dataDir, 'analytics.json'),
   users: path.join(dataDir, 'users.json'),
@@ -14,49 +14,50 @@ const files = {
   family: path.join(dataDir, 'family.json')
 };
 
-function ensureRuntimeFolders() {
-  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-  for (const file of Object.values(files)) {
-    if (!fs.existsSync(file)) fs.writeFileSync(file, '[]', 'utf8');
+fs.mkdirSync(dataDir, { recursive: true });
+
+function ensureFile(filePath) {
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, '[]', 'utf8');
   }
 }
 
-function readJson(file) {
-  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return []; }
+Object.values(files).forEach(ensureFile);
+
+function readJson(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch {
+    return [];
+  }
 }
 
-function writeJson(file, value) {
-  fs.writeFileSync(file, JSON.stringify(value, null, 2), 'utf8');
+function writeJson(filePath, data) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
 }
 
-function pushRecord(file, record) {
-  const items = readJson(file);
-  items.push(record);
-  writeJson(file, items);
-  return record;
+function pushRecord(filePath, record) {
+  const list = readJson(filePath);
+  list.push(record);
+  writeJson(filePath, list);
 }
 
-function analyticsEvent(event_type, pathValue, source) {
+function analyticsEvent(eventType, pathName, source) {
   pushRecord(files.analytics, {
-    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    event_type,
-    path: pathValue,
-    source: source || 'app',
+    id: Date.now().toString(),
+    event_type: eventType,
+    path: pathName || '',
+    source: source || 'direct',
     created_at: new Date().toISOString()
   });
 }
 
-ensureRuntimeFolders();
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(root, 'public')));
 
 app.get('/health', (_req, res) => {
   res.status(200).json({ ok: true });
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 });
 
 app.get('/api/health', (_req, res) => {
@@ -77,47 +78,36 @@ app.use((req, _res, next) => {
 });
 
 app.post('/api/signup', (req, res) => {
-  const { fullName, email, plan, goal, householdSize, source } = req.body || {};
-  if (!fullName || !email) return res.status(400).json({ ok: false, error: 'Missing required fields' });
-  const users = readJson(files.users);
+  const payload = req.body || {};
   const user = {
-    id: String(users.length + 1),
-    fullName,
-    email: String(email).toLowerCase(),
-    plan: plan || 'free',
-    goal: goal || 'admin-autopilot',
-    householdSize: householdSize || '1',
-    source: source || 'direct',
-    created_at: new Date().toISOString()
+    id: Date.now().toString(),
+    created_at: new Date().toISOString(),
+    ...payload
   };
   pushRecord(files.users, user);
-  analyticsEvent('signup_completed', '/api/signup', user.source);
-  pushRecord(files.missions, {
-    id: `${Date.now()}`,
-    title: `First mission for ${fullName}`,
-    module: user.goal,
-    priority: 'high',
-    owner: fullName,
-    notes: 'Auto-generated first mission preview from onboarding.',
-    created_at: new Date().toISOString()
-  });
-  res.status(200).json({ ok: true, user, firstMissionCreated: true });
+  analyticsEvent('signup_submitted', '/api/signup', payload.email || 'unknown');
+  res.status(200).json({ ok: true, user });
+});
+
+app.get('/api/concierge', (_req, res) => {
+  res.status(200).json({ ok: true, items: readJson(files.concierge).slice().reverse() });
 });
 
 app.post('/api/concierge', (req, res) => {
-  const { name, email, topic, message, stage } = req.body || {};
-  if (!name || !email || !topic || !message) return res.status(400).json({ ok: false, error: 'Missing required fields' });
-  pushRecord(files.concierge, {
-    id: `${Date.now()}`,
-    name,
-    email: String(email).toLowerCase(),
-    topic,
+  const { message, context, role } = req.body || {};
+  if (!message) return res.status(400).json({ ok: false, error: 'Message required' });
+
+  const item = {
+    id: Date.now().toString(),
     message,
-    stage: stage || 'landing',
+    context: context || 'general',
+    role: role || 'user',
     created_at: new Date().toISOString()
-  });
-  analyticsEvent('concierge_submitted', '/api/concierge', stage || 'landing');
-  res.status(200).json({ ok: true, message: 'Concierge request received' });
+  };
+
+  pushRecord(files.concierge, item);
+  analyticsEvent('concierge_message', '/api/concierge', item.context);
+  res.status(200).json({ ok: true, item });
 });
 
 app.get('/api/missions', (_req, res) => {
@@ -125,19 +115,20 @@ app.get('/api/missions', (_req, res) => {
 });
 
 app.post('/api/missions', (req, res) => {
-  const { title, module, priority, owner, notes } = req.body || {};
-  if (!title || !module) return res.status(400).json({ ok: false, error: 'Missing required fields' });
+  const { title, category, status, owner } = req.body || {};
+  if (!title) return res.status(400).json({ ok: false, error: 'Title required' });
+
   const mission = {
-    id: `${Date.now()}`,
+    id: Date.now().toString(),
     title,
-    module,
-    priority: priority || 'medium',
-    owner: owner || 'Unassigned',
-    notes: notes || '',
+    category: category || 'general',
+    status: status || 'active',
+    owner: owner || 'atlas',
     created_at: new Date().toISOString()
   };
+
   pushRecord(files.missions, mission);
-  analyticsEvent('mission_created', '/api/missions', module);
+  analyticsEvent('mission_created', '/api/missions', mission.category);
   res.status(200).json({ ok: true, mission });
 });
 
@@ -148,14 +139,16 @@ app.get('/api/family', (_req, res) => {
 app.post('/api/family', (req, res) => {
   const { name, role, focus, status } = req.body || {};
   if (!name || !role) return res.status(400).json({ ok: false, error: 'Missing required fields' });
+
   const member = {
-    id: `${Date.now()}`,
+    id: Date.now().toString(),
     name,
     role,
     focus: focus || '',
     status: status || 'active',
     created_at: new Date().toISOString()
   };
+
   pushRecord(files.family, member);
   analyticsEvent('family_member_added', '/api/family', role);
   res.status(200).json({ ok: true, member });
@@ -194,34 +187,11 @@ app.get('/api/admin/overview', (_req, res) => {
   });
 });
 
-app.use(express.static(path.join(root, 'public')));
-app.get('/', (_req, res) => res.sendFile(path.join(root, 'public', 'index.html')));
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(root, 'public', 'index.html'));
+});
 
 const port = Number(process.env.PORT || 8080);
 app.listen(port, () => {
-  console.log(`LifeOS Atlas listening on ${port}`);
+  console.log(LifeOS Atlas listening on );
 });
-
-const express = require('express');
-const app = module.exports = require('./app') || require('express')();
-
-const pricingRouter    = require('./routes/pricing');
-const onboardingRouter = require('./routes/onboarding');
-const dashboardRouter  = require('./routes/dashboard');
-const modulesRouter    = require('./routes/modules');
-const familyRouter     = require('./routes/family');
-const billingRouter    = require('./routes/billing');
-const legalRouter      = require('./routes/legal');
-const conciergeRouter  = require('./routes/concierge');
-
-app.use('/pricing', pricingRouter);
-app.use('/signup', onboardingRouter);
-app.use('/app', dashboardRouter);
-app.use('/app/modules', modulesRouter);
-app.use('/app/family', familyRouter);
-app.use('/app/billing', billingRouter);
-app.use('/legal', legalRouter);
-app.use('/concierge', conciergeRouter);
-
-
-
