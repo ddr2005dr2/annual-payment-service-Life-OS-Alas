@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 const root = __dirname;
 const dataDir = path.join(root, 'data');
 const files = {
@@ -51,6 +52,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/health', (_req, res) => {
   res.status(200).json({ ok: true });
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 });
 
 app.get('/api/health', (_req, res) => {
@@ -216,5 +222,6 @@ app.use('/app/family', familyRouter);
 app.use('/app/billing', billingRouter);
 app.use('/legal', legalRouter);
 app.use('/concierge', conciergeRouter);
+
 
 
