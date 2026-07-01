@@ -1,0 +1,8 @@
+=== LIFEOS ATLAS LANDING EXPOSURE PASS ===
+[2026-07-01 05:35:14] Backups created.
+[2026-07-01 05:35:14] Precheck homepage failed: Cannot overwrite variable HOME because it is read-only or constant.
+[2026-07-01 05:35:15] Precheck health status: 200
+[2026-07-01 05:35:15] Precheck health content: {"ok":true}
+[2026-07-01 05:35:15] public/index.html replaced with landing page that exposes new routes.
+[2026-07-01 05:35:15] atlas.css extended with landing exposure styles.
+[2026-07-01 05:35:15] Running git add.
