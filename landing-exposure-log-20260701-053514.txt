@@ -6,3 +6,12 @@
 [2026-07-01 05:35:15] public/index.html replaced with landing page that exposes new routes.
 [2026-07-01 05:35:15] atlas.css extended with landing exposure styles.
 [2026-07-01 05:35:15] Running git add.
+[2026-07-01 05:35:15] Creating commit.
+[2026-07-01 05:35:15] Commit created.
+[2026-07-01 05:35:15] Pushing to origin main.
+[2026-07-01 05:35:17] Git push complete.
+[2026-07-01 05:35:17] Triggering Railway deploy.
+[2026-07-01 05:35:19] Railway deploy submitted.
+[2026-07-01 05:35:44] Post-deploy homepage status: 200
+[2026-07-01 05:35:45] Post-deploy health status: 200
+[2026-07-01 05:35:45] Post-deploy health content: {"ok":true}

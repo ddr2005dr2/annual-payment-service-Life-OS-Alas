@@ -1,0 +1,8 @@
+=== LIFEOS ATLAS ROOT ROUTE OVERRIDE ===
+[2026-07-01 05:38:15] Backups created.
+[2026-07-01 05:38:16] Precheck homepage status: 200
+[2026-07-01 05:38:16] Precheck homepage title: 
+[2026-07-01 05:38:16] Precheck health status: 200
+[2026-07-01 05:38:16] Precheck health content: {"ok":true}
+[2026-07-01 05:38:16] server.js updated so root route serves public/index.html.
+[2026-07-01 05:38:16] Running git add.
