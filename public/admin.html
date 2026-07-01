@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeOS Atlas | Admin</title>
+  <style>
+    :root,[data-theme="light"]{--bg:#0f6f73;--bg-2:#0a5558;--shell:rgba(245,252,252,.96);--shell-2:#ffffff;--text:#173137;--muted:#5b7379;--line:#d4e4e6;--accent:#0f6f73;--blue:#467fed;--orange:#e59637;--success:#2f7d53;--shadow:0 22px 60px rgba(5,20,22,.18)}
+    [data-theme="dark"]{--bg:#07181a;--bg-2:#0d3033;--shell:rgba(12,31,35,.94);--shell-2:#14282d;--text:#edf7f7;--muted:#9bb4b7;--line:#214046;--accent:#59b7bb;--blue:#7da8ff;--orange:#f4a95a;--success:#6dc994;--shadow:0 24px 64px rgba(0,0,0,.38)}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at top left, rgba(70,127,237,.12), transparent 24%),radial-gradient(circle at top right, rgba(229,150,55,.12), transparent 24%),linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--text);min-height:100vh} a{text-decoration:none;color:inherit}
+    .wrap{width:min(1320px,calc(100% - 24px));margin:18px auto;display:grid;gap:18px}.shell{background:var(--shell);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:32px;padding:20px;backdrop-filter:blur(18px)}
+    .top,.head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap}.btn,.tab{border:1px solid var(--line);background:var(--shell-2);color:var(--text);padding:12px 16px;border-radius:18px;cursor:pointer}.tab.active{background:var(--accent);color:#fff;border-color:transparent}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}.card,.panel{background:var(--shell-2);border:1px solid var(--line);border-radius:26px;padding:18px}.value{margin-top:10px;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.04em}.muted{color:var(--muted);line-height:1.65}.panels{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(360px,.84fr);gap:18px;margin-top:18px}.subpanel{display:none}.subpanel.active{display:block}.row{display:grid;grid-template-columns:1.5fr .9fr .9fr .9fr;gap:10px;border:1px solid var(--line);background:var(--shell);border-radius:18px;padding:14px;margin-top:10px}.event{padding:12px 0;border-bottom:1px solid var(--line)}.event:last-child{border-bottom:none}.badge{display:inline-flex;padding:7px 10px;border-radius:999px;font-size:12px}.badge.teal{background:rgba(15,111,115,.12);color:var(--accent)}.badge.blue{background:rgba(70,127,237,.12);color:var(--blue)}.badge.orange{background:rgba(229,150,55,.14);color:var(--orange)}.badge.success{background:rgba(47,125,83,.14);color:var(--success)}
+    @media (max-width:1080px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panels{grid-template-columns:1fr}.row{grid-template-columns:1fr}} @media (max-width:720px){.grid{grid-template-columns:1fr}.top,.head{flex-direction:column;align-items:stretch}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="shell">
+      <div class="top">
+        <div><p class="muted" style="margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase">Admin dashboard</p><h1 style="margin:0;font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-.05em">Operational control for LifeOS Atlas.</h1><p class="muted">Review signups, family seats, campaign activity, live events, and health status from one richer premium command layer.</p></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="themeToggle" type="button">Dark mode</button><a class="btn" href="/dashboard.html">Client dashboard</a><button class="btn" id="logoutBtn" type="button">Logout</button></div>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="muted">Users</div><div class="value" id="usersMetric">0</div><div class="muted">Registered accounts.</div></article>
+        <article class="card"><div class="muted">Families</div><div class="value" id="familiesMetric">0</div><div class="muted">Owner-led family workspaces.</div></article>
+        <article class="card"><div class="muted">Family seats</div><div class="value" id="seatsMetric">0</div><div class="muted">Total configured seat capacity.</div></article>
+        <article class="card"><div class="muted">Campaigns</div><div class="value" id="campaignsMetric">0</div><div class="muted">Tracked promotion objects.</div></article>
+      </div>
+      <div class="panels">
+        <section class="panel">
+          <div class="head"><div><h2 style="margin:0">Admin views</h2><p class="muted">Switch between live events, system map, and signals.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="tab active" data-panel="eventsPanel">Events</button><button class="tab" data-panel="surfacePanel">Surface map</button><button class="tab" data-panel="signalsPanel">Signals</button></div></div>
+          <div class="subpanel active" id="eventsPanel"><div id="eventsRoot"></div></div>
+          <div class="subpanel" id="surfacePanel"><div class="row"><div>Landing page</div><div>/index.html</div><div><span class="badge teal">Canonical</span></div><div>Single locked public path</div></div><div class="row"><div>Dashboard</div><div>/dashboard.html</div><div><span class="badge blue">Member</span></div><div>Family workspace</div></div><div class="row"><div>Admin</div><div>/admin.html</div><div><span class="badge orange">Control</span></div><div>Operational command view</div></div></div>
+          <div class="subpanel" id="signalsPanel"><div class="row"><div>Contact messages</div><div id="contactMetric">0</div><div><span class="badge success">Live</span></div><div>Support capture available</div></div><div class="row"><div>Health</div><div id="healthMetric">Healthy</div><div><span class="badge teal">Ready</span></div><div>Runtime and DB responsive</div></div></div>
+        </section>
+        <aside class="panel"><div class="head"><div><h2 style="margin:0">Live notes</h2><p class="muted">Current premium product direction in production.</p></div><span class="badge teal">Updated</span></div><div class="card"><div class="muted">Landing page</div><div style="margin-top:10px;font-weight:700">Kept structurally locked with one darker teal shade only.</div></div><div class="card" style="margin-top:12px"><div class="muted">Family architecture</div><div style="margin-top:10px;font-weight:700">Owner-managed roles, seat limits, member access, and profile support.</div></div><div class="card" style="margin-top:12px"><div class="muted">Growth controls</div><div style="margin-top:10px;font-weight:700">Scheduled promotions, manual overrides, throttling, and audit logs.</div></div></aside>
+      </div>
+    </section>
+  </div>
+  <script>
+    (function(){
+      const root=document.documentElement;const themeToggle=document.getElementById('themeToggle');let theme=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';function sync(){root.setAttribute('data-theme',theme);themeToggle.textContent=theme==='dark'?'Light mode':'Dark mode';}themeToggle.addEventListener('click',function(){theme=theme==='dark'?'light':'dark';sync();});sync();
+      async function fetchJson(url, options){const res=await fetch(url,Object.assign({credentials:'include',headers:{'Accept':'application/json'}},options||{}));let body=null;try{body=await res.json();}catch(_){}return{ok:res.ok,status:res.status,body};}
+      function setText(id,value){const n=document.getElementById(id);if(n)n.textContent=value;}
+      document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===btn));document.querySelectorAll('.subpanel').forEach(p=>p.classList.toggle('active',p.id===btn.dataset.panel));}));
+      document.getElementById('logoutBtn').addEventListener('click',async function(){await fetchJson('/api/auth/logout',{method:'POST'});location.href='/login.html';});
+      (async function(){
+        const me=await fetchJson('/api/auth/me'); if(!me.ok||!me.body||!me.body.user){location.href='/login.html'; return;}
+        const overview=await fetchJson('/api/admin/overview'); if(!overview.ok){location.href='/dashboard.html'; return;}
+        setText('usersMetric', String(overview.body.users||0)); setText('familiesMetric', String(overview.body.families||0)); setText('seatsMetric', String(overview.body.familySeats||0)); setText('campaignsMetric', String(overview.body.campaigns||0)); setText('contactMetric', String(overview.body.contactMessages||0)); setText('healthMetric', overview.body.health||'Check');
+        const rootNode=document.getElementById('eventsRoot'); const events=overview.body.liveEvents||[]; rootNode.innerHTML=events.length?events.map(item=>`<div class="event"><strong>${item.type||'event'}</strong><div class="muted">${item.detail||''}</div><div class="muted">${new Date(item.created_at).toLocaleString()}</div></div>`).join(''):'<div class="muted">No events yet.</div>';
+      })();
+    })();
+  </script>
+</body>
+</html>

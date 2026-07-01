@@ -1,0 +1,11 @@
+[
+  {
+    "id": "seed-admin",
+    "firstName": "Admin",
+    "lastName": "User",
+    "email": "admin@lifeosatlas.com",
+    "passwordHash": "$2a$10$Vqjp5SoqUOYe.IUgrazx3.V9TzyskX/AbpHtXTatVcJoddUyIqkVG",
+    "role": "admin",
+    "createdAt": "2026-06-30T10:50:01.325Z"
+  }
+]
