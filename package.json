@@ -3,9 +3,10 @@
     "version":  "2.0.0",
     "private":  true,
     "scripts":  {
-                    "start":  "node server.js",
+                    "validate":  "node scripts/validate.mjs",
+                    "db:bootstrap":  "node scripts/bootstrap-db.js",
                     "dev":  "node server.js",
-                    "validate":  "node scripts/validate.mjs"
+                    "start":  "node server.js"
                 },
     "dependencies":  {
                          "express":  "^4.21.2",
