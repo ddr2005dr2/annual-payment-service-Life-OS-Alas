@@ -1,0 +1,25 @@
+﻿LifeOS Atlas Completion Scope
+Generated: 07/01/2026 05:11:20
+
+Current live site status:
+- Live homepage is reachable.
+- Health endpoint is healthy.
+- Premium shell is visible.
+- Full blueprint product is not yet exposed live.
+
+Mandatory build targets next:
+- Preserve the currently approved landing page shell and pricing presentation unless intentionally replaced.
+- Add full pricing architecture: Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member.
+- Add public pricing page and conversion path.
+- Add public Privacy Policy, Terms of Service, data-use disclosure, and AI disclosure pages.
+- Add real 4-step onboarding flow with mission preview.
+- Add main dashboard with Today's Missions, module grid, quick actions, statuses, and concierge dock.
+- Add module surfaces for Admin Autopilot, Money Mission Control, Health Navigator, and Family Coordination.
+- Add desktop app navigation and mobile bottom tabs: Home, Missions, Atlas, Notifications, Profile.
+- Add family collaboration surfaces and member model.
+- Add billing checkout and subscription activation path.
+- Add trust/compliance visibility and no-dead-end empty states.
+- Add lifecycle-aware concierge behavior across landing, onboarding, dashboard, billing, and workflows.
+
+Execution rule:
+- Treat every Missing or Partial live item as required for the completion script.

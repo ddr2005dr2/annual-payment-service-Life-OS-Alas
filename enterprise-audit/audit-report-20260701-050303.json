@@ -1,0 +1,463 @@
+﻿{
+    "GeneratedAt":  "2026-07-01T05:03:05",
+    "RepoPath":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas",
+    "Live":  {
+                 "Url":  "https://www.lifeosatlas.com",
+                 "Ok":  true,
+                 "StatusCode":  200,
+                 "Title":  "LifeOS Atlas — Premium Landing",
+                 "HealthOk":  true,
+                 "HealthStatusCode":  200,
+                 "HealthContent":  "{\"ok\":true}"
+             },
+    "RepoSummary":  {
+                        "TotalFiles":  964,
+                        "HtmlFiles":  50,
+                        "JsFiles":  328,
+                        "JsonFiles":  132,
+                        "CssFiles":  0,
+                        "Ps1Files":  17
+                    },
+    "Counts":  {
+                   "PresentLive":  6,
+                   "PresentInRepoNotVerifiedLive":  0,
+                   "Partial":  3,
+                   "Missing":  11
+               },
+    "Evidence":  {
+                     "ServerCandidates":  {
+
+                                          },
+                     "PageCandidates":  {
+
+                                        },
+                     "ModuleCandidates":  {
+
+                                          },
+                     "IntegrationMatches":  {
+
+                                            },
+                     "ComplianceMatches":  {
+
+                                           },
+                     "BillingMatches":  {
+
+                                        },
+                     "AuthMatches":  {
+
+                                     },
+                     "AnalyticsMatches":  {
+
+                                          }
+                 },
+    "AuditItems":  [
+                       {
+                           "Key":  "landing_nav",
+                           "Area":  "Landing",
+                           "Required":  "Sticky nav with logo left, center links, Get Started CTA right",
+                           "LiveHits":  [
+                                            "nav",
+                                            "pricing",
+                                            "concierge"
+                                        ],
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "landing_hero",
+                           "Area":  "Landing",
+                           "Required":  "Hero with headline, support line, 2 CTAs",
+                           "LiveHits":  [
+                                            "concierge",
+                                            "hero"
+                                        ],
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "landing_feature_grid",
+                           "Area":  "Landing",
+                           "Required":  "Feature grid below fold",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "landing_trust_strip",
+                           "Area":  "Landing",
+                           "Required":  "Trust strip with privacy/compliance/user count",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "persistent_concierge",
+                           "Area":  "Concierge",
+                           "Required":  "Persistent concierge across landing, pricing, signup, onboarding, dashboard, billing, workflow",
+                           "LiveHits":  [
+                                            "concierge",
+                                            "atlas",
+                                            "help",
+                                            "support"
+                                        ],
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "pricing_architecture",
+                           "Area":  "Pricing",
+                           "Required":  "Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member tiers",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "onboarding_4_step",
+                           "Area":  "Onboarding",
+                           "Required":  "4-step onboarding with email/name, goal selection, integration, first mission preview",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "dashboard_main",
+                           "Area":  "Dashboard",
+                           "Required":  "Main dashboard with Today\u0027s Missions, module grid, quick actions, statuses",
+                           "LiveHits":  "status",
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Partial"
+                       },
+                       {
+                           "Key":  "module_stack",
+                           "Area":  "Modules",
+                           "Required":  "Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "module_detail_view",
+                           "Area":  "Modules",
+                           "Required":  "Split-pane/module detail views with list, detail, trust log, action panel",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "desktop_sidebar",
+                           "Area":  "Navigation",
+                           "Required":  "Desktop sidebar navigation for app",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "mobile_tab_bar",
+                           "Area":  "Navigation",
+                           "Required":  "Mobile bottom tabs: Home, Missions, Atlas, Notifications, Profile",
+                           "LiveHits":  [
+                                            "Home",
+                                            "Atlas"
+                                        ],
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "family_features",
+                           "Area":  "Family",
+                           "Required":  "Shared routines, folders, due dates, household tasks, 5-member family tier",
+                           "LiveHits":  "family",
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Partial"
+                       },
+                       {
+                           "Key":  "integrations_v1",
+                           "Area":  "Integrations",
+                           "Required":  "Google Calendar, Gmail/Outlook, Stripe/Square, Plaid, Twilio/SendGrid, OpenAI",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "auth_layer",
+                           "Area":  "Auth",
+                           "Required":  "Sign up/login/session model and permissions explanations",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "billing_layer",
+                           "Area":  "Billing",
+                           "Required":  "Billing routes, payment rail, tier handling",
+                           "LiveHits":  [
+                                            "price",
+                                            "checkout",
+                                            "payment"
+                                        ],
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "compliance_docs",
+                           "Area":  "Compliance",
+                           "Required":  "Privacy policy, terms, data use disclosure, AI disclosure",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "analytics_layer",
+                           "Area":  "Analytics",
+                           "Required":  "Privacy-first analytics and event tracking",
+                           "LiveHits":  "events",
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Partial"
+                       },
+                       {
+                           "Key":  "referral_growth",
+                           "Area":  "Growth",
+                           "Required":  "Referral mechanics and growth hooks",
+                           "LiveHits":  {
+
+                                        },
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "admin_metrics",
+                           "Area":  "Admin",
+                           "Required":  "Admin metrics and operational visibility",
+                           "LiveHits":  [
+                                            "metrics",
+                                            "events"
+                                        ],
+                           "RepoHits":  {
+
+                                        },
+                           "Status":  "PresentLive"
+                       }
+                   ],
+    "NeededNow":  [
+                      {
+                          "Key":  "landing_feature_grid",
+                          "Area":  "Landing",
+                          "Required":  "Feature grid below fold",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "landing_trust_strip",
+                          "Area":  "Landing",
+                          "Required":  "Trust strip with privacy/compliance/user count",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "pricing_architecture",
+                          "Area":  "Pricing",
+                          "Required":  "Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member tiers",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "onboarding_4_step",
+                          "Area":  "Onboarding",
+                          "Required":  "4-step onboarding with email/name, goal selection, integration, first mission preview",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "dashboard_main",
+                          "Area":  "Dashboard",
+                          "Required":  "Main dashboard with Today\u0027s Missions, module grid, quick actions, statuses",
+                          "LiveHits":  "status",
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Partial"
+                      },
+                      {
+                          "Key":  "module_stack",
+                          "Area":  "Modules",
+                          "Required":  "Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "module_detail_view",
+                          "Area":  "Modules",
+                          "Required":  "Split-pane/module detail views with list, detail, trust log, action panel",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "desktop_sidebar",
+                          "Area":  "Navigation",
+                          "Required":  "Desktop sidebar navigation for app",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "family_features",
+                          "Area":  "Family",
+                          "Required":  "Shared routines, folders, due dates, household tasks, 5-member family tier",
+                          "LiveHits":  "family",
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Partial"
+                      },
+                      {
+                          "Key":  "integrations_v1",
+                          "Area":  "Integrations",
+                          "Required":  "Google Calendar, Gmail/Outlook, Stripe/Square, Plaid, Twilio/SendGrid, OpenAI",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "auth_layer",
+                          "Area":  "Auth",
+                          "Required":  "Sign up/login/session model and permissions explanations",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "compliance_docs",
+                          "Area":  "Compliance",
+                          "Required":  "Privacy policy, terms, data use disclosure, AI disclosure",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "analytics_layer",
+                          "Area":  "Analytics",
+                          "Required":  "Privacy-first analytics and event tracking",
+                          "LiveHits":  "events",
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Partial"
+                      },
+                      {
+                          "Key":  "referral_growth",
+                          "Area":  "Growth",
+                          "Required":  "Referral mechanics and growth hooks",
+                          "LiveHits":  {
+
+                                       },
+                          "RepoHits":  {
+
+                                       },
+                          "Status":  "Missing"
+                      }
+                  ]
+}

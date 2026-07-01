@@ -1,0 +1,8 @@
+﻿{
+  "modules": [
+    { "id": "admin-autopilot", "name": "Admin Autopilot" },
+    { "id": "money-mission-control", "name": "Money Mission Control" },
+    { "id": "health-navigator", "name": "Health Navigator" },
+    { "id": "family-coordination", "name": "Family Coordination" }
+  ]
+}

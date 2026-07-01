@@ -1,0 +1,59 @@
+﻿{
+  "tiers": [
+    {
+      "id": "free",
+      "name": "Free",
+      "price": 0,
+      "period": "month",
+      "included": [
+        "3 active missions",
+        "1 module access",
+        "Concierge (limited)"
+      ]
+    },
+    {
+      "id": "atlas-pro",
+      "name": "Atlas Pro",
+      "price": 14.99,
+      "period": "month",
+      "included": [
+        "Unlimited missions",
+        "All modules",
+        "Full concierge",
+        "Integrations"
+      ]
+    },
+    {
+      "id": "atlas-family",
+      "name": "Atlas Family",
+      "price": 24.99,
+      "period": "month",
+      "included": [
+        "Everything in Pro",
+        "Up to 5 family members",
+        "Shared missions"
+      ]
+    },
+    {
+      "id": "atlas-business",
+      "name": "Atlas Business",
+      "price": 49.99,
+      "period": "month",
+      "included": [
+        "Everything in Family",
+        "Business workflows",
+        "Team management"
+      ]
+    },
+    {
+      "id": "founding-member",
+      "name": "Founding Member",
+      "price": 199,
+      "period": "one-time",
+      "included": [
+        "Lifetime Atlas Pro access",
+        "Limited early offer"
+      ]
+    }
+  ]
+}

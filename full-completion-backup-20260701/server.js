@@ -195,25 +195,3 @@ const port = Number(process.env.PORT || 8080);
 app.listen(port, () => {
   console.log(`LifeOS Atlas listening on ${port}`);
 });
-
-const express = require('express');
-const app = module.exports = require('./app') || require('express')();
-
-const pricingRouter    = require('./routes/pricing');
-const onboardingRouter = require('./routes/onboarding');
-const dashboardRouter  = require('./routes/dashboard');
-const modulesRouter    = require('./routes/modules');
-const familyRouter     = require('./routes/family');
-const billingRouter    = require('./routes/billing');
-const legalRouter      = require('./routes/legal');
-const conciergeRouter  = require('./routes/concierge');
-
-app.use('/pricing', pricingRouter);
-app.use('/signup', onboardingRouter);
-app.use('/app', dashboardRouter);
-app.use('/app/modules', modulesRouter);
-app.use('/app/family', familyRouter);
-app.use('/app/billing', billingRouter);
-app.use('/legal', legalRouter);
-app.use('/concierge', conciergeRouter);
-

@@ -1,0 +1,24 @@
+﻿{
+  "desktop": {
+    "sidebar": [
+      { "id": "home", "label": "Home", "href": "/app" },
+      { "id": "missions", "label": "Missions", "href": "/app/missions" },
+      { "id": "admin", "label": "Admin Autopilot", "href": "/app/modules/admin-autopilot" },
+      { "id": "money", "label": "Money Mission Control", "href": "/app/modules/money-mission-control" },
+      { "id": "health", "label": "Health Navigator", "href": "/app/modules/health-navigator" },
+      { "id": "family", "label": "Family Coordination", "href": "/app/modules/family-coordination" },
+      { "id": "atlas", "label": "Atlas Concierge", "href": "/app/atlas" },
+      { "id": "notifications", "label": "Notifications", "href": "/app/notifications" },
+      { "id": "profile", "label": "Profile", "href": "/app/profile" }
+    ]
+  },
+  "mobile": {
+    "tabs": [
+      { "id": "home", "label": "Home", "icon": "home", "href": "/app" },
+      { "id": "missions", "label": "Missions", "icon": "check-square", "href": "/app/missions" },
+      { "id": "atlas", "label": "Atlas", "icon": "sparkles", "href": "/app/atlas" },
+      { "id": "notifications", "label": "Notifications", "icon": "bell", "href": "/app/notifications" },
+      { "id": "profile", "label": "Profile", "icon": "user", "href": "/app/profile" }
+    ]
+  }
+}

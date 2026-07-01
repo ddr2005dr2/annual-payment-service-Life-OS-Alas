@@ -1,0 +1,122 @@
+﻿LifeOS Atlas Enterprise Audit
+Generated: 07/01/2026 05:03:05
+
+LIVE STATE
+Homepage OK: True
+Homepage Status: 200
+Homepage Title: LifeOS Atlas — Premium Landing
+Health OK: True
+Health Status: 200
+Health Content: {"ok":true}
+
+REPO SUMMARY
+TotalFiles=964 Html=50 Js=328 Json=132 Css=0 Ps1=17
+
+AUDIT COUNTS
+PresentLive=6 PresentInRepoNotVerifiedLive=0 Partial=3 Missing=11
+
+GAP REPORT
+------------------------------------------------------------
+Area: Landing
+Key: landing_feature_grid
+Status: Missing
+Required: Feature grid below fold
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Landing
+Key: landing_trust_strip
+Status: Missing
+Required: Trust strip with privacy/compliance/user count
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Pricing
+Key: pricing_architecture
+Status: Missing
+Required: Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member tiers
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Onboarding
+Key: onboarding_4_step
+Status: Missing
+Required: 4-step onboarding with email/name, goal selection, integration, first mission preview
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Dashboard
+Key: dashboard_main
+Status: Partial
+Required: Main dashboard with Today's Missions, module grid, quick actions, statuses
+LiveHits: status
+RepoHits: 
+------------------------------------------------------------
+Area: Modules
+Key: module_stack
+Status: Missing
+Required: Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Modules
+Key: module_detail_view
+Status: Missing
+Required: Split-pane/module detail views with list, detail, trust log, action panel
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Navigation
+Key: desktop_sidebar
+Status: Missing
+Required: Desktop sidebar navigation for app
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Family
+Key: family_features
+Status: Partial
+Required: Shared routines, folders, due dates, household tasks, 5-member family tier
+LiveHits: family
+RepoHits: 
+------------------------------------------------------------
+Area: Integrations
+Key: integrations_v1
+Status: Missing
+Required: Google Calendar, Gmail/Outlook, Stripe/Square, Plaid, Twilio/SendGrid, OpenAI
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Auth
+Key: auth_layer
+Status: Missing
+Required: Sign up/login/session model and permissions explanations
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Compliance
+Key: compliance_docs
+Status: Missing
+Required: Privacy policy, terms, data use disclosure, AI disclosure
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Analytics
+Key: analytics_layer
+Status: Partial
+Required: Privacy-first analytics and event tracking
+LiveHits: events
+RepoHits: 
+------------------------------------------------------------
+Area: Growth
+Key: referral_growth
+Status: Missing
+Required: Referral mechanics and growth hooks
+LiveHits: 
+RepoHits: 
+
+ENTERPRISE BUILD SCOPE NOW
+- Preserve newest approved landing page structure and pricing presentation if found.
+- Wire missing tabs, nav, onboarding, dashboard, module pages, family, billing, concierge, notifications, auth, analytics, compliance, and integrations.
+- Promote anything found only in repo but not verified live into deployment scope.
+- Treat Missing and Partial items as mandatory targets for the next one-shot production script.

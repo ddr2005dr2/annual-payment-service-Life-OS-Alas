@@ -1,262 +1,33 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LifeOS Atlas | Dashboard</title>
-  <style>
-    :root,[data-theme="light"]{--bg:#0f6f73;--bg-2:#0a5558;--shell:rgba(240,251,251,.96);--shell-2:#ffffff;--text:#163037;--muted:#597278;--line:#d4e4e6;--accent:#0f6f73;--soft:#e6f5f5;--blue:#457eef;--orange:#e69233;--success:#2f7d53;--shadow:0 22px 60px rgba(5,20,22,.18)}
-    [data-theme="dark"]{--bg:#07181a;--bg-2:#0d3033;--shell:rgba(12,31,35,.94);--shell-2:#14282d;--text:#edf7f7;--muted:#9bb4b7;--line:#214046;--accent:#59b7bb;--soft:#133136;--blue:#7da8ff;--orange:#f4a95a;--success:#6dc994;--shadow:0 24px 64px rgba(0,0,0,.38)}
-    *{box-sizing:border-box} html,body{margin:0;padding:0} body{font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at top left, rgba(69,126,239,.12), transparent 24%),radial-gradient(circle at top right, rgba(230,146,51,.14), transparent 24%),linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--text);min-height:100vh}
-    a{text-decoration:none;color:inherit} button,input,select,textarea{font:inherit}
-    .shell{width:min(1320px,calc(100% - 24px));margin:18px auto;display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px}
-    .side,.main{background:var(--shell);backdrop-filter:blur(18px);border:1px solid var(--line);box-shadow:var(--shadow)}
-    .side{border-radius:30px;padding:22px 18px;display:flex;flex-direction:column;gap:18px;position:sticky;top:18px;height:calc(100vh - 36px)}
-    .main{border-radius:32px;padding:20px;display:grid;gap:18px}
-    .brand{display:flex;justify-content:space-between;gap:12px;align-items:center}.logo{display:flex;gap:12px;align-items:center}.mark{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--blue));display:grid;place-items:center;color:#fff;font-weight:800;box-shadow:0 16px 28px rgba(15,111,115,.32)}
-    .theme-toggle,.nav-btn,.side-link,.btn,.tab,.pill{border:1px solid var(--line);background:var(--shell-2);color:var(--text);border-radius:18px}
-    .theme-toggle{padding:10px 14px;cursor:pointer}.nav-btn,.side-link{padding:14px 14px;display:flex;justify-content:space-between;gap:12px}.nav-btn{width:100%;cursor:pointer;background:transparent}.nav-btn.active{background:var(--soft);color:var(--accent)}
-    .hero{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}.hero h1{margin:0;font-size:clamp(2.1rem,4vw,3.2rem);letter-spacing:-.05em;line-height:1.02}.lede{margin:10px 0 0;color:var(--muted);line-height:1.75;max-width:68ch}
-    .top-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{padding:12px 16px;cursor:pointer}.btn.primary{background:var(--accent);color:#fff;border-color:transparent}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric,.panel,.mini-card,.profile-card{background:var(--shell-2);border:1px solid var(--line);border-radius:26px}.metric,.panel,.mini-card,.profile-card{padding:18px}.metric .value{margin-top:10px;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.04em}.metric .hint,.muted{color:var(--muted);line-height:1.65}
-    .layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(360px,.8fr);gap:18px}.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:14px}.panel-head h2{margin:0;font-size:1.1rem;letter-spacing:-.02em}.tablist{display:flex;gap:8px;flex-wrap:wrap}.tab{padding:10px 14px;cursor:pointer;background:transparent}.tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:transparent}.tabpanel{display:none}.tabpanel.active{display:block}.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:grid;gap:8px;margin-bottom:12px}.field label{font-size:13px;color:var(--muted)} .field input,.field textarea,.field select{width:100%;padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--shell);color:var(--text)} .field textarea{min-height:104px;resize:vertical}
-    .list{display:grid;gap:10px}.item{border:1px solid var(--line);background:var(--shell);border-radius:22px;padding:14px}.item-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-size:12px;border:1px solid transparent}.badge.teal{background:color-mix(in srgb,var(--accent) 12%, transparent);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 24%, transparent)}.badge.orange{background:color-mix(in srgb,var(--orange) 14%, transparent);color:var(--orange);border-color:color-mix(in srgb,var(--orange) 26%, transparent)}.badge.blue{background:color-mix(in srgb,var(--blue) 14%, transparent);color:var(--blue);border-color:color-mix(in srgb,var(--blue) 26%, transparent)}.badge.success{background:color-mix(in srgb,var(--success) 14%, transparent);color:var(--success);border-color:color-mix(in srgb,var(--success) 26%, transparent)}
-    .familyPanel{display:grid;gap:12px}.member{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.member:last-child{border-bottom:none}.avatar{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--blue));display:grid;place-items:center;color:#fff;font-weight:800;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.row-actions{display:flex;gap:10px;flex-wrap:wrap}.empty{border:1px dashed var(--line);border-radius:20px;padding:18px;color:var(--muted)}
-    @media (max-width:1080px){.shell{grid-template-columns:1fr}.side{position:relative;height:auto}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}}
-    @media (max-width:720px){.metrics,.grid-2{grid-template-columns:1fr}.main{padding:16px}.hero,.panel-head{flex-direction:column;align-items:stretch}}
-  </style>
+  <meta charset="UTF-8">
+  <title>Atlas Dashboard  LifeOS Atlas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/atlas.css">
 </head>
-<body>
-  <div class="shell">
-    <aside class="side">
-      <div class="brand">
-        <div class="logo"><div class="mark">LA</div><div><strong>LifeOS Atlas</strong><div class="muted" style="font-size:12px">Premium family workspace</div></div></div>
-        <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
-      </div>
-      <div class="muted" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:0 10px">Workspace</div>
-      <button class="nav-btn active" data-tab="overview">Overview <small>Snapshot</small></button>
-      <button class="nav-btn" data-tab="family">Family <small>Seats + roles</small></button>
-      <button class="nav-btn" data-tab="workflow">Workflow <small>Reminders + tasks</small></button>
-      <button class="nav-btn" data-tab="promos">Promotions <small>Manual + scheduled</small></button>
-      <div style="margin-top:auto;display:grid;gap:10px">
-        <a class="side-link" href="/admin.html">Admin <strong>Open</strong></a>
-        <a class="side-link" href="/contact.html">Contact <strong>Support</strong></a>
-        <button class="side-link" id="logoutBtn" type="button">Logout <strong>Exit</strong></button>
-      </div>
+<body class="atlas-theme atlas-app">
+  <div class="atlas-app-shell">
+    <aside class="atlas-sidebar" id="atlas-sidebar">
+      <!-- Sidebar rendered from config/navigation.json -->
     </aside>
-
-    <main class="main">
-      <section class="hero">
-        <div>
-          <p class="muted" style="margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase">Dashboard</p>
-          <h1>Welcome back, <span id="userFirstName">there</span>.</h1>
-          <p class="lede">Run a premium family account with reminders, profile images, permissions, roles, tasks, traffic metrics, and safeguarded promo controls from one elegant teal-led workspace.</p>
-        </div>
-        <div class="top-actions">
-          <label class="btn" style="cursor:pointer">Profile picture<input id="photoUpload" type="file" accept="image/*" hidden></label>
-          <button class="btn primary" id="saveProfileBtn" type="button">Save profile</button>
-        </div>
+    <main class="atlas-dashboard-main">
+      <section id="todays-missions" class="atlas-section">
+        <!-- Today's Missions card -->
       </section>
-
-      <section class="metrics">
-        <article class="metric"><div class="muted">Family seats</div><div class="value" id="metricSeats">0</div><div class="hint">Configured family-member capacity.</div></article>
-        <article class="metric"><div class="muted">Reminders</div><div class="value" id="metricReminders">0</div><div class="hint">Active family reminders.</div></article>
-        <article class="metric"><div class="muted">Open tasks</div><div class="value" id="metricTasks">0</div><div class="hint">Tasks still requiring action.</div></article>
-        <article class="metric"><div class="muted">Campaigns</div><div class="value" id="metricCampaigns">0</div><div class="hint">Scheduled or controlled promotions.</div></article>
+      <section id="module-grid" class="atlas-section">
+        <!-- Module cards for Admin, Money, Health, Family -->
       </section>
-
-      <section class="layout">
-        <section class="panel">
-          <div class="panel-head">
-            <div><h2>Workspace controls</h2><p class="muted">Premium app-shell tools with controlled family access and persistence-backed forms.</p></div>
-            <div class="tablist">
-              <button class="tab" data-panel="familyPanel" aria-selected="false">Family</button>
-              <button class="tab active" data-panel="remindersPanel" aria-selected="true">Reminders</button>
-              <button class="tab" data-panel="tasksPanel" aria-selected="false">Tasks</button>
-              <button class="tab" data-panel="promosPanel" aria-selected="false">Promos</button>
-            </div>
-          </div>
-
-          <div class="tabpanel" id="familyPanel">
-            <div class="familyPanel">
-              <div class="grid-2">
-                <div class="field"><label>Family name</label><input id="familyName" disabled></div>
-                <div class="field"><label>Seat limit</label><select id="seatLimit"><option value="4">4</option><option value="5">5</option></select></div>
-              </div>
-              <div class="row-actions"><button class="btn primary" id="saveSeatLimitBtn" type="button">Save seat limit</button></div>
-              <form id="memberForm">
-                <div class="grid-2">
-                  <div class="field"><label>Member email</label><input name="email" type="email" required></div>
-                  <div class="field"><label>Access role</label><select name="accessRole"><option value="member">Member</option><option value="manager">Manager</option></select></div>
-                </div>
-                <div class="grid-2">
-                  <div class="field"><label>First name</label><input name="firstName"></div>
-                  <div class="field"><label>Last name</label><input name="lastName"></div>
-                </div>
-                <div class="grid-2">
-                  <label class="btn"><input type="checkbox" name="canViewFinance"> Finance visibility</label>
-                  <label class="btn"><input type="checkbox" name="canManagePromos"> Promo control</label>
-                </div>
-                <div class="row-actions"><button class="btn primary" type="submit">Add family member</button></div>
-              </form>
-              <div class="list" id="familyList"></div>
-            </div>
-          </div>
-
-          <div class="tabpanel active" id="remindersPanel">
-            <form id="reminderForm">
-              <div class="grid-2">
-                <div class="field"><label>Reminder title</label><input name="title" required></div>
-                <div class="field"><label>Due date</label><input name="dueDate" type="date" required></div>
-              </div>
-              <div class="grid-2">
-                <div class="field"><label>Category</label><select name="category"><option value="admin">Admin</option><option value="medical">Medical</option><option value="paperwork">Paperwork</option><option value="household">Household</option></select></div>
-                <div class="field"><label>Priority</label><select name="priority"><option value="normal">Normal</option><option value="high">High</option><option value="urgent">Urgent</option></select></div>
-              </div>
-              <div class="field"><label>Notes</label><textarea name="notes"></textarea></div>
-              <div class="row-actions"><button class="btn primary" type="submit">Save reminder</button></div>
-            </form>
-            <div class="list" id="reminderList"></div>
-          </div>
-
-          <div class="tabpanel" id="tasksPanel">
-            <form id="taskForm">
-              <div class="grid-2">
-                <div class="field"><label>Task name</label><input name="title" required></div>
-                <div class="field"><label>Owner label</label><input name="owner"></div>
-              </div>
-              <div class="field"><label>Notes</label><textarea name="notes"></textarea></div>
-              <div class="row-actions"><button class="btn primary" type="submit">Add task</button></div>
-            </form>
-            <div class="list" id="taskList"></div>
-          </div>
-
-          <div class="tabpanel" id="promosPanel">
-            <form id="promoForm">
-              <div class="grid-2">
-                <div class="field"><label>Campaign title</label><input name="title" required></div>
-                <div class="field"><label>Channel</label><select name="channel"><option value="social">Social</option><option value="email">Email</option><option value="content">Content</option></select></div>
-              </div>
-              <div class="field"><label>Instruction</label><textarea name="instruction" required></textarea></div>
-              <div class="grid-2">
-                <div class="field"><label>Hashtags</label><input name="hashtags" placeholder="#lifeops #familyadmin"></div>
-                <div class="field"><label>Schedule</label><input name="scheduledFor" type="datetime-local"></div>
-              </div>
-              <div class="grid-2">
-                <div class="field"><label>Throttle per hour</label><select name="throttlePerHour"><option>4</option><option>8</option><option>12</option><option>16</option></select></div>
-                <div class="field"><label>Guardrail</label><input value="Anti-spam safeguard enforced" disabled></div>
-              </div>
-              <div class="row-actions"><button class="btn primary" type="submit">Schedule promotion</button></div>
-            </form>
-            <div class="list" id="promoList"></div>
-          </div>
-        </section>
-
-        <aside class="panel">
-          <div class="panel-head"><div><h2>Status and profile</h2><p class="muted">Live analytics, profile image, and recent family activity.</p></div><span class="badge teal">Premium</span></div>
-          <div class="profile-card">
-            <div style="display:flex;gap:14px;align-items:center">
-              <div class="avatar" id="profileAvatar">LA</div>
-              <div><strong id="profileName">LifeOS user</strong><div class="muted" id="profileEmail">â€”</div></div>
-            </div>
-          </div>
-          <div class="mini-card" style="margin-top:12px"><div class="muted">Daily visitors</div><div style="font-size:1.8rem;font-weight:800;letter-spacing:-.04em" id="dailyVisitors">0</div></div>
-          <div class="mini-card" style="margin-top:12px"><div class="muted">Recent activity</div><div class="list" id="activityFeed" style="margin-top:10px"></div></div>
-        </aside>
+      <section id="quick-actions" class="atlas-section">
+        <!-- Quick Actions -->
+      </section>
+      <section id="status-indicators" class="atlas-section">
+        <!-- Status dots (active / needs attention / idle) -->
       </section>
     </main>
+    <div id="atlas-concierge-bubble" class="atlas-concierge-bubble">
+      <!-- Concierge dock -->
+    </div>
   </div>
-
-  <script>
-    (function(){
-      const root = document.documentElement;
-      const themeToggle = document.getElementById('themeToggle');
-      let theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
-      function syncTheme(){root.setAttribute('data-theme', theme);themeToggle.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';}
-      themeToggle.addEventListener('click', function(){theme = theme === 'dark' ? 'light' : 'dark';syncTheme();});
-      syncTheme();
-
-      async function fetchJson(url, options){
-        const res = await fetch(url, Object.assign({credentials:'include',headers:{'Accept':'application/json'}}, options || {}));
-        let body = null; try { body = await res.json(); } catch (_) {}
-        return { ok: res.ok, status: res.status, body };
-      }
-
-      function fdToJson(form){ return Object.fromEntries(new FormData(form).entries()); }
-      function setText(id, value){ const node = document.getElementById(id); if(node) node.textContent = value; }
-      function escapeHtml(value){ return String(value || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])); }
-
-      function renderActivity(items){
-        const rootNode = document.getElementById('activityFeed');
-        if(!items || !items.length){ rootNode.innerHTML = '<div class="empty">No activity yet.</div>'; return; }
-        rootNode.innerHTML = items.slice(0,8).map(item => `<div class="item"><strong>${escapeHtml(item.type || 'event')}</strong><div class="muted">${escapeHtml(item.detail || '')}</div></div>`).join('');
-      }
-
-      function renderMembers(items){
-        const rootNode = document.getElementById('familyList');
-        if(!items || !items.length){ rootNode.innerHTML = '<div class="empty">No family members yet.</div>'; return; }
-        rootNode.innerHTML = items.map(item => {
-          const initials = ((item.first_name || 'L').slice(0,1) + (item.last_name || 'A').slice(0,1)).toUpperCase();
-          return `<div class="member"><div style="display:flex;gap:12px;align-items:center"><div class="avatar">${item.profile_picture ? `<img src="${escapeHtml(item.profile_picture)}" alt="">` : initials}</div><div><strong>${escapeHtml((item.first_name || '') + ' ' + (item.last_name || '')) || escapeHtml(item.email)}</strong><div class="muted">${escapeHtml(item.email)} Â· ${escapeHtml(item.access_role)}</div></div></div><div class="row-actions"><span class="badge teal">${item.can_manage_family ? 'Manager' : 'Member'}</span><span class="badge blue">${item.can_manage_promos ? 'Promo' : 'Standard'}</span></div></div>`;
-        }).join('');
-      }
-
-      function renderList(id, items, mapper, emptyText){
-        const node = document.getElementById(id);
-        if(!items || !items.length){ node.innerHTML = `<div class="empty">${emptyText}</div>`; return; }
-        node.innerHTML = items.map(mapper).join('');
-      }
-
-      function priorityClass(priority){ return priority === 'urgent' ? 'orange' : priority === 'high' ? 'blue' : 'teal'; }
-
-      async function hydrate(){
-        const me = await fetchJson('/api/auth/me');
-        if(!me.ok || !me.body || !me.body.user){ location.href = '/login.html'; return; }
-        const user = me.body.user;
-        const family = me.body.family;
-        setText('userFirstName', user.first_name || 'there');
-        setText('profileName', ((user.first_name || '') + ' ' + (user.last_name || '')).trim() || 'LifeOS user');
-        setText('profileEmail', user.email || '');
-        const avatar = document.getElementById('profileAvatar');
-        if(user.profile_picture){ avatar.innerHTML = `<img src="${escapeHtml(user.profile_picture)}" alt="">`; }
-        if(family){ document.getElementById('familyName').value = family.name || ''; document.getElementById('seatLimit').value = String(family.seat_limit || 4); setText('metricSeats', String(family.seat_limit || 0)); }
-
-        const stats = await fetchJson('/api/stats');
-        if(stats.ok && stats.body){
-          setText('metricCampaigns', String(stats.body.campaigns || 0));
-          setText('metricReminders', String(stats.body.reminders || 0));
-          setText('metricTasks', String(stats.body.openTasks || 0));
-          setText('dailyVisitors', String(stats.body.dailyVisitors || 0));
-          renderActivity(stats.body.recentActivity || []);
-        }
-
-        const fam = await fetchJson('/api/family');
-        if(fam.ok && fam.body){ renderMembers(fam.body.members || []); }
-
-        const reminders = await fetchJson('/api/reminders');
-        if(reminders.ok){ renderList('reminderList', reminders.body.items || [], item => `<article class="item"><div class="item-top"><div><strong>${escapeHtml(item.title)}</strong><div class="muted">${escapeHtml(item.category)} due ${escapeHtml(item.due_date)}</div></div><span class="badge ${priorityClass(item.priority)}">${escapeHtml(item.priority)}</span></div><div class="muted">${escapeHtml(item.notes || '')}</div></article>`, 'No reminders yet.'); }
-
-        const tasks = await fetchJson('/api/tasks');
-        if(tasks.ok){ renderList('taskList', tasks.body.items || [], item => `<article class="item"><div class="item-top"><div><strong>${escapeHtml(item.title)}</strong><div class="muted">${escapeHtml(item.owner || 'Unassigned')}</div></div><span class="badge success">${escapeHtml(item.status)}</span></div><div class="muted">${escapeHtml(item.notes || '')}</div></article>`, 'No tasks yet.'); }
-
-        const promos = await fetchJson('/api/promos');
-        if(promos.ok){ renderList('promoList', promos.body.items || [], item => `<article class="item"><div class="item-top"><div><strong>${escapeHtml(item.title)}</strong><div class="muted">${escapeHtml(item.channel)} Â· ${escapeHtml(item.scheduled_for || 'manual')}</div></div><span class="badge blue">${escapeHtml(item.status)}</span></div><div class="muted">${escapeHtml(item.instruction)}</div><div class="row-actions" style="margin-top:10px"><button class="btn" data-action="pause" data-id="${item.id}">Pause</button><button class="btn" data-action="resume" data-id="${item.id}">Resume</button><button class="btn" data-action="stop" data-id="${item.id}">Stop</button><button class="btn primary" data-action="manual-run" data-id="${item.id}">Manual run</button></div></article>`, 'No promotions yet.'); }
-      }
-
-      document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', function(){ document.querySelectorAll('.tab').forEach(x => x.setAttribute('aria-selected', x === btn ? 'true' : 'false')); document.querySelectorAll('.tabpanel').forEach(p => p.classList.toggle('active', p.id === btn.dataset.panel)); }));
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', function(){ document.querySelectorAll('.nav-btn').forEach(x => x.classList.toggle('active', x === btn)); const mapping = { overview:'remindersPanel', family:'familyPanel', workflow:'tasksPanel', promos:'promosPanel' }; const target = mapping[btn.dataset.tab] || 'remindersPanel'; document.querySelectorAll('.tabpanel').forEach(p => p.classList.toggle('active', p.id === target)); document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t.dataset.panel === target ? 'true' : 'false')); }));
-
-      document.getElementById('reminderForm').addEventListener('submit', async function(e){ e.preventDefault(); const body = fdToJson(e.currentTarget); const res = await fetchJson('/api/reminders', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) }); if(res.ok){ e.currentTarget.reset(); hydrate(); } });
-      document.getElementById('taskForm').addEventListener('submit', async function(e){ e.preventDefault(); const body = fdToJson(e.currentTarget); const res = await fetchJson('/api/tasks', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) }); if(res.ok){ e.currentTarget.reset(); hydrate(); } });
-      document.getElementById('promoForm').addEventListener('submit', async function(e){ e.preventDefault(); const body = fdToJson(e.currentTarget); const res = await fetchJson('/api/promos', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) }); if(res.ok){ e.currentTarget.reset(); hydrate(); } });
-      document.getElementById('memberForm').addEventListener('submit', async function(e){ e.preventDefault(); const raw = fdToJson(e.currentTarget); raw.canViewFinance = !!new FormData(e.currentTarget).get('canViewFinance'); raw.canManagePromos = !!new FormData(e.currentTarget).get('canManagePromos'); const res = await fetchJson('/api/family/members', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(raw) }); if(res.ok){ e.currentTarget.reset(); hydrate(); } });
-      document.getElementById('saveSeatLimitBtn').addEventListener('click', async function(){ await fetchJson('/api/family/settings', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ seatLimit: document.getElementById('seatLimit').value }) }); hydrate(); });
-      document.getElementById('saveProfileBtn').addEventListener('click', async function(){ const firstName = prompt('First name'); const lastName = prompt('Last name'); if(firstName !== null){ await fetchJson('/api/profile', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ firstName, lastName }) }); hydrate(); } });
-      document.getElementById('photoUpload').addEventListener('change', async function(e){ if(!e.target.files.length) return; const fd = new FormData(); fd.append('profilePhoto', e.target.files[0]); await fetch('/api/profile/photo', { method:'POST', credentials:'include', body:fd }); hydrate(); });
-      document.getElementById('promoList').addEventListener('click', async function(e){ const btn = e.target.closest('button[data-action]'); if(!btn) return; await fetchJson('/api/promos/' + btn.dataset.id + '/action', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ action: btn.dataset.action }) }); hydrate(); });
-      document.getElementById('logoutBtn').addEventListener('click', async function(){ await fetchJson('/api/auth/logout', { method:'POST' }); location.href = '/login.html'; });
-
-      hydrate();
-    })();
-  </script>
 </body>
 </html>

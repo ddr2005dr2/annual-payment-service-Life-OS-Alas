@@ -1,0 +1,122 @@
+﻿LifeOS Atlas Enterprise Audit
+Generated: 07/01/2026 05:06:55
+
+LIVE STATE
+Homepage OK: True
+Homepage Status: 200
+Homepage Title: LifeOS Atlas — Premium Landing
+Health OK: True
+Health Status: 200
+Health Content: {"ok":true}
+
+REPO SUMMARY
+TotalFiles=967 Html=50 Js=328 Json=133 Css=0 Ps1=17
+
+AUDIT COUNTS
+PresentLive=6 PresentInRepoNotVerifiedLive=6 Partial=2 Missing=6
+
+GAP REPORT
+------------------------------------------------------------
+Area: Landing
+Key: landing_feature_grid
+Status: PresentInRepoNotVerifiedLive
+Required: Feature grid below fold
+LiveHits: 
+RepoHits: Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination
+------------------------------------------------------------
+Area: Landing
+Key: landing_trust_strip
+Status: Missing
+Required: Trust strip with privacy/compliance/user count
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Pricing
+Key: pricing_architecture
+Status: Missing
+Required: Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member tiers
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Onboarding
+Key: onboarding_4_step
+Status: Missing
+Required: 4-step onboarding with email/name, goal selection, integration, first mission preview
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Dashboard
+Key: dashboard_main
+Status: Partial
+Required: Main dashboard with Today's Missions, module grid, quick actions, statuses
+LiveHits: status
+RepoHits: 
+------------------------------------------------------------
+Area: Modules
+Key: module_stack
+Status: PresentInRepoNotVerifiedLive
+Required: Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination
+LiveHits: 
+RepoHits: Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination
+------------------------------------------------------------
+Area: Modules
+Key: module_detail_view
+Status: Missing
+Required: Split-pane/module detail views with list, detail, trust log, action panel
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Navigation
+Key: desktop_sidebar
+Status: Missing
+Required: Desktop sidebar navigation for app
+LiveHits: 
+RepoHits: 
+------------------------------------------------------------
+Area: Family
+Key: family_features
+Status: Partial
+Required: Shared routines, folders, due dates, household tasks, 5-member family tier
+LiveHits: family
+RepoHits: 
+------------------------------------------------------------
+Area: Integrations
+Key: integrations_v1
+Status: PresentInRepoNotVerifiedLive
+Required: Google Calendar, Gmail/Outlook, Stripe/Square, Plaid, Twilio/SendGrid, OpenAI
+LiveHits: 
+RepoHits: Google Calendar, Gmail, Outlook, Stripe, Square, Plaid, Twilio, SendGrid, OpenAI
+------------------------------------------------------------
+Area: Auth
+Key: auth_layer
+Status: PresentInRepoNotVerifiedLive
+Required: Sign up/login/session model and permissions explanations
+LiveHits: 
+RepoHits: login, signup, session, auth, permissions
+------------------------------------------------------------
+Area: Compliance
+Key: compliance_docs
+Status: PresentInRepoNotVerifiedLive
+Required: Privacy policy, terms, data use disclosure, AI disclosure
+LiveHits: 
+RepoHits: Privacy Policy, data use, AI disclosure, Terms of Service, CCPA
+------------------------------------------------------------
+Area: Analytics
+Key: analytics_layer
+Status: PresentInRepoNotVerifiedLive
+Required: Privacy-first analytics and event tracking
+LiveHits: events
+RepoHits: analytics, events, tracking
+------------------------------------------------------------
+Area: Growth
+Key: referral_growth
+Status: Missing
+Required: Referral mechanics and growth hooks
+LiveHits: 
+RepoHits: 
+
+ENTERPRISE BUILD SCOPE NOW
+- Preserve newest approved landing page structure and pricing presentation if found.
+- Wire missing tabs, nav, onboarding, dashboard, module pages, family, billing, concierge, notifications, auth, analytics, compliance, and integrations.
+- Promote anything found only in repo but not verified live into deployment scope.
+- Treat Missing and Partial items as mandatory targets for the next one-shot production script.

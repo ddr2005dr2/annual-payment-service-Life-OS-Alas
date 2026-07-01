@@ -1,0 +1,273 @@
+﻿param(
+  [string]$RepoPath = "C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas"
+)
+
+$ErrorActionPreference = "Stop"
+Set-Location $RepoPath
+New-Item -ItemType Directory -Force -Path ".\public" | Out-Null
+New-Item -ItemType Directory -Force -Path ".\data" | Out-Null
+
+@'
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LifeOS Atlas</title>
+  <meta name="description" content="LifeOS Atlas  the operating system for adult life." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0e666a;--bg2:#0a4f53;--panel:#ffffff;--panel2:#f4fbfa;--text:#152729;--muted:#61787a;--line:rgba(21,39,41,.1);--orange:#da7101;--blue:#006494;--teal:#01696f;--teal2:#0c4e54;--ok:#2f855a;--warn:#b7791f;--radius:22px;--shadow:0 18px 48px rgba(0,0,0,.16)}
+    *{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Inter,system-ui,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text)}body{min-height:100vh}.shell{max-width:1320px;margin:0 auto;padding:22px 18px 40px}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;color:#fff;padding:8px 2px 18px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#fff,rgba(255,255,255,.74));position:relative;box-shadow:0 10px 28px rgba(0,0,0,.15)}.logo:before,.logo:after{content:"";position:absolute;border-radius:999px;background:linear-gradient(135deg,var(--orange),#ffbd82)}.logo:before{width:19px;height:19px;left:7px;top:8px}.logo:after{width:10px;height:10px;right:8px;bottom:8px}.status{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700}.dot{width:10px;height:10px;border-radius:50%;background:#74f0a5;box-shadow:0 0 0 6px rgba(116,240,165,.16)}
+    .hero{display:grid;grid-template-columns:1.35fr .95fr;gap:22px}.card,.glass,.footer-card{border-radius:var(--radius);box-shadow:var(--shadow)}.card{background:linear-gradient(180deg,#fff,#f6fbfb);padding:34px}.glass{background:rgba(255,255,255,.14);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);padding:16px}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#e7f7f5;color:#0d5d61;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}h1{font-size:clamp(38px,6.8vw,72px);line-height:.94;letter-spacing:-.05em;margin:16px 0 14px}.lead{font-size:18px;line-height:1.66;color:var(--muted);max-width:62ch}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0}.btn{appearance:none;border:none;border-radius:14px;padding:14px 18px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn-primary{background:linear-gradient(135deg,var(--orange),#ffb16f);color:#fff}.btn-secondary{background:#e8f2ff;color:#0a4b95}.btn-ghost{background:#eaf7f6;color:#0e5c60}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{border:1px solid var(--line);border-radius:18px;padding:16px;background:#fff}.stat b{display:block;font-size:28px}.stat span{font-size:13px;color:var(--muted)}
+    .side-grid,.grid,.mission-grid,.family-grid,.growth-grid{display:grid;gap:14px}.mini,.box,.mission,.member,.event{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px}.mini h3,.box h3,.mission h3,.member h3,.event h3{margin:0 0 8px;font-size:16px}.mini p,.box p,.mission p,.member p,.event p{margin:0;color:var(--muted);font-size:14px;line-height:1.58}
+    .layout{display:grid;grid-template-columns:240px 1fr;gap:22px;margin-top:22px}.nav{align-self:start}.nav button{width:100%;text-align:left;border:none;background:transparent;color:#fff;padding:14px 14px;border-radius:16px;font-weight:700;cursor:pointer}.nav button.active{background:#fff;color:#102123}.tab{background:#fff;padding:24px;border-radius:var(--radius);box-shadow:var(--shadow)}.panel{display:none}.panel.active{display:block}.panel h2{margin:0 0 8px;font-size:29px}.panel > p{color:var(--muted);line-height:1.66}
+    .grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}.mission-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}.family-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:18px}.growth-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}.kpi-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}.kpi{border:1px solid var(--line);border-radius:18px;background:var(--panel2);padding:16px}.kpi b{display:block;font-size:28px;margin-bottom:4px}.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800}.pill.ok{background:#eaf7ef;color:#166534}.pill.warn{background:#fff4df;color:#9a5a00}.pill.info{background:#e8f2ff;color:#0f4fa3}
+    .form{display:grid;gap:12px;margin-top:16px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:7px}.field label{font-size:13px;font-weight:700}.field input,.field textarea,.field select{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;font:inherit}.field textarea{min-height:120px;resize:vertical}.response{margin-top:12px;padding:12px 14px;border-radius:14px;background:#eef8f2;color:#145032;font-size:14px;display:none;white-space:pre-wrap}
+    .footer-card{margin-top:22px;padding:18px 20px;background:rgba(255,255,255,.92)}.footer-links{display:flex;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:14px}.list{display:grid;gap:12px;margin-top:16px}.event small,.member small,.mission small{display:block;color:var(--muted);margin-top:8px}.trust-links a{display:inline-flex;margin-right:12px;margin-bottom:8px}
+    @media (max-width: 1020px){.hero,.layout,.row,.grid,.mission-grid,.family-grid,.growth-grid,.kpi-row,.stats{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand"><div class="logo"></div><div>LifeOS Atlas</div></div>
+      <div class="status"><span class="dot"></span><span>Current working build repaired</span></div>
+    </div>
+
+    <section class="hero">
+      <div class="card">
+        <div class="eyebrow">The operating system for adult life</div>
+        <h1>Admin autopilot, family coordination, and concierge in one working surface.</h1>
+        <p class="lead">This repaired working version keeps your current path intact while expanding the application layer with onboarding, missions, family members, analytics visibility, and file-backed persistence.</p>
+        <div class="actions">
+          <button class="btn btn-primary" data-tab-target="onboarding">Start free</button>
+          <button class="btn btn-secondary" data-tab-target="concierge">Talk to concierge</button>
+          <button class="btn btn-ghost" data-tab-target="admin">View admin signals</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="statUsers">0</b><span>Users</span></div>
+          <div class="stat"><b id="statConcierge">0</b><span>Concierge</span></div>
+          <div class="stat"><b id="statEvents">0</b><span>Events</span></div>
+          <div class="stat"><b id="statMissions">0</b><span>Missions</span></div>
+        </div>
+      </div>
+      <aside class="glass">
+        <div class="side-grid">
+          <div class="mini"><h3>Admin Autopilot</h3><p>Capture obligations, convert them into missions, and keep the dashboard organized by urgency and module.</p></div>
+          <div class="mini"><h3>Family Coordination</h3><p>Track multiple family members, roles, and shared household workflows in the same system.</p></div>
+          <div class="mini"><h3>Growth + trust</h3><p>Show live operational metrics, public trust routes, and acquisition surfaces without breaking the current deployment path.</p></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="layout">
+      <nav class="nav glass" aria-label="Sections">
+        <button class="active" data-tab="overview">Overview</button>
+        <button data-tab="onboarding">Onboarding</button>
+        <button data-tab="missions">Missions</button>
+        <button data-tab="family">Family</button>
+        <button data-tab="concierge">Concierge</button>
+        <button data-tab="growth">Growth</button>
+        <button data-tab="admin">Admin</button>
+        <button data-tab="trust">Trust</button>
+      </nav>
+
+      <div class="tab">
+        <section class="panel active" id="panel-overview">
+          <h2>Overview</h2>
+          <p>This is the repaired current working version, upgraded beyond a blank shell into a real multi-layer operating surface with file-backed state, family support, mission capture, concierge intake, and admin visibility.</p>
+        </section>
+
+        <section class="panel" id="panel-onboarding">
+          <h2>Onboarding</h2>
+          <p>Capture a new user and create an immediate first mission preview with household context and growth source tracking.</p>
+          <form class="form" id="signupForm">
+            <div class="row">
+              <div class="field"><label for="fullName">Full name</label><input id="fullName" name="fullName" required /></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="goal">Primary goal</label><select id="goal" name="goal"><option value="admin-autopilot">Admin Autopilot</option><option value="money-mission-control">Money Mission Control</option><option value="health-navigator">Health Navigator</option><option value="family-coordination">Family Coordination</option></select></div>
+              <div class="field"><label for="householdSize">Household size</label><select id="householdSize" name="householdSize"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4+">4+</option></select></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="source">Acquisition source</label><select id="source" name="source"><option value="direct">Direct</option><option value="seo">SEO</option><option value="referral">Referral</option><option value="community">Community</option></select></div>
+              <div class="field"><label for="plan">Plan</label><select id="plan" name="plan"><option value="free">Free</option><option value="founding-waitlist">Founding waitlist</option><option value="family-waitlist">Family waitlist</option></select></div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit onboarding</button>
+            <div class="response" id="signupResponse"></div>
+          </form>
+        </section>
+
+        <section class="panel" id="panel-missions">
+          <h2>Missions</h2>
+          <p>Create and review actionable missions tied to modules, urgency, and household context.</p>
+          <form class="form" id="missionForm">
+            <div class="row">
+              <div class="field"><label for="missionTitle">Mission title</label><input id="missionTitle" name="title" required /></div>
+              <div class="field"><label for="missionModule">Module</label><select id="missionModule" name="module"><option value="admin-autopilot">Admin Autopilot</option><option value="money-mission-control">Money Mission Control</option><option value="health-navigator">Health Navigator</option><option value="family-coordination">Family Coordination</option></select></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="missionPriority">Priority</label><select id="missionPriority" name="priority"><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></div>
+              <div class="field"><label for="missionOwner">Owner</label><input id="missionOwner" name="owner" placeholder="You or family member" /></div>
+            </div>
+            <div class="field"><label for="missionNotes">Notes</label><textarea id="missionNotes" name="notes"></textarea></div>
+            <button class="btn btn-secondary" type="submit">Create mission</button>
+            <div class="response" id="missionResponse"></div>
+          </form>
+          <div class="mission-grid" id="missionList"></div>
+        </section>
+
+        <section class="panel" id="panel-family">
+          <h2>Family Coordination</h2>
+          <p>Add and track multiple household members, roles, and shared responsibilities.</p>
+          <form class="form" id="familyForm">
+            <div class="row">
+              <div class="field"><label for="memberName">Member name</label><input id="memberName" name="name" required /></div>
+              <div class="field"><label for="memberRole">Role</label><select id="memberRole" name="role"><option value="adult">Adult</option><option value="partner">Partner</option><option value="child">Child</option><option value="caregiver">Caregiver</option></select></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="memberFocus">Focus</label><input id="memberFocus" name="focus" placeholder="Bills, appointments, school, chores" /></div>
+              <div class="field"><label for="memberStatus">Status</label><select id="memberStatus" name="status"><option value="active">Active</option><option value="needs-attention">Needs attention</option><option value="idle">Idle</option></select></div>
+            </div>
+            <button class="btn btn-primary" type="submit">Add family member</button>
+            <div class="response" id="familyResponse"></div>
+          </form>
+          <div class="family-grid" id="familyList"></div>
+        </section>
+
+        <section class="panel" id="panel-concierge">
+          <h2>Concierge</h2>
+          <p>Capture high-touch requests and route them into the live working service state.</p>
+          <form class="form" id="conciergeForm">
+            <div class="row">
+              <div class="field"><label for="cName">Name</label><input id="cName" name="name" required /></div>
+              <div class="field"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" required /></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="topic">Topic</label><input id="topic" name="topic" required /></div>
+              <div class="field"><label for="conciergeStage">Lifecycle stage</label><select id="conciergeStage" name="stage"><option value="landing">Landing</option><option value="onboarding">Onboarding</option><option value="active-user">Active user</option><option value="billing-help">Billing help</option></select></div>
+            </div>
+            <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+            <button class="btn btn-secondary" type="submit">Send concierge request</button>
+            <div class="response" id="conciergeResponse"></div>
+          </form>
+        </section>
+
+        <section class="panel" id="panel-growth">
+          <h2>Growth surfaces</h2>
+          <p>Free-first acquisition remains live while SEO, referral, and monetization structure are made visible in the current working build.</p>
+        </section>
+
+        <section class="panel" id="panel-admin">
+          <h2>Admin overview</h2>
+          <p>See live counts, recent events, acquisition sources, and current records from the repaired working package.</p>
+          <div class="kpi-row">
+            <div class="kpi"><b id="kpiUsers">0</b><span>Users</span></div>
+            <div class="kpi"><b id="kpiMissions">0</b><span>Missions</span></div>
+            <div class="kpi"><b id="kpiFamily">0</b><span>Family members</span></div>
+          </div>
+          <div class="grid">
+            <div class="box"><h3>Traffic and events</h3><div class="list" id="eventsList"></div></div>
+            <div class="box"><h3>Source breakdown</h3><div class="list" id="sourceList"></div></div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-trust">
+          <h2>Trust center</h2>
+          <p>Live operational and public routes for the repaired current version.</p>
+          <div class="grid trust-links">
+            <div class="box"><h3>Health</h3><p><a href="/api/health" target="_blank" rel="noopener noreferrer">/api/health</a></p></div>
+            <div class="box"><h3>Admin overview</h3><p><a href="/api/admin/overview" target="_blank" rel="noopener noreferrer">/api/admin/overview</a></p></div>
+            <div class="box"><h3>Missions API</h3><p><a href="/api/missions" target="_blank" rel="noopener noreferrer">/api/missions</a></p></div>
+            <div class="box"><h3>Family API</h3><p><a href="/api/family" target="_blank" rel="noopener noreferrer">/api/family</a></p></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div class="footer-card">
+      <div class="footer-links">
+        <span>Current version repaired</span>
+        <span>Free-first rollout</span>
+        <span>Family support enabled</span>
+        <span>Mission system enabled</span>
+        <span>File-backed persistence enabled</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('[data-tab]');
+    const panels = document.querySelectorAll('.panel');
+    const tabTargets = document.querySelectorAll('[data-tab-target]');
+    function openTab(name){tabs.forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===name));panels.forEach(panel=>panel.classList.toggle('active',panel.id===`panel-${name}`));}
+    tabs.forEach(btn=>btn.addEventListener('click',()=>openTab(btn.dataset.tab)));
+    tabTargets.forEach(btn=>btn.addEventListener('click',()=>openTab(btn.dataset.tabTarget)));
+
+    async function getJson(url, opts){const res = await fetch(url, opts); return await res.json();}
+
+    function renderCards(targetId, items, type){
+      const target = document.getElementById(targetId);
+      if(!target) return;
+      if(!items || !items.length){target.innerHTML = `<div class="box"><h3>No records yet</h3><p>Create the first ${type} to populate this section.</p></div>`; return;}
+      target.innerHTML = items.map(item => {
+        if(type==='mission') return `<div class="mission"><span class="pill ${item.priority==='high'?'warn':'info'}">${item.priority}</span><h3>${item.title}</h3><p>${item.module}  Owner: ${item.owner || 'Unassigned'}</p><small>${item.notes || ''}</small></div>`;
+        if(type==='family') return `<div class="member"><span class="pill ${item.status==='active'?'ok':'warn'}">${item.status}</span><h3>${item.name}</h3><p>${item.role}  ${item.focus || 'General household support'}</p><small>${new Date(item.created_at).toLocaleString()}</small></div>`;
+        return '';
+      }).join('');
+    }
+
+    async function refreshOverview(){
+      try {
+        const data = await getJson('/api/admin/overview');
+        document.getElementById('statUsers').textContent = data.metrics?.users ?? 0;
+        document.getElementById('statConcierge').textContent = data.metrics?.conciergeMessages ?? 0;
+        document.getElementById('statEvents').textContent = data.metrics?.events ?? 0;
+        document.getElementById('statMissions').textContent = data.metrics?.missions ?? 0;
+        document.getElementById('kpiUsers').textContent = data.metrics?.users ?? 0;
+        document.getElementById('kpiMissions').textContent = data.metrics?.missions ?? 0;
+        document.getElementById('kpiFamily').textContent = data.metrics?.familyMembers ?? 0;
+        document.getElementById('eventsList').innerHTML = (data.recentEvents || []).slice(0,8).map(e => `<div class="event"><h3>${e.event_type}</h3><p>${e.path || e.source || 'system'}</p><small>${new Date(e.created_at).toLocaleString()}</small></div>`).join('') || '<p>No events yet.</p>';
+        document.getElementById('sourceList').innerHTML = (data.sourceBreakdown || []).map(s => `<div class="event"><h3>${s.source}</h3><p>${s.count} event(s)</p></div>`).join('') || '<p>No sources yet.</p>';
+      } catch(e) {}
+      try { const missions = await getJson('/api/missions'); renderCards('missionList', missions.items || [], 'mission'); } catch(e) {}
+      try { const family = await getJson('/api/family'); renderCards('familyList', family.items || [], 'family'); } catch(e) {}
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(e.target).entries());
+      const data = await getJson('/api/signup', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+      const box = document.getElementById('signupResponse'); box.style.display = 'block'; box.textContent = JSON.stringify(data, null, 2); e.target.reset(); await refreshOverview();
+    });
+
+    document.getElementById('missionForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(e.target).entries());
+      const data = await getJson('/api/missions', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+      const box = document.getElementById('missionResponse'); box.style.display = 'block'; box.textContent = JSON.stringify(data, null, 2); e.target.reset(); await refreshOverview();
+    });
+
+    document.getElementById('familyForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(e.target).entries());
+      const data = await getJson('/api/family', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+      const box = document.getElementById('familyResponse'); box.style.display = 'block'; box.textContent = JSON.stringify(data, null, 2); e.target.reset(); await refreshOverview();
+    });
+
+    document.getElementById('conciergeForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(e.target).entries());
+      const data = await getJson('/api/concierge', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+      const box = document.getElementById('conciergeResponse'); box.style.display = 'block'; box.textContent = JSON.stringify(data, null, 2); e.target.reset(); await refreshOverview();
+    });
+
+    refreshOverview();
+  </script>
+</body>
+</html>

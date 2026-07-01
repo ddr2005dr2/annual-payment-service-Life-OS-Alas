@@ -1,0 +1,2073 @@
+﻿{
+    "GeneratedAt":  "2026-07-01T05:06:55",
+    "RepoPath":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas",
+    "Live":  {
+                 "Url":  "https://www.lifeosatlas.com",
+                 "Ok":  true,
+                 "StatusCode":  200,
+                 "Title":  "LifeOS Atlas — Premium Landing",
+                 "HealthOk":  true,
+                 "HealthStatusCode":  200,
+                 "HealthContent":  "{\"ok\":true}"
+             },
+    "RepoSummary":  {
+                        "TotalFiles":  967,
+                        "HtmlFiles":  50,
+                        "JsFiles":  328,
+                        "JsonFiles":  133,
+                        "CssFiles":  0,
+                        "Ps1Files":  17
+                    },
+    "Counts":  {
+                   "PresentLive":  6,
+                   "PresentInRepoNotVerifiedLive":  6,
+                   "Partial":  2,
+                   "Missing":  6
+               },
+    "Evidence":  {
+                     "ServerCandidates":  [
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\lifeos-atlas-next-full-production-pass.ps1",
+                                                  "Name":  "lifeos-atlas-next-full-production-pass.ps1",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get(",
+                                                               "app.post(",
+                                                               "listen(",
+                                                               "server.js",
+                                                               "/api/"
+                                                           ],
+                                                  "HitCount":  6,
+                                                  "LastWriteTime":  "\/Date(1782879204604)\/",
+                                                  "Length":  77105
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\server.js",
+                                                  "Name":  "server.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get(",
+                                                               "app.post(",
+                                                               "listen(",
+                                                               "/api/"
+                                                           ],
+                                                  "HitCount":  5,
+                                                  "LastWriteTime":  "\/Date(1782895180521)\/",
+                                                  "Length":  6400
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\server.js",
+                                                  "Name":  "server.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get(",
+                                                               "app.post(",
+                                                               "listen(",
+                                                               "/api/"
+                                                           ],
+                                                  "HitCount":  5,
+                                                  "LastWriteTime":  "\/Date(1782879519250)\/",
+                                                  "Length":  21827
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\History.md",
+                                                  "Name":  "History.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get(",
+                                                               "router",
+                                                               "listen("
+                                                           ],
+                                                  "HitCount":  4,
+                                                  "LastWriteTime":  "\/Date(1782889646206)\/",
+                                                  "Length":  116409
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\lib\\application.js",
+                                                  "Name":  "application.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get(",
+                                                               "router",
+                                                               "listen("
+                                                           ],
+                                                  "HitCount":  4,
+                                                  "LastWriteTime":  "\/Date(1782889645980)\/",
+                                                  "Length":  14593
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\Readme.md",
+                                                  "Name":  "Readme.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get(",
+                                                               "listen("
+                                                           ],
+                                                  "HitCount":  3,
+                                                  "LastWriteTime":  "\/Date(1782889646209)\/",
+                                                  "Length":  9806
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\body-parser\\README.md",
+                                                  "Name":  "README.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.post(",
+                                                               "/api/"
+                                                           ],
+                                                  "HitCount":  3,
+                                                  "LastWriteTime":  "\/Date(1782889646178)\/",
+                                                  "Length":  19180
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\debug\\README.md",
+                                                  "Name":  "README.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "listen(",
+                                                               "/api/"
+                                                           ],
+                                                  "HitCount":  3,
+                                                  "LastWriteTime":  "\/Date(1782889646002)\/",
+                                                  "Length":  17918
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\package.json",
+                                                  "Name":  "package.json",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "router"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646200)\/",
+                                                  "Length":  2821
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\lib\\router\\route.js",
+                                                  "Name":  "route.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "router"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646188)\/",
+                                                  "Length":  4399
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\lib\\response.js",
+                                                  "Name":  "response.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get("
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646183)\/",
+                                                  "Length":  28729
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\multer\\README.md",
+                                                  "Name":  "README.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.post("
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646176)\/",
+                                                  "Length":  14161
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\lib\\request.js",
+                                                  "Name":  "request.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "app.get("
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646174)\/",
+                                                  "Length":  12505
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\lib\\router\\layer.js",
+                                                  "Name":  "layer.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "router"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646143)\/",
+                                                  "Length":  3296
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\lib\\router\\index.js",
+                                                  "Name":  "index.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "router"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646102)\/",
+                                                  "Length":  15123
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\statuses\\README.md",
+                                                  "Name":  "README.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "/api/"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646091)\/",
+                                                  "Length":  3866
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\serve-static\\README.md",
+                                                  "Name":  "README.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "listen("
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646069)\/",
+                                                  "Length":  7812
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\lib\\express.js",
+                                                  "Name":  "express.js",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "router"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646050)\/",
+                                                  "Length":  2409
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\safe-buffer\\README.md",
+                                                  "Name":  "README.md",
+                                                  "Hits":  [
+                                                               "listen(",
+                                                               "/api/"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646026)\/",
+                                                  "Length":  19555
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\raw-body\\README.md",
+                                                  "Name":  "README.md",
+                                                  "Hits":  [
+                                                               "express",
+                                                               "listen("
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646025)\/",
+                                                  "Length":  6553
+                                              }
+                                          ],
+                     "PageCandidates":  [
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\lifeos-atlas-next-full-production-pass.ps1",
+                                                "Name":  "lifeos-atlas-next-full-production-pass.ps1",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing",
+                                                             "dashboard",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  5,
+                                                "LastWriteTime":  "\/Date(1782879204604)\/",
+                                                "Length":  77105
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.json",
+                                                "Name":  "audit-report-20260701-050303.json",
+                                                "Hits":  [
+                                                             "Get Started",
+                                                             "pricing",
+                                                             "dashboard",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782896585591)\/",
+                                                "Length":  18970
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-approved-restore-20260701-044948.html",
+                                                "Name":  "index.before-approved-restore-20260701-044948.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "dashboard",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782895180186)\/",
+                                                "Length":  22954
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\pricing.html",
+                                                "Name":  "pricing.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing",
+                                                             "dashboard"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782879689284)\/",
+                                                "Length":  999
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\public\\pricing.html",
+                                                "Name":  "pricing.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing",
+                                                             "dashboard"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782879519305)\/",
+                                                "Length":  999
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\public\\index.html",
+                                                "Name":  "index.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing",
+                                                             "dashboard"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782879519257)\/",
+                                                "Length":  6128
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\APPROVED-LANDING-LOCK-20260630-052100.html",
+                                                "Name":  "APPROVED-LANDING-LOCK-20260630-052100.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782798315791)\/",
+                                                "Length":  19396
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-auto-restore-20260701-045708.html",
+                                                "Name":  "index.before-auto-restore-20260701-045708.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782798315791)\/",
+                                                "Length":  19396
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.html",
+                                                "Name":  "index.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782798315791)\/",
+                                                "Length":  19396
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.txt",
+                                                "Name":  "audit-report-20260701-050303.txt",
+                                                "Hits":  [
+                                                             "pricing",
+                                                             "dashboard",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782896586077)\/",
+                                                "Length":  3844
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\landing-restore-auto-log.txt",
+                                                "Name":  "landing-restore-auto-log.txt",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782896256764)\/",
+                                                "Length":  5311
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-approved-restore-20260701-041453.html",
+                                                "Name":  "index.before-approved-restore-20260701-041453.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "concierge"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782893372802)\/",
+                                                "Length":  13990
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\admin.html",
+                                                "Name":  "admin.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "dashboard"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782879689294)\/",
+                                                "Length":  9110
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\dashboard.html",
+                                                "Name":  "dashboard.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "dashboard"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782879689293)\/",
+                                                "Length":  25775
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\public\\admin.html",
+                                                "Name":  "admin.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "dashboard"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782879519320)\/",
+                                                "Length":  9110
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\public\\dashboard.html",
+                                                "Name":  "dashboard.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "dashboard"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782879519316)\/",
+                                                "Length":  25775
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\pricing.before-policy-darkmode-20260630-081129.html",
+                                                "Name":  "pricing.before-policy-darkmode-20260630-081129.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782816500013)\/",
+                                                "Length":  1829
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\pricing.html",
+                                                "Name":  "pricing.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782816500013)\/",
+                                                "Length":  1829
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\terms.html",
+                                                "Name":  "terms.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782816499910)\/",
+                                                "Length":  1152
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\terms.before-policy-darkmode-20260630-081129.html",
+                                                "Name":  "terms.before-policy-darkmode-20260630-081129.html",
+                                                "Hits":  [
+                                                             "\u003chtml",
+                                                             "\u003ctitle\u003e",
+                                                             "pricing"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782816499910)\/",
+                                                "Length":  1152
+                                            }
+                                        ],
+                     "ModuleCandidates":  [
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.txt",
+                                                  "Name":  "audit-report-20260701-050303.txt",
+                                                  "Hits":  [
+                                                               "Admin Autopilot",
+                                                               "Money Mission Control",
+                                                               "Health Navigator",
+                                                               "Family Coordination"
+                                                           ],
+                                                  "HitCount":  4,
+                                                  "LastWriteTime":  "\/Date(1782896586077)\/",
+                                                  "Length":  3844
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.json",
+                                                  "Name":  "audit-report-20260701-050303.json",
+                                                  "Hits":  [
+                                                               "Admin Autopilot",
+                                                               "Money Mission Control",
+                                                               "Health Navigator",
+                                                               "Family Coordination"
+                                                           ],
+                                                  "HitCount":  4,
+                                                  "LastWriteTime":  "\/Date(1782896585591)\/",
+                                                  "Length":  18970
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-approved-restore-20260701-044948.html",
+                                                  "Name":  "index.before-approved-restore-20260701-044948.html",
+                                                  "Hits":  [
+                                                               "Admin Autopilot",
+                                                               "Money Mission Control",
+                                                               "Health Navigator",
+                                                               "Family Coordination"
+                                                           ],
+                                                  "HitCount":  4,
+                                                  "LastWriteTime":  "\/Date(1782895180186)\/",
+                                                  "Length":  22954
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\index.before-policy-darkmode-20260630-081129.html",
+                                                  "Name":  "index.before-policy-darkmode-20260630-081129.html",
+                                                  "Hits":  [
+                                                               "Family Coordination"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782816499779)\/",
+                                                  "Length":  16515
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\index.html",
+                                                  "Name":  "index.html",
+                                                  "Hits":  [
+                                                               "Family Coordination"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782816499779)\/",
+                                                  "Length":  16515
+                                              }
+                                          ],
+                     "IntegrationMatches":  [
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.txt",
+                                                    "Name":  "audit-report-20260701-050303.txt",
+                                                    "Hits":  [
+                                                                 "Google Calendar",
+                                                                 "Gmail",
+                                                                 "Outlook",
+                                                                 "Stripe",
+                                                                 "Square",
+                                                                 "Plaid",
+                                                                 "Twilio",
+                                                                 "SendGrid",
+                                                                 "OpenAI"
+                                                             ],
+                                                    "HitCount":  9,
+                                                    "LastWriteTime":  "\/Date(1782896586077)\/",
+                                                    "Length":  3844
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.json",
+                                                    "Name":  "audit-report-20260701-050303.json",
+                                                    "Hits":  [
+                                                                 "Google Calendar",
+                                                                 "Gmail",
+                                                                 "Outlook",
+                                                                 "Stripe",
+                                                                 "Square",
+                                                                 "Plaid",
+                                                                 "Twilio",
+                                                                 "SendGrid",
+                                                                 "OpenAI"
+                                                             ],
+                                                    "HitCount":  9,
+                                                    "LastWriteTime":  "\/Date(1782896585591)\/",
+                                                    "Length":  18970
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime-db\\db.json",
+                                                    "Name":  "db.json",
+                                                    "Hits":  [
+                                                                 "Outlook",
+                                                                 "Square"
+                                                             ],
+                                                    "HitCount":  2,
+                                                    "LastWriteTime":  "\/Date(1782889646088)\/",
+                                                    "Length":  185882
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\readable-stream\\README.md",
+                                                    "Name":  "README.md",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646229)\/",
+                                                    "Length":  4710
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\README.md",
+                                                    "Name":  "README.md",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646215)\/",
+                                                    "Length":  4452
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646213)\/",
+                                                    "Length":  1668
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\History.md",
+                                                    "Name":  "History.md",
+                                                    "Hits":  [
+                                                                 "Square"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646206)\/",
+                                                    "Length":  116409
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\qs\\README.md",
+                                                    "Name":  "README.md",
+                                                    "Hits":  [
+                                                                 "Square"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646206)\/",
+                                                    "Length":  26906
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\qs\\CHANGELOG.md",
+                                                    "Name":  "CHANGELOG.md",
+                                                    "Hits":  [
+                                                                 "Square"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646201)\/",
+                                                    "Length":  42291
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646200)\/",
+                                                    "Length":  2821
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\qs\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646198)\/",
+                                                    "Length":  3192
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\math-intrinsics\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646193)\/",
+                                                    "Length":  2670
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\body-parser\\HISTORY.md",
+                                                    "Name":  "HISTORY.md",
+                                                    "Hits":  [
+                                                                 "Square"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646170)\/",
+                                                    "Length":  17090
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\has-symbols\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646164)\/",
+                                                    "Length":  2974
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime\\types.json",
+                                                    "Name":  "types.json",
+                                                    "Hits":  [
+                                                                 "Outlook"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646157)\/",
+                                                    "Length":  31555
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\call-bind-apply-helpers\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646146)\/",
+                                                    "Length":  2480
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\es-errors\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646144)\/",
+                                                    "Length":  2174
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\dunder-proto\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646139)\/",
+                                                    "Length":  2108
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\function-bind\\package.json",
+                                                    "Name":  "package.json",
+                                                    "Hits":  [
+                                                                 "Gmail"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646128)\/",
+                                                    "Length":  2262
+                                                },
+                                                {
+                                                    "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime-db\\HISTORY.md",
+                                                    "Name":  "HISTORY.md",
+                                                    "Hits":  [
+                                                                 "Outlook"
+                                                             ],
+                                                    "HitCount":  1,
+                                                    "LastWriteTime":  "\/Date(1782889646123)\/",
+                                                    "Length":  12581
+                                                }
+                                            ],
+                     "ComplianceMatches":  [
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.txt",
+                                                   "Name":  "audit-report-20260701-050303.txt",
+                                                   "Hits":  [
+                                                                "Privacy Policy",
+                                                                "data use",
+                                                                "AI disclosure"
+                                                            ],
+                                                   "HitCount":  3,
+                                                   "LastWriteTime":  "\/Date(1782896586077)\/",
+                                                   "Length":  3844
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.json",
+                                                   "Name":  "audit-report-20260701-050303.json",
+                                                   "Hits":  [
+                                                                "Privacy Policy",
+                                                                "data use",
+                                                                "AI disclosure"
+                                                            ],
+                                                   "HitCount":  3,
+                                                   "LastWriteTime":  "\/Date(1782896585591)\/",
+                                                   "Length":  18970
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\POLICIES-STARTER.md",
+                                                   "Name":  "POLICIES-STARTER.md",
+                                                   "Hits":  [
+                                                                "Privacy Policy",
+                                                                "Terms of Service",
+                                                                "AI disclosure"
+                                                            ],
+                                                   "HitCount":  3,
+                                                   "LastWriteTime":  "\/Date(1782792528328)\/",
+                                                   "Length":  1188
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\lib\\query.js",
+                                                   "Name":  "query.js",
+                                                   "Hits":  [
+                                                                "data use"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782889646187)\/",
+                                                   "Length":  7454
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime\\types.json",
+                                                   "Name":  "types.json",
+                                                   "Hits":  [
+                                                                "CCPA"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782889646157)\/",
+                                                   "Length":  31555
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime-db\\db.json",
+                                                   "Name":  "db.json",
+                                                   "Hits":  [
+                                                                "CCPA"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782889646088)\/",
+                                                   "Length":  185882
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\privacy.before-policy-darkmode-20260630-081129.html",
+                                                   "Name":  "privacy.before-policy-darkmode-20260630-081129.html",
+                                                   "Hits":  [
+                                                                "Privacy Policy"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782816499879)\/",
+                                                   "Length":  1201
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\privacy.html",
+                                                   "Name":  "privacy.html",
+                                                   "Hits":  [
+                                                                "Privacy Policy"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782816499879)\/",
+                                                   "Length":  1201
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\index.before-policy-darkmode-20260630-081129.html",
+                                                   "Name":  "index.before-policy-darkmode-20260630-081129.html",
+                                                   "Hits":  [
+                                                                "Privacy Policy"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782816499779)\/",
+                                                   "Length":  16515
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\index.html",
+                                                   "Name":  "index.html",
+                                                   "Hits":  [
+                                                                "Privacy Policy"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782816499779)\/",
+                                                   "Length":  16515
+                                               },
+                                               {
+                                                   "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\ai-disclosure.html",
+                                                   "Name":  "ai-disclosure.html",
+                                                   "Hits":  [
+                                                                "AI disclosure"
+                                                            ],
+                                                   "HitCount":  1,
+                                                   "LastWriteTime":  "\/Date(1782794078412)\/",
+                                                   "Length":  1092
+                                               }
+                                           ],
+                     "BillingMatches":  [
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.json",
+                                                "Name":  "audit-report-20260701-050303.json",
+                                                "Hits":  [
+                                                             "billing",
+                                                             "checkout",
+                                                             "payment",
+                                                             "price"
+                                                         ],
+                                                "HitCount":  4,
+                                                "LastWriteTime":  "\/Date(1782896585591)\/",
+                                                "Length":  18970
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\lifeos-atlas-next-full-production-pass.ps1",
+                                                "Name":  "lifeos-atlas-next-full-production-pass.ps1",
+                                                "Hits":  [
+                                                             "billing",
+                                                             "subscription",
+                                                             "payment"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782879204604)\/",
+                                                "Length":  77105
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\APPROVED-LANDING-LOCK-20260630-052100.html",
+                                                "Name":  "APPROVED-LANDING-LOCK-20260630-052100.html",
+                                                "Hits":  [
+                                                             "checkout",
+                                                             "payment",
+                                                             "price"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782798315791)\/",
+                                                "Length":  19396
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-auto-restore-20260701-045708.html",
+                                                "Name":  "index.before-auto-restore-20260701-045708.html",
+                                                "Hits":  [
+                                                             "checkout",
+                                                             "payment",
+                                                             "price"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782798315791)\/",
+                                                "Length":  19396
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.html",
+                                                "Name":  "index.html",
+                                                "Hits":  [
+                                                             "checkout",
+                                                             "payment",
+                                                             "price"
+                                                         ],
+                                                "HitCount":  3,
+                                                "LastWriteTime":  "\/Date(1782798315791)\/",
+                                                "Length":  19396
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-approved-restore-20260701-044948.html",
+                                                "Name":  "index.before-approved-restore-20260701-044948.html",
+                                                "Hits":  [
+                                                             "billing",
+                                                             "payment"
+                                                         ],
+                                                "HitCount":  2,
+                                                "LastWriteTime":  "\/Date(1782895180186)\/",
+                                                "Length":  22954
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\refund.html",
+                                                "Name":  "refund.html",
+                                                "Hits":  [
+                                                             "billing",
+                                                             "subscription"
+                                                         ],
+                                                "HitCount":  2,
+                                                "LastWriteTime":  "\/Date(1782879689289)\/",
+                                                "Length":  949
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\public\\refund.html",
+                                                "Name":  "refund.html",
+                                                "Hits":  [
+                                                             "billing",
+                                                             "subscription"
+                                                         ],
+                                                "HitCount":  2,
+                                                "LastWriteTime":  "\/Date(1782879519311)\/",
+                                                "Length":  949
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\pricing.before-policy-darkmode-20260630-081129.html",
+                                                "Name":  "pricing.before-policy-darkmode-20260630-081129.html",
+                                                "Hits":  [
+                                                             "subscription",
+                                                             "price"
+                                                         ],
+                                                "HitCount":  2,
+                                                "LastWriteTime":  "\/Date(1782816500013)\/",
+                                                "Length":  1829
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\pricing.html",
+                                                "Name":  "pricing.html",
+                                                "Hits":  [
+                                                             "subscription",
+                                                             "price"
+                                                         ],
+                                                "HitCount":  2,
+                                                "LastWriteTime":  "\/Date(1782816500013)\/",
+                                                "Length":  1829
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-log-20260701-050303.txt",
+                                                "Name":  "audit-log-20260701-050303.txt",
+                                                "Hits":  [
+                                                             "payment"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782896586141)\/",
+                                                "Length":  526
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.txt",
+                                                "Name":  "audit-report-20260701-050303.txt",
+                                                "Hits":  [
+                                                             "billing"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782896586077)\/",
+                                                "Length":  3844
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\landing-restore-auto-log.txt",
+                                                "Name":  "landing-restore-auto-log.txt",
+                                                "Hits":  [
+                                                             "payment"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782896256764)\/",
+                                                "Length":  5311
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\object-inspect\\CHANGELOG.md",
+                                                "Name":  "CHANGELOG.md",
+                                                "Hits":  [
+                                                             "checkout"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782889646233)\/",
+                                                "Length":  36562
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\qs\\README.md",
+                                                "Name":  "README.md",
+                                                "Hits":  [
+                                                             "subscription"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782889646206)\/",
+                                                "Length":  26906
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\qs\\CHANGELOG.md",
+                                                "Name":  "CHANGELOG.md",
+                                                "Hits":  [
+                                                             "checkout"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782889646201)\/",
+                                                "Length":  42291
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime\\types.json",
+                                                "Name":  "types.json",
+                                                "Hits":  [
+                                                             "payment"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782889646157)\/",
+                                                "Length":  31555
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\side-channel\\CHANGELOG.md",
+                                                "Name":  "CHANGELOG.md",
+                                                "Hits":  [
+                                                             "checkout"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782889646132)\/",
+                                                "Length":  11419
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\get-intrinsic\\CHANGELOG.md",
+                                                "Name":  "CHANGELOG.md",
+                                                "Hits":  [
+                                                             "checkout"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782889646109)\/",
+                                                "Length":  15537
+                                            },
+                                            {
+                                                "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime-db\\db.json",
+                                                "Name":  "db.json",
+                                                "Hits":  [
+                                                             "payment"
+                                                         ],
+                                                "HitCount":  1,
+                                                "LastWriteTime":  "\/Date(1782889646088)\/",
+                                                "Length":  185882
+                                            }
+                                        ],
+                     "AuthMatches":  [
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.json",
+                                             "Name":  "audit-report-20260701-050303.json",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "session",
+                                                          "auth",
+                                                          "permissions"
+                                                      ],
+                                             "HitCount":  5,
+                                             "LastWriteTime":  "\/Date(1782896585591)\/",
+                                             "Length":  18970
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\server.js",
+                                             "Name":  "server.js",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "session",
+                                                          "auth",
+                                                          "permissions"
+                                                      ],
+                                             "HitCount":  5,
+                                             "LastWriteTime":  "\/Date(1782879519250)\/",
+                                             "Length":  21827
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\lifeos-atlas-next-full-production-pass.ps1",
+                                             "Name":  "lifeos-atlas-next-full-production-pass.ps1",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "session",
+                                                          "auth",
+                                                          "permissions"
+                                                      ],
+                                             "HitCount":  5,
+                                             "LastWriteTime":  "\/Date(1782879204604)\/",
+                                             "Length":  77105
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.txt",
+                                             "Name":  "audit-report-20260701-050303.txt",
+                                             "Hits":  [
+                                                          "login",
+                                                          "session",
+                                                          "auth",
+                                                          "permissions"
+                                                      ],
+                                             "HitCount":  4,
+                                             "LastWriteTime":  "\/Date(1782896586077)\/",
+                                             "Length":  3844
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\admin.html",
+                                             "Name":  "admin.html",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  3,
+                                             "LastWriteTime":  "\/Date(1782879689294)\/",
+                                             "Length":  9110
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\dashboard.html",
+                                             "Name":  "dashboard.html",
+                                             "Hits":  [
+                                                          "login",
+                                                          "auth",
+                                                          "permissions"
+                                                      ],
+                                             "HitCount":  3,
+                                             "LastWriteTime":  "\/Date(1782879689293)\/",
+                                             "Length":  25775
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\public\\admin.html",
+                                             "Name":  "admin.html",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  3,
+                                             "LastWriteTime":  "\/Date(1782879519320)\/",
+                                             "Length":  9110
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\_single_backup\\public\\dashboard.html",
+                                             "Name":  "dashboard.html",
+                                             "Hits":  [
+                                                          "login",
+                                                          "auth",
+                                                          "permissions"
+                                                      ],
+                                             "HitCount":  3,
+                                             "LastWriteTime":  "\/Date(1782879519316)\/",
+                                             "Length":  25775
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\register.html",
+                                             "Name":  "register.html",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  3,
+                                             "LastWriteTime":  "\/Date(1782816499715)\/",
+                                             "Length":  3176
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\admin.html",
+                                             "Name":  "admin.html",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  3,
+                                             "LastWriteTime":  "\/Date(1782816499653)\/",
+                                             "Length":  4608
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\dashboard.html",
+                                             "Name":  "dashboard.html",
+                                             "Hits":  [
+                                                          "login",
+                                                          "signup",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  3,
+                                             "LastWriteTime":  "\/Date(1782816499623)\/",
+                                             "Length":  4914
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\History.md",
+                                             "Name":  "History.md",
+                                             "Hits":  [
+                                                          "session",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646206)\/",
+                                             "Length":  116409
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\package.json",
+                                             "Name":  "package.json",
+                                             "Hits":  [
+                                                          "session",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646200)\/",
+                                             "Length":  2821
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\lib\\crypto\\sasl.js",
+                                             "Name":  "sasl.js",
+                                             "Hits":  [
+                                                          "session",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646198)\/",
+                                             "Length":  9900
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\lib\\connection-parameters.js",
+                                             "Name":  "connection-parameters.js",
+                                             "Hits":  [
+                                                          "session",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646108)\/",
+                                             "Length":  5957
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime-db\\db.json",
+                                             "Name":  "db.json",
+                                             "Hits":  [
+                                                          "session",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646088)\/",
+                                             "Length":  185882
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\http-errors\\README.md",
+                                             "Name":  "README.md",
+                                             "Hits":  [
+                                                          "login",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646065)\/",
+                                             "Length":  5962
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pgpass\\README.md",
+                                             "Name":  "README.md",
+                                             "Hits":  [
+                                                          "auth",
+                                                          "permissions"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646059)\/",
+                                             "Length":  3294
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\lib\\client.js",
+                                             "Name":  "client.js",
+                                             "Hits":  [
+                                                          "session",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646052)\/",
+                                             "Length":  22776
+                                         },
+                                         {
+                                             "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\debug\\README.md",
+                                             "Name":  "README.md",
+                                             "Hits":  [
+                                                          "session",
+                                                          "auth"
+                                                      ],
+                                             "HitCount":  2,
+                                             "LastWriteTime":  "\/Date(1782889646002)\/",
+                                             "Length":  17918
+                                         }
+                                     ],
+                     "AnalyticsMatches":  [
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.json",
+                                                  "Name":  "audit-report-20260701-050303.json",
+                                                  "Hits":  [
+                                                               "analytics",
+                                                               "events",
+                                                               "tracking",
+                                                               "admin metrics"
+                                                           ],
+                                                  "HitCount":  4,
+                                                  "LastWriteTime":  "\/Date(1782896585591)\/",
+                                                  "Length":  18970
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-approved-restore-20260701-044948.html",
+                                                  "Name":  "index.before-approved-restore-20260701-044948.html",
+                                                  "Hits":  [
+                                                               "analytics",
+                                                               "events",
+                                                               "tracking",
+                                                               "conciergeMessages"
+                                                           ],
+                                                  "HitCount":  4,
+                                                  "LastWriteTime":  "\/Date(1782895180186)\/",
+                                                  "Length":  22954
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\enterprise-audit\\audit-report-20260701-050303.txt",
+                                                  "Name":  "audit-report-20260701-050303.txt",
+                                                  "Hits":  [
+                                                               "analytics",
+                                                               "events",
+                                                               "tracking"
+                                                           ],
+                                                  "HitCount":  3,
+                                                  "LastWriteTime":  "\/Date(1782896586077)\/",
+                                                  "Length":  3844
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\server.js",
+                                                  "Name":  "server.js",
+                                                  "Hits":  [
+                                                               "analytics",
+                                                               "events",
+                                                               "conciergeMessages"
+                                                           ],
+                                                  "HitCount":  3,
+                                                  "LastWriteTime":  "\/Date(1782895180521)\/",
+                                                  "Length":  6400
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\public\\index.before-approved-restore-20260701-041453.html",
+                                                  "Name":  "index.before-approved-restore-20260701-041453.html",
+                                                  "Hits":  [
+                                                               "events",
+                                                               "conciergeMessages"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782893372802)\/",
+                                                  "Length":  13990
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\express\\History.md",
+                                                  "Name":  "History.md",
+                                                  "Hits":  [
+                                                               "events",
+                                                               "tracking"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646206)\/",
+                                                  "Length":  116409
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\mime-db\\db.json",
+                                                  "Name":  "db.json",
+                                                  "Hits":  [
+                                                               "events",
+                                                               "tracking"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782889646088)\/",
+                                                  "Length":  185882
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\lifeos-atlas-next-full-production-pass.ps1",
+                                                  "Name":  "lifeos-atlas-next-full-production-pass.ps1",
+                                                  "Hits":  [
+                                                               "analytics",
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782879204604)\/",
+                                                  "Length":  77105
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\privacy.html",
+                                                  "Name":  "privacy.html",
+                                                  "Hits":  [
+                                                               "analytics",
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782816499879)\/",
+                                                  "Length":  1201
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\privacy.before-policy-darkmode-20260630-081129.html",
+                                                  "Name":  "privacy.before-policy-darkmode-20260630-081129.html",
+                                                  "Hits":  [
+                                                               "analytics",
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782816499879)\/",
+                                                  "Length":  1201
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\faq.html",
+                                                  "Name":  "faq.html",
+                                                  "Hits":  [
+                                                               "events",
+                                                               "tracking"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782816499818)\/",
+                                                  "Length":  2626
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\dashboard.html",
+                                                  "Name":  "dashboard.html",
+                                                  "Hits":  [
+                                                               "events",
+                                                               "tracking"
+                                                           ],
+                                                  "HitCount":  2,
+                                                  "LastWriteTime":  "\/Date(1782816499623)\/",
+                                                  "Length":  4914
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\readable-stream\\package.json",
+                                                  "Name":  "package.json",
+                                                  "Hits":  [
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646225)\/",
+                                                  "Length":  1886
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\readable-stream\\lib\\internal\\streams\\stream-browser.js",
+                                                  "Name":  "stream-browser.js",
+                                                  "Hits":  [
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646221)\/",
+                                                  "Length":  49
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\busboy\\test\\test-types-multipart.js",
+                                                  "Name":  "test-types-multipart.js",
+                                                  "Hits":  [
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646215)\/",
+                                                  "Length":  30013
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\qs\\.github\\THREAT_MODEL.md",
+                                                  "Name":  "THREAT_MODEL.md",
+                                                  "Hits":  [
+                                                               "tracking"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646211)\/",
+                                                  "Length":  4665
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\lib\\query.js",
+                                                  "Name":  "query.js",
+                                                  "Hits":  [
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646187)\/",
+                                                  "Length":  7454
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\lib\\native\\query.js",
+                                                  "Name":  "query.js",
+                                                  "Hits":  [
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646183)\/",
+                                                  "Length":  4757
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\body-parser\\HISTORY.md",
+                                                  "Name":  "HISTORY.md",
+                                                  "Hits":  [
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646170)\/",
+                                                  "Length":  17090
+                                              },
+                                              {
+                                                  "Path":  "C:\\Users\\PC\\lifeos-work\\annual-payment-service-Life-OS-Alas\\node_modules\\pg\\lib\\connection.js",
+                                                  "Name":  "connection.js",
+                                                  "Hits":  [
+                                                               "events"
+                                                           ],
+                                                  "HitCount":  1,
+                                                  "LastWriteTime":  "\/Date(1782889646136)\/",
+                                                  "Length":  5861
+                                              }
+                                          ]
+                 },
+    "AuditItems":  [
+                       {
+                           "Key":  "landing_nav",
+                           "Area":  "Landing",
+                           "Required":  "Sticky nav with logo left, center links, Get Started CTA right",
+                           "LiveHits":  [
+                                            "nav",
+                                            "pricing",
+                                            "concierge"
+                                        ],
+                           "RepoHits":  [
+                                            "pricing",
+                                            "concierge",
+                                            "Get Started"
+                                        ],
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "landing_hero",
+                           "Area":  "Landing",
+                           "Required":  "Hero with headline, support line, 2 CTAs",
+                           "LiveHits":  [
+                                            "concierge",
+                                            "hero"
+                                        ],
+                           "RepoHits":  [
+                                            "concierge",
+                                            "Get Started"
+                                        ],
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "landing_feature_grid",
+                           "Area":  "Landing",
+                           "Required":  "Feature grid below fold",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+                                            "Admin Autopilot",
+                                            "Money Mission Control",
+                                            "Health Navigator",
+                                            "Family Coordination"
+                                        ],
+                           "Status":  "PresentInRepoNotVerifiedLive"
+                       },
+                       {
+                           "Key":  "landing_trust_strip",
+                           "Area":  "Landing",
+                           "Required":  "Trust strip with privacy/compliance/user count",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "persistent_concierge",
+                           "Area":  "Concierge",
+                           "Required":  "Persistent concierge across landing, pricing, signup, onboarding, dashboard, billing, workflow",
+                           "LiveHits":  [
+                                            "concierge",
+                                            "atlas",
+                                            "help",
+                                            "support"
+                                        ],
+                           "RepoHits":  [
+                                            "concierge"
+                                        ],
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "pricing_architecture",
+                           "Area":  "Pricing",
+                           "Required":  "Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member tiers",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "onboarding_4_step",
+                           "Area":  "Onboarding",
+                           "Required":  "4-step onboarding with email/name, goal selection, integration, first mission preview",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "dashboard_main",
+                           "Area":  "Dashboard",
+                           "Required":  "Main dashboard with Today\u0027s Missions, module grid, quick actions, statuses",
+                           "LiveHits":  [
+                                            "status"
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Partial"
+                       },
+                       {
+                           "Key":  "module_stack",
+                           "Area":  "Modules",
+                           "Required":  "Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+                                            "Admin Autopilot",
+                                            "Money Mission Control",
+                                            "Health Navigator",
+                                            "Family Coordination"
+                                        ],
+                           "Status":  "PresentInRepoNotVerifiedLive"
+                       },
+                       {
+                           "Key":  "module_detail_view",
+                           "Area":  "Modules",
+                           "Required":  "Split-pane/module detail views with list, detail, trust log, action panel",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "desktop_sidebar",
+                           "Area":  "Navigation",
+                           "Required":  "Desktop sidebar navigation for app",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "mobile_tab_bar",
+                           "Area":  "Navigation",
+                           "Required":  "Mobile bottom tabs: Home, Missions, Atlas, Notifications, Profile",
+                           "LiveHits":  [
+                                            "Home",
+                                            "Atlas"
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "family_features",
+                           "Area":  "Family",
+                           "Required":  "Shared routines, folders, due dates, household tasks, 5-member family tier",
+                           "LiveHits":  [
+                                            "family"
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Partial"
+                       },
+                       {
+                           "Key":  "integrations_v1",
+                           "Area":  "Integrations",
+                           "Required":  "Google Calendar, Gmail/Outlook, Stripe/Square, Plaid, Twilio/SendGrid, OpenAI",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+                                            "Google Calendar",
+                                            "Gmail",
+                                            "Outlook",
+                                            "Stripe",
+                                            "Square",
+                                            "Plaid",
+                                            "Twilio",
+                                            "SendGrid",
+                                            "OpenAI"
+                                        ],
+                           "Status":  "PresentInRepoNotVerifiedLive"
+                       },
+                       {
+                           "Key":  "auth_layer",
+                           "Area":  "Auth",
+                           "Required":  "Sign up/login/session model and permissions explanations",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+                                            "login",
+                                            "signup",
+                                            "session",
+                                            "auth",
+                                            "permissions"
+                                        ],
+                           "Status":  "PresentInRepoNotVerifiedLive"
+                       },
+                       {
+                           "Key":  "billing_layer",
+                           "Area":  "Billing",
+                           "Required":  "Billing routes, payment rail, tier handling",
+                           "LiveHits":  [
+                                            "checkout",
+                                            "payment",
+                                            "price"
+                                        ],
+                           "RepoHits":  [
+                                            "billing",
+                                            "checkout",
+                                            "payment",
+                                            "price",
+                                            "subscription"
+                                        ],
+                           "Status":  "PresentLive"
+                       },
+                       {
+                           "Key":  "compliance_docs",
+                           "Area":  "Compliance",
+                           "Required":  "Privacy policy, terms, data use disclosure, AI disclosure",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+                                            "Privacy Policy",
+                                            "data use",
+                                            "AI disclosure",
+                                            "Terms of Service",
+                                            "CCPA"
+                                        ],
+                           "Status":  "PresentInRepoNotVerifiedLive"
+                       },
+                       {
+                           "Key":  "analytics_layer",
+                           "Area":  "Analytics",
+                           "Required":  "Privacy-first analytics and event tracking",
+                           "LiveHits":  [
+                                            "events"
+                                        ],
+                           "RepoHits":  [
+                                            "analytics",
+                                            "events",
+                                            "tracking"
+                                        ],
+                           "Status":  "PresentInRepoNotVerifiedLive"
+                       },
+                       {
+                           "Key":  "referral_growth",
+                           "Area":  "Growth",
+                           "Required":  "Referral mechanics and growth hooks",
+                           "LiveHits":  [
+
+                                        ],
+                           "RepoHits":  [
+
+                                        ],
+                           "Status":  "Missing"
+                       },
+                       {
+                           "Key":  "admin_metrics",
+                           "Area":  "Admin",
+                           "Required":  "Admin metrics and operational visibility",
+                           "LiveHits":  [
+                                            "metrics",
+                                            "events"
+                                        ],
+                           "RepoHits":  [
+                                            "events"
+                                        ],
+                           "Status":  "PresentLive"
+                       }
+                   ],
+    "NeededNow":  [
+                      {
+                          "Key":  "landing_feature_grid",
+                          "Area":  "Landing",
+                          "Required":  "Feature grid below fold",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+                                           "Admin Autopilot",
+                                           "Money Mission Control",
+                                           "Health Navigator",
+                                           "Family Coordination"
+                                       ],
+                          "Status":  "PresentInRepoNotVerifiedLive"
+                      },
+                      {
+                          "Key":  "landing_trust_strip",
+                          "Area":  "Landing",
+                          "Required":  "Trust strip with privacy/compliance/user count",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "pricing_architecture",
+                          "Area":  "Pricing",
+                          "Required":  "Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member tiers",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "onboarding_4_step",
+                          "Area":  "Onboarding",
+                          "Required":  "4-step onboarding with email/name, goal selection, integration, first mission preview",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "dashboard_main",
+                          "Area":  "Dashboard",
+                          "Required":  "Main dashboard with Today\u0027s Missions, module grid, quick actions, statuses",
+                          "LiveHits":  [
+                                           "status"
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Partial"
+                      },
+                      {
+                          "Key":  "module_stack",
+                          "Area":  "Modules",
+                          "Required":  "Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+                                           "Admin Autopilot",
+                                           "Money Mission Control",
+                                           "Health Navigator",
+                                           "Family Coordination"
+                                       ],
+                          "Status":  "PresentInRepoNotVerifiedLive"
+                      },
+                      {
+                          "Key":  "module_detail_view",
+                          "Area":  "Modules",
+                          "Required":  "Split-pane/module detail views with list, detail, trust log, action panel",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "desktop_sidebar",
+                          "Area":  "Navigation",
+                          "Required":  "Desktop sidebar navigation for app",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Missing"
+                      },
+                      {
+                          "Key":  "family_features",
+                          "Area":  "Family",
+                          "Required":  "Shared routines, folders, due dates, household tasks, 5-member family tier",
+                          "LiveHits":  [
+                                           "family"
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Partial"
+                      },
+                      {
+                          "Key":  "integrations_v1",
+                          "Area":  "Integrations",
+                          "Required":  "Google Calendar, Gmail/Outlook, Stripe/Square, Plaid, Twilio/SendGrid, OpenAI",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+                                           "Google Calendar",
+                                           "Gmail",
+                                           "Outlook",
+                                           "Stripe",
+                                           "Square",
+                                           "Plaid",
+                                           "Twilio",
+                                           "SendGrid",
+                                           "OpenAI"
+                                       ],
+                          "Status":  "PresentInRepoNotVerifiedLive"
+                      },
+                      {
+                          "Key":  "auth_layer",
+                          "Area":  "Auth",
+                          "Required":  "Sign up/login/session model and permissions explanations",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+                                           "login",
+                                           "signup",
+                                           "session",
+                                           "auth",
+                                           "permissions"
+                                       ],
+                          "Status":  "PresentInRepoNotVerifiedLive"
+                      },
+                      {
+                          "Key":  "compliance_docs",
+                          "Area":  "Compliance",
+                          "Required":  "Privacy policy, terms, data use disclosure, AI disclosure",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+                                           "Privacy Policy",
+                                           "data use",
+                                           "AI disclosure",
+                                           "Terms of Service",
+                                           "CCPA"
+                                       ],
+                          "Status":  "PresentInRepoNotVerifiedLive"
+                      },
+                      {
+                          "Key":  "analytics_layer",
+                          "Area":  "Analytics",
+                          "Required":  "Privacy-first analytics and event tracking",
+                          "LiveHits":  [
+                                           "events"
+                                       ],
+                          "RepoHits":  [
+                                           "analytics",
+                                           "events",
+                                           "tracking"
+                                       ],
+                          "Status":  "PresentInRepoNotVerifiedLive"
+                      },
+                      {
+                          "Key":  "referral_growth",
+                          "Area":  "Growth",
+                          "Required":  "Referral mechanics and growth hooks",
+                          "LiveHits":  [
+
+                                       ],
+                          "RepoHits":  [
+
+                                       ],
+                          "Status":  "Missing"
+                      }
+                  ]
+}

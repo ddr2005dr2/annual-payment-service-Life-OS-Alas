@@ -1,0 +1,69 @@
+﻿LifeOS Atlas Live Site Audit
+Generated: 07/01/2026 05:13:34
+
+LIVE STATUS
+Homepage OK: True
+Homepage Status: 200
+Homepage Title: LifeOS Atlas — Premium Landing
+Health OK: True
+Health Status: 200
+Health Content: {"ok":true}
+
+AUDIT COUNTS
+PresentLive=4 Partial=2 Missing=7
+
+LIVE GAP REPORT
+------------------------------------------------------------
+Area: Workflow
+Key: execution_queue
+Status: Missing
+Required: Visible guided next-step workflow
+LiveHits: 
+------------------------------------------------------------
+Area: Pricing
+Key: annual_pricing_shell
+Status: Missing
+Required: Current premium annual pricing shell
+LiveHits: 
+------------------------------------------------------------
+Area: Pricing
+Key: full_pricing_architecture
+Status: Missing
+Required: Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member
+LiveHits: 
+------------------------------------------------------------
+Area: Modules
+Key: module_stack
+Status: Missing
+Required: Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination
+LiveHits: 
+------------------------------------------------------------
+Area: Onboarding
+Key: onboarding_4_step
+Status: Missing
+Required: 4-step onboarding with mission preview
+LiveHits: 
+------------------------------------------------------------
+Area: Dashboard
+Key: dashboard_surface
+Status: Partial
+Required: Dashboard with Today's Missions, module grid, quick actions, statuses
+LiveHits: status
+------------------------------------------------------------
+Area: Family
+Key: family_surface
+Status: Partial
+Required: Shared routines, folders, due dates, household tasks
+LiveHits: family
+------------------------------------------------------------
+Area: Compliance
+Key: compliance_public
+Status: Missing
+Required: Privacy Policy, Terms, data-use disclosure, AI disclosure
+LiveHits: 
+------------------------------------------------------------
+Area: Design
+Key: trust_validation
+Status: Missing
+Required: Visible design-system and responsive validation
+LiveHits: 

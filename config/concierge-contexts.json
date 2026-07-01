@@ -1,0 +1,11 @@
+﻿{
+  "contexts": [
+    { "id": "landing", "page": "Landing", "role": "Explain product, guide to signup", "tone": "Warm, confident, minimal" },
+    { "id": "pricing", "page": "Pricing", "role": "Clarify tiers, handle objections", "tone": "Clear, honest, reassuring" },
+    { "id": "signup", "page": "Signup", "role": "Explain steps, permissions", "tone": "Encouraging, simple, patient" },
+    { "id": "dashboard-new", "page": "DashboardNew", "role": "Surface first mission, next actions", "tone": "Proactive, helpful, brief" },
+    { "id": "dashboard-active", "page": "DashboardActive", "role": "Answer task questions, suggest actions", "tone": "Efficient, intelligent, low-noise" },
+    { "id": "billing", "page": "Billing", "role": "Explain charges, resolve confusion", "tone": "Calm, transparent, solution-focused" },
+    { "id": "error-empty", "page": "ErrorEmpty", "role": "Explain what happened, next step", "tone": "Reassuring, direct" }
+  ]
+}

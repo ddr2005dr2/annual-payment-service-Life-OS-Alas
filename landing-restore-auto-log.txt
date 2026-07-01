@@ -1,0 +1,63 @@
+=== LANDING RESTORE AUTO RUN ===
+[2026-07-01 04:56:58] Scanning: C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas
+[2026-07-01 04:56:58] Scanning: C:\Users\PC\Downloads
+[2026-07-01 04:56:59] Scanning: C:\Users\PC\Desktop
+[2026-07-01 04:57:08] Scanning: C:\Users\PC\Documents
+[2026-07-01 04:57:08] Top candidates:
+[2026-07-01 04:57:08] Candidate | Score=15 | Time=6/30/2026 1:45:15 AM | Name=index.html | Path=C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas\public\index.html
+[2026-07-01 04:57:08] Candidate | Score=15 | Time=6/30/2026 1:45:15 AM | Name=APPROVED-LANDING-LOCK-20260630-052100.html | Path=C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas\APPROVED-LANDING-LOCK-20260630-052100.html
+[2026-07-01 04:57:08] Candidate | Score=15 | Time=6/30/2026 1:44:32 AM | Name=reference-premium-end-to-end.ps1 | Path=C:\Users\PC\Downloads\reference-premium-end-to-end.ps1
+[2026-07-01 04:57:08] Candidate | Score=9 | Time=7/1/2026 4:39:40 AM | Name=index.before-approved-restore-20260701-044948.html | Path=C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas\public\index.before-approved-restore-20260701-044948.html
+[2026-07-01 04:57:08] Candidate | Score=7 | Time=6/29/2026 11:57:25 PM | Name=build-lifeos-atlas-secure.ps1 | Path=C:\Users\PC\Downloads\build-lifeos-atlas-secure.ps1
+[2026-07-01 04:57:08] Candidate | Score=6 | Time=6/30/2026 2:09:45 AM | Name=lifeosatlas-full-app-shell.ps1 | Path=C:\Users\PC\Downloads\lifeosatlas-full-app-shell.ps1
+[2026-07-01 04:57:08] Candidate | Score=6 | Time=6/29/2026 7:02:15 PM | Name=lifeos-atlas-canonical.html | Path=C:\Users\PC\Desktop\lifeos-atlas-final\app\lifeos-atlas-canonical.html
+[2026-07-01 04:57:08] Candidate | Score=6 | Time=6/29/2026 3:59:25 AM | Name=Viral Signal Youtube Channel - ViralSignal Media Strategy.html | Path=C:\Users\PC\Downloads\Viral Signal Youtube Channel - ViralSignal Media Strategy.html
+[2026-07-01 04:57:08] Candidate | Score=5 | Time=7/1/2026 12:13:24 AM | Name=lifeos-atlas-next-full-production-pass.ps1 | Path=C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas\lifeos-atlas-next-full-production-pass.ps1
+[2026-07-01 04:57:08] Candidate | Score=5 | Time=6/30/2026 1:12:50 AM | Name=premium-aaplus-landing.html | Path=C:\Users\PC\Downloads\premium-aaplus-landing.html
+[2026-07-01 04:57:08] Best candidate auto-selected: C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas\public\index.html
+[2026-07-01 04:57:08] Backup created: .\public\index.before-auto-restore-20260701-045708.html
+[2026-07-01 04:57:08] Restored candidate to .\public\index.html
+[2026-07-01 04:57:08] Restored file metadata:
+[2026-07-01 04:57:08] 
+FullName                                                                      Length LastWriteTime       
+--------                                                                      ------ -------------       
+C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas\public\index.html  19396 6/30/2026 1:45:15 AM
+[2026-07-01 04:57:08] Restored file head preview:
+[2026-07-01 04:57:08] <!DOCTYPE html>
+[2026-07-01 04:57:08] <html lang="en">
+[2026-07-01 04:57:08] <head>
+[2026-07-01 04:57:08]   <meta charset="UTF-8" />
+[2026-07-01 04:57:08]   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+[2026-07-01 04:57:08]   <title>LifeOS Atlas — Premium Landing</title>
+[2026-07-01 04:57:08]   <meta name="description" content="Premium glossy landing page with black navigation, structured panels, visible concierge, and separated blue and orange accents." />
+[2026-07-01 04:57:09]   <link rel="preconnect" href="https://fonts.googleapis.com">
+[2026-07-01 04:57:09]   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+[2026-07-01 04:57:09]   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+[2026-07-01 04:57:09]   <style>
+[2026-07-01 04:57:09]     :root{
+[2026-07-01 04:57:09]       --bg:#07090d;
+[2026-07-01 04:57:09]       --bg-2:#0c1018;
+[2026-07-01 04:57:09]       --panel:#101625;
+[2026-07-01 04:57:09]       --panel-2:#121a2b;
+[2026-07-01 04:57:09]       --panel-3:#0d1422;
+[2026-07-01 04:57:09]       --line:rgba(255,255,255,.09);
+[2026-07-01 04:57:09]       --text:#f4f7fb;
+[2026-07-01 04:57:09]       --muted:#9ca8bc;
+[2026-07-01 04:57:09]       --blue:#5aa6ff;
+[2026-07-01 04:57:09]       --blue-2:#2f7ef7;
+[2026-07-01 04:57:09]       --orange:#ff9a3d;
+[2026-07-01 04:57:09]       --orange-2:#ff7a1a;
+[2026-07-01 04:57:09]       --shadow:0 28px 80px rgba(0,0,0,.45);
+[2026-07-01 04:57:09]       --radius:24px;
+[2026-07-01 04:57:09]     }
+[2026-07-01 04:57:09]     *{box-sizing:border-box;margin:0;padding:0}
+[2026-07-01 04:57:09]     html{scroll-behavior:smooth}
+[2026-07-01 04:57:09]     body{
+[2026-07-01 04:57:09] No new git commit created.
+[2026-07-01 04:57:11] Git push succeeded.
+[2026-07-01 04:57:12] Railway deploy submitted.
+[2026-07-01 04:57:32] Deployment list after auto-restore:
+[2026-07-01 04:57:33] Public homepage status: 200
+[2026-07-01 04:57:33] Health status: 200
+[2026-07-01 04:57:33] Health content: {"ok":true}
+[2026-07-01 04:57:36] Auto-run complete. Log file: C:\Users\PC\lifeos-work\annual-payment-service-Life-OS-Alas\landing-restore-auto-log.txt

@@ -1,0 +1,224 @@
+﻿{
+    "GeneratedAt":  "2026-07-01T05:13:34",
+    "Live":  {
+                 "Url":  "https://www.lifeosatlas.com",
+                 "Ok":  true,
+                 "StatusCode":  200,
+                 "Title":  "LifeOS Atlas — Premium Landing",
+                 "HealthOk":  true,
+                 "HealthStatusCode":  200,
+                 "HealthContent":  "{\"ok\":true}"
+             },
+    "Counts":  {
+                   "PresentLive":  4,
+                   "Partial":  2,
+                   "Missing":  7
+               },
+    "AuditItems":  [
+                       {
+                           "Key":  "hero_positioning",
+                           "Area":  "Landing",
+                           "Required":  "Hero and premium product positioning",
+                           "Status":  "PresentLive",
+                           "LiveHits":  [
+                                            "premium",
+                                            "LifeOS Atlas"
+                                        ]
+                       },
+                       {
+                           "Key":  "concierge_shell",
+                           "Area":  "Concierge",
+                           "Required":  "Concierge-led guidance visible on live site",
+                           "Status":  "PresentLive",
+                           "LiveHits":  [
+                                            "concierge",
+                                            "guided",
+                                            "support"
+                                        ]
+                       },
+                       {
+                           "Key":  "execution_queue",
+                           "Area":  "Workflow",
+                           "Required":  "Visible guided next-step workflow",
+                           "Status":  "Missing",
+                           "LiveHits":  [
+
+                                        ]
+                       },
+                       {
+                           "Key":  "annual_pricing_shell",
+                           "Area":  "Pricing",
+                           "Required":  "Current premium annual pricing shell",
+                           "Status":  "Missing",
+                           "LiveHits":  [
+
+                                        ]
+                       },
+                       {
+                           "Key":  "full_pricing_architecture",
+                           "Area":  "Pricing",
+                           "Required":  "Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member",
+                           "Status":  "Missing",
+                           "LiveHits":  [
+
+                                        ]
+                       },
+                       {
+                           "Key":  "module_stack",
+                           "Area":  "Modules",
+                           "Required":  "Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination",
+                           "Status":  "Missing",
+                           "LiveHits":  [
+
+                                        ]
+                       },
+                       {
+                           "Key":  "onboarding_4_step",
+                           "Area":  "Onboarding",
+                           "Required":  "4-step onboarding with mission preview",
+                           "Status":  "Missing",
+                           "LiveHits":  [
+
+                                        ]
+                       },
+                       {
+                           "Key":  "dashboard_surface",
+                           "Area":  "Dashboard",
+                           "Required":  "Dashboard with Today\u0027s Missions, module grid, quick actions, statuses",
+                           "Status":  "Partial",
+                           "LiveHits":  [
+                                            "status"
+                                        ]
+                       },
+                       {
+                           "Key":  "family_surface",
+                           "Area":  "Family",
+                           "Required":  "Shared routines, folders, due dates, household tasks",
+                           "Status":  "Partial",
+                           "LiveHits":  [
+                                            "family"
+                                        ]
+                       },
+                       {
+                           "Key":  "compliance_public",
+                           "Area":  "Compliance",
+                           "Required":  "Privacy Policy, Terms, data-use disclosure, AI disclosure",
+                           "Status":  "Missing",
+                           "LiveHits":  [
+
+                                        ]
+                       },
+                       {
+                           "Key":  "mobile_tabs",
+                           "Area":  "Navigation",
+                           "Required":  "Home, Missions, Atlas, Notifications, Profile",
+                           "Status":  "PresentLive",
+                           "LiveHits":  [
+                                            "Home",
+                                            "Atlas"
+                                        ]
+                       },
+                       {
+                           "Key":  "billing_live",
+                           "Area":  "Billing",
+                           "Required":  "Live billing, checkout, and subscription handling",
+                           "Status":  "PresentLive",
+                           "LiveHits":  [
+                                            "checkout",
+                                            "payment"
+                                        ]
+                       },
+                       {
+                           "Key":  "trust_validation",
+                           "Area":  "Design",
+                           "Required":  "Visible design-system and responsive validation",
+                           "Status":  "Missing",
+                           "LiveHits":  [
+
+                                        ]
+                       }
+                   ],
+    "NeededNow":  [
+                      {
+                          "Key":  "execution_queue",
+                          "Area":  "Workflow",
+                          "Required":  "Visible guided next-step workflow",
+                          "Status":  "Missing",
+                          "LiveHits":  [
+
+                                       ]
+                      },
+                      {
+                          "Key":  "annual_pricing_shell",
+                          "Area":  "Pricing",
+                          "Required":  "Current premium annual pricing shell",
+                          "Status":  "Missing",
+                          "LiveHits":  [
+
+                                       ]
+                      },
+                      {
+                          "Key":  "full_pricing_architecture",
+                          "Area":  "Pricing",
+                          "Required":  "Free, Atlas Pro, Atlas Family, Atlas Business, Founding Member",
+                          "Status":  "Missing",
+                          "LiveHits":  [
+
+                                       ]
+                      },
+                      {
+                          "Key":  "module_stack",
+                          "Area":  "Modules",
+                          "Required":  "Admin Autopilot, Money Mission Control, Health Navigator, Family Coordination",
+                          "Status":  "Missing",
+                          "LiveHits":  [
+
+                                       ]
+                      },
+                      {
+                          "Key":  "onboarding_4_step",
+                          "Area":  "Onboarding",
+                          "Required":  "4-step onboarding with mission preview",
+                          "Status":  "Missing",
+                          "LiveHits":  [
+
+                                       ]
+                      },
+                      {
+                          "Key":  "dashboard_surface",
+                          "Area":  "Dashboard",
+                          "Required":  "Dashboard with Today\u0027s Missions, module grid, quick actions, statuses",
+                          "Status":  "Partial",
+                          "LiveHits":  [
+                                           "status"
+                                       ]
+                      },
+                      {
+                          "Key":  "family_surface",
+                          "Area":  "Family",
+                          "Required":  "Shared routines, folders, due dates, household tasks",
+                          "Status":  "Partial",
+                          "LiveHits":  [
+                                           "family"
+                                       ]
+                      },
+                      {
+                          "Key":  "compliance_public",
+                          "Area":  "Compliance",
+                          "Required":  "Privacy Policy, Terms, data-use disclosure, AI disclosure",
+                          "Status":  "Missing",
+                          "LiveHits":  [
+
+                                       ]
+                      },
+                      {
+                          "Key":  "trust_validation",
+                          "Area":  "Design",
+                          "Required":  "Visible design-system and responsive validation",
+                          "Status":  "Missing",
+                          "LiveHits":  [
+
+                                       ]
+                      }
+                  ]
+}
