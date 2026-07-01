@@ -32,7 +32,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use((req, _res, next) => {
-  if (req.path !== '/api/health' && req.path !== '/health') {
+  if (req.path !== '/api/health' && req.path !== '/health' && !req.path.startsWith('/assets')) {
     analytics.push({
       event_type: 'page_view',
       path: req.path,
@@ -111,8 +111,10 @@ app.get('/api/admin/overview', (_req, res) => {
   });
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (_req, res) => {
-  res.status(200).send('LifeOS Atlas live with admin route');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const port = Number(process.env.PORT || 8080);
