@@ -102,7 +102,7 @@ app.use((req, _res, next) => {
   next();
 });
 
-app.get('/health', (_req, res) => res.json({ ok: true, service: 'lifeos-atlas', storage: 'in-memory', time: nowIso() }));
+app\.get\('/health',\ \(_req,\ res\)\ =>\ res\.json\(\{\ ok:\ true,\ service:\ 'lifeos-atlas',\ storage:\ 'in-memory',\ time:\ nowIso\(\)\ }\)\);\napp\.get\('/healthz',\ \(_req,\ res\)\ =>\ res\.json\(\{\ ok:\ true,\ service:\ 'lifeos-atlas',\ storage:\ 'in-memory',\ time:\ nowIso\(\)\ }\)\);
 app.get('/api/health', (_req, res) => res.json({ ok: true, service: 'lifeos-atlas', storage: 'in-memory', time: nowIso() }));
 
 app.post('/api/auth/signup', (req, res) => {
